@@ -2,7 +2,7 @@
 
 *Last Updated: July 24, 2025*  
 *Status: Current - v1.4.0*  
-*Test Coverage: 101/101 tests passing*
+*Test Coverage: 152/152 tests passing*
 
 This document provides comprehensive guidance for running, maintaining, and extending the automated test suite for InvestorPrez.
 
@@ -27,7 +27,7 @@ npm run test:run
 ```
 
 ### Test Status Overview
-- **Total Tests**: 101 tests across 10 test files
+- **Total Tests**: 152 tests across 13 test files
 - **Current Status**: ✅ All passing
 - **Test Framework**: Vitest + React Testing Library
 - **Last Major Update**: January 2025 (comprehensive test coverage update)

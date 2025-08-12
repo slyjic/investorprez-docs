@@ -112,7 +112,7 @@ The comprehensive GrapesJS Studio SDK documentation:
 - **Infrastructure**: Vercel + Railway + Sentry + GA4
 
 ### Key Metrics
-- **📄 101 Automated Tests** (all passing)
+- **📄 152 Automated Tests** (all passing)
 - **🎨 55+ GrapesJS SDK Files** documented
 - **📈 69 Documentation Files** organized
 - **⚡ Fast Loading** with minimal JavaScript

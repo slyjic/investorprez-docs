@@ -52,7 +52,7 @@
 - [ ] Publishing feature works
 
 ### Pre-Deployment Testing
-- [ ] **Run automated tests**: `npm test` (All 101 tests must pass)
+- [ ] **Run automated tests**: `npm test` (All 152 tests must pass)
 - [ ] Run validation: `npm run validate`
 - [ ] Run linting: `npm run lint`
 - [ ] Test build: `npm run build:prod`
@@ -70,7 +70,7 @@
 
 ### Test Suite Overview
 - **Framework**: Vitest + React Testing Library
-- **Total Tests**: 101 tests across 10 test files
+- **Total Tests**: 152 tests across 13 test files
 - **Coverage**: Pages, Components, Services, and Utilities
 - **Status**: ✅ All tests currently passing
 
