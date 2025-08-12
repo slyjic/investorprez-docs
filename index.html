@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index - InvestorPrez Documentation</title>
-    <meta name="description" content="InvestorPrez documentation">
+    <title>InvestorPrez Documentation</title>
+    <meta name="description" content="Comprehensive documentation for InvestorPrez platform and GrapesJS Studio SDK integration">
+    
+    <!-- SEO and Social -->
+    <meta property="og:title" content="InvestorPrez Documentation">
+    <meta property="og:description" content="Professional presentation platform documentation and GrapesJS SDK guide">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://slyjic.github.io/investorprez-docs/">
     
     <style>
         * {
@@ -17,300 +23,320 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #fff;
-            max-width: 1000px;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
         
-        .nav-bar {
-            background: #667eea;
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem;
-            margin: -2rem -2rem 2rem -2rem;
-            border-radius: 0;
-        }
-        
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            margin-right: 1rem;
-        }
-        
-        .nav-bar a:hover {
-            text-decoration: underline;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            color: #2d3748;
-            margin: 1.5rem 0 1rem 0;
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
         }
         
         h1 {
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
         
-        p {
-            margin: 1rem 0;
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
         
-        a {
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h3 {
             color: #667eea;
-            text-decoration: none;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
         }
         
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        pre {
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 1rem;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-        
-        code {
-            background: #f7fafc;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-            font-size: 0.9em;
-        }
-        
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        
-        blockquote {
-            border-left: 4px solid #667eea;
-            padding-left: 1rem;
-            margin: 1rem 0;
-            font-style: italic;
+        .card p {
             color: #666;
+            font-size: 0.95rem;
         }
         
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 1rem 0;
+        .card a {
+            text-decoration: none;
+            color: inherit;
         }
         
-        th, td {
-            border: 1px solid #e2e8f0;
-            padding: 0.5rem;
-            text-align: left;
+        .card a:hover h3 {
+            color: #5a67d8;
         }
         
-        th {
-            background: #f7fafc;
-            font-weight: 600;
+        .section {
+            margin: 3rem 0;
         }
         
-        ul, ol {
-            margin: 1rem 0 1rem 2rem;
+        .section h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
         }
         
-        .footer {
-            margin-top: 3rem;
-            padding-top: 1rem;
+        .status-box {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .status-box h3 {
+            color: #00695c;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .info-box {
+            background: #f0f8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .info-box h4 {
+            color: #2b6cb0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        
+        .btn:hover {
+            background: #5a67d8;
+        }
+        
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
             border-top: 1px solid #e2e8f0;
             text-align: center;
             color: #666;
-            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="nav-bar">
-        <a href="../../../">🏠 Home</a>
-        <a href="../../">📚 Documentation</a>
-        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
-    </div>
+    <header>
+        <div class="container">
+            <h1>📚 InvestorPrez Documentation</h1>
+            <p class="tagline">Professional presentation platform documentation and GrapesJS SDK guide</p>
+        </div>
+    </header>
     
-    <h1 id="investorprez-documentation">📚 InvestorPrez
-    Documentation</h1>
-    <p>Welcome to the comprehensive documentation for
-    <strong>InvestorPrez</strong> - a professional presentation platform
-    built with modern web technologies and powered by GrapesJS Studio
-    SDK.</p>
-    <h2 id="architecture">🏗️ Architecture</h2>
-    <div class="grid">
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _architecture/ARCHITECTURE_DECISIONS.md %}&quot;&gt;🏛️ Architecture Decisions&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Key architectural decisions and their rationale&lt;/p&gt;</code></pre>
-    </div>
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _architecture/DOMAIN_ARCHITECTURE.md %}&quot;&gt;🌐 Domain Architecture&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;System boundaries and domain modeling&lt;/p&gt;</code></pre>
-    </div>
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _architecture/GRAPESJS_RENDERING_ARCHITECTURE.md %}&quot;&gt;🎨 Rendering Architecture&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;GrapesJS integration and rendering pipeline&lt;/p&gt;</code></pre>
-    </div>
-    </div>
-    <h2 id="development">⚙️ Development</h2>
-    <div class="grid">
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _development/DEVELOPMENT_WORKFLOW.md %}&quot;&gt;🔧 Development Workflow&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Complete development setup and workflow guide&lt;/p&gt;</code></pre>
-    </div>
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _development/DOCUMENTATION_UPDATE_PROTOCOL.md %}&quot;&gt;📝 Documentation Protocol&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Guidelines for maintaining documentation&lt;/p&gt;</code></pre>
-    </div>
-    </div>
-    <h2 id="features">✨ Features</h2>
-    <div class="grid">
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _features/AUTHENTICATION_SYSTEM.md %}&quot;&gt;🔐 Authentication System&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;JWT-based authentication with email verification&lt;/p&gt;</code></pre>
-    </div>
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _features/COMMENT_SYSTEM.md %}&quot;&gt;💬 Comment System&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Slide-specific commenting with visual pins&lt;/p&gt;</code></pre>
-    </div>
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _features/COLLABORATION_SYSTEM_RESEARCH.md %}&quot;&gt;🤝 Collaboration System&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Multi-user collaboration and sharing features&lt;/p&gt;</code></pre>
-    </div>
-    </div>
-    <h2 id="testing-deployment">🧪 Testing &amp; Deployment</h2>
-    <div class="grid">
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _testing/AUTOMATED_TESTING_GUIDE.md %}&quot;&gt;🔬 Testing Guide&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Comprehensive testing procedures and automation&lt;/p&gt;</code></pre>
-    </div>
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _testing/TESTING_PROCEDURES.md %}&quot;&gt;✅ Testing Procedures&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Manual testing procedures and checklists&lt;/p&gt;</code></pre>
-    </div>
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _deployment/DEPLOYMENT_GUIDE.md %}&quot;&gt;🚀 Deployment Guide&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Production deployment and infrastructure setup&lt;/p&gt;</code></pre>
-    </div>
-    </div>
-    <h2 id="grapesjs-sdk-reference">🎨 GrapesJS SDK Reference</h2>
-    <p>The comprehensive GrapesJS Studio SDK documentation:</p>
-    <div class="grid">
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;/investorprez-docs/grapesjs/GrapesJS_SDK_Docs/&quot;&gt;📖 Complete SDK Guide&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Full reference for GrapesJS Studio SDK integration&lt;/p&gt;</code></pre>
-    </div>
-    </div>
-    <p><strong>Key GrapesJS Sections:</strong> - <strong>Getting
-    Started</strong>: Setup, configuration, and basic usage -
-    <strong>Project Types</strong>: Web, Email, and Document
-    presentations<br />
-    - <strong>Configuration</strong>: Blocks, themes, layouts, and
-    components - <strong>Plugins</strong>: Rich text editor, data
-    sources, and UI enhancements - <strong>Components</strong>:
-    Animation, tables, and custom elements -
-    <strong>Integration</strong>: InvestorPrez-specific
-    implementations</p>
-    <h2 id="templates">📋 Templates</h2>
-    <div class="grid">
-    <div class="card">
-    <pre><code>&lt;h3&gt;&lt;a href=&quot;{% link _templates/templates/FEATURE_DOCUMENTATION.md %}&quot;&gt;📄 Documentation Templates&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Standardized templates for consistent documentation&lt;/p&gt;</code></pre>
-    </div>
-    </div>
-    <h2 id="project-status">📊 Project Status</h2>
-    <p><strong>Current Version</strong>: v1.10.57 (User-Generated
-    Symbols Fix)<br />
-    <strong>Documentation Version</strong>: v1.0.0<br />
-    <strong>Last Updated</strong>: 2025-08-12</p>
-    <h3 id="tech-stack">Tech Stack</h3>
-    <ul>
-    <li><strong>Frontend</strong>: React 18.3.1 + TypeScript + Vite +
-    Tailwind CSS</li>
-    <li><strong>Backend</strong>: Express.js + PostgreSQL + JWT
-    Auth</li>
-    <li><strong>Editor</strong>: GrapesJS Studio SDK v1.0.51</li>
-    <li><strong>Infrastructure</strong>: Vercel + Railway + Sentry +
-    GA4</li>
-    </ul>
-    <h3 id="key-metrics">Key Metrics</h3>
-    <ul>
-    <li><strong>📄 152 Automated Tests</strong> (all passing)</li>
-    <li><strong>🎨 55+ GrapesJS SDK Files</strong> documented</li>
-    <li><strong>📈 69 Documentation Files</strong> organized</li>
-    <li><strong>⚡ Fast Loading</strong> with minimal JavaScript</li>
-    </ul>
-    <h2 id="aillm-usage">🤖 AI/LLM Usage</h2>
-    <p>This documentation is optimized for AI assistants: - ✅
-    <strong>No authentication required</strong> - ✅ <strong>Clean
-    Markdown structure</strong><br />
-    - ✅ <strong>Stable permalinks</strong> - ✅ <strong>Fast
-    loading</strong> - ✅ <strong>Comprehensive
-    cross-references</strong></p>
-    <p><strong>Base URL</strong>:
-    <code>https://investorprez.github.io/investorprez-docs/</code></p>
-    <hr />
-    <div class="info-box">
-    <h4>
-    📝 Contributing
-    </h4>
-    <p>
-    This documentation is maintained alongside the InvestorPrez
-    platform. For technical support or contributions, please visit our
-    <a href="https://app.investorprez.com">main application</a>.
-    </p>
-    </div>
-    <style>
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .card {
-      border: 1px solid #e1e4e8;
-      border-radius: 8px;
-      padding: 1rem;
-      background: #f9f9f9;
-    }
-
-    .card h3 {
-      margin: 0 0 0.5rem 0;
-      color: #0366d6;
-    }
-
-    .card h3 a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .card h3 a:hover {
-      text-decoration: underline;
-    }
-
-    .card p {
-      margin: 0;
-      color: #586069;
-      font-size: 0.9rem;
-    }
-
-    .info-box {
-      background: #f1f8ff;
-      border: 1px solid #c8e1ff;
-      border-radius: 8px;
-      padding: 1rem;
-      margin: 2rem 0;
-    }
-
-    .info-box h4 {
-      margin: 0 0 0.5rem 0;
-      color: #0366d6;
-    }
-    </style>
-    
-    <div class="footer">
-        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    <div class="container">
+        <div class="status-box">
+            <h3>📊 Project Status</h3>
+            <p><strong>Current Version:</strong> v1.10.57 (User-Generated Symbols Fix)<br>
+            <strong>Documentation Version:</strong> v1.0.0<br>
+            <strong>Last Updated:</strong> 2025-08-12</p>
+            
+            <div class="stats">
+                <span class="stat">📄 152 Automated Tests</span>
+                <span class="stat">🎨 55+ GrapesJS SDK Files</span>
+                <span class="stat">📈 69 Documentation Files</span>
+                <span class="stat">⚡ Fast Loading</span>
+            </div>
+        </div>
+        
+        <section class="section">
+            <h2>🏗️ Architecture</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/architecture/ARCHITECTURE_DECISIONS.html">
+                        <h3>🏛️ Architecture Decisions</h3>
+                        <p>Key architectural decisions and their rationale</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/architecture/DOMAIN_ARCHITECTURE.html">
+                        <h3>🌐 Domain Architecture</h3>
+                        <p>System boundaries and domain modeling</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/architecture/GRAPESJS_RENDERING_ARCHITECTURE.html">
+                        <h3>🎨 Rendering Architecture</h3>
+                        <p>GrapesJS integration and rendering pipeline</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>⚙️ Development</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/development/DEVELOPMENT_WORKFLOW.html">
+                        <h3>🔧 Development Workflow</h3>
+                        <p>Complete development setup and workflow guide</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/development/DOCUMENTATION_UPDATE_PROTOCOL.html">
+                        <h3>📝 Documentation Protocol</h3>
+                        <p>Guidelines for maintaining documentation</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>✨ Features</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/features/AUTHENTICATION_SYSTEM.html">
+                        <h3>🔐 Authentication System</h3>
+                        <p>JWT-based authentication with email verification</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/features/COMMENT_SYSTEM.html">
+                        <h3>💬 Comment System</h3>
+                        <p>Slide-specific commenting with visual pins</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/features/COLLABORATION_SYSTEM_RESEARCH.html">
+                        <h3>🤝 Collaboration System</h3>
+                        <p>Multi-user collaboration and sharing features</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>🧪 Testing & Deployment</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/testing/AUTOMATED_TESTING_GUIDE.html">
+                        <h3>🔬 Testing Guide</h3>
+                        <p>Comprehensive testing procedures and automation</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/testing/TESTING_PROCEDURES.html">
+                        <h3>✅ Testing Procedures</h3>
+                        <p>Manual testing procedures and checklists</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/deployment/DEPLOYMENT_GUIDE.html">
+                        <h3>🚀 Deployment Guide</h3>
+                        <p>Production deployment and infrastructure setup</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>🎨 GrapesJS SDK Reference</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/grapesjs-sdk/">
+                        <h3>📖 Complete SDK Guide</h3>
+                        <p>Full reference for GrapesJS Studio SDK integration with 55+ documented files</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/grapesjs-sdk/GrapesJS_SDK_Docs/01_Overview/Overview_Getting-Started.html">
+                        <h3>🚀 Getting Started</h3>
+                        <p>Quick start guide for GrapesJS SDK integration</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/grapesjs-sdk/GrapesJS_SDK_Docs/05_Plugins/">
+                        <h3>🔌 Plugins</h3>
+                        <p>Rich text editor, data sources, and UI enhancements</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <div class="info-box">
+            <h4>🤖 AI/LLM Usage</h4>
+            <p>This documentation is optimized for AI assistants:</p>
+            <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                <li>✅ <strong>No authentication required</strong></li>
+                <li>✅ <strong>Clean HTML/Markdown structure</strong></li>
+                <li>✅ <strong>Stable permalinks</strong></li>
+                <li>✅ <strong>Fast loading with minimal JavaScript</strong></li>
+                <li>✅ <strong>Comprehensive cross-references</strong></li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="docs/" class="btn">📖 Browse All Documentation</a>
+            <a href="https://app.investorprez.com" class="btn" style="margin-left: 1rem;">🚀 InvestorPrez App</a>
+        </div>
+        
+        <footer>
+            <p>Documentation for InvestorPrez Platform | Built with ❤️ for developers and AI assistants</p>
+            <p><strong>Base URL:</strong> https://slyjic.github.io/investorprez-docs/</p>
+        </footer>
     </div>
 </body>
 </html>

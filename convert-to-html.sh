@@ -174,9 +174,9 @@ find docs -name "*.md" -type f | while read -r file; do
     convert_md_to_html "$file"
 done
 
-# Convert root markdown files
+# Convert root markdown files (except index.md which has a custom HTML)
 for file in *.md; do
-    if [[ -f "$file" ]]; then
+    if [[ -f "$file" ]] && [[ "$file" != "index.md" ]]; then
         convert_md_to_html "$file"
     fi
 done
