@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="animation">Animation</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>Project types</p>
+    <p><code>web</code></p>
+    <p>Plan</p>
+    <p>Startup plan</p>
+    <p>This plugin adds scroll-triggered animation components using
+    built-in or custom CSS animations. It supports grouping for
+    staggered effects and provides editor controls to fine-tune playback
+    timing.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/animation-plugin-f099c7cb5c88ffd5ca7794cbfcd0d7af.webp"
+    alt="Animation plugin" />
+    <figcaption aria-hidden="true">Animation plugin</figcaption>
+    </figure>
+    <p>Install the Studio SDK plugins package:</p>
+    <ul>
+    <li><p>npm</p></li>
+    <li><p>pnpm</p></li>
+    <li><p>yarn</p></li>
+    <li><p>CDN</p>
+    <p>npm i <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>pnpm add <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>yarn add <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>// It’s recommended to replace the <code>latest</code> tag with
+    the specific latest version to avoid any potential breaking
+    changes.// The loaded plugin is globally available via
+    <code>globalThis.StudioSdkPlugins_animationComponent</code>.”https://unpkg.com/<span
+    class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span><span
+    class="citation"
+    data-cites="latest/dist/animationComponent/index.umd.js">@latest/dist/animationComponent/index.umd.js</span>”</p></li>
+    </ul>
+    <p>Import and use the plugin in your project:</p>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { animationComponent } from “<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>”;//
+    …&lt;StudioEditor options={{ // … plugins: [
+    animationComponent.init({ animations({ items }) { return [ …items,
+    // Keep existing animations // Add your custom animations here { id:
+    ‘customWiggle’, name: ‘Custom Wiggle’, css:
+    <code>@keyframes customWiggle {                  0% { transform: rotate(0deg); }                  15% { transform: rotate(-5deg); }                  30% { transform: rotate(5deg); }                  45% { transform: rotate(-5deg); }                  60% { transform: rotate(3deg); }                  75% { transform: rotate(-2deg); }                  100% { transform: rotate(0deg); }                }</code>
+    } ]; } }) ], project: { default: { pages: [ { name: ‘Animation
+    Demo’, component:
+    <code>&lt;style&gt;                  body {                    font-family: sans-serif;                    padding: 0;                    margin: 0;                  }                  section {                    padding: 50px 20px;                    text-align: center;                    border-bottom: 1px solid #eee;                  }                  h1 {                    font-size: 2rem;                    margin-bottom: 20px;                  }                  .animated-box {                    background: #f3f4f6;                    padding: 20px;                    margin: 10px auto;                    max-width: 400px;                    border-radius: 8px;                    box-shadow: 0 1px 4px rgba(0,0,0,0.05);                  }                  .animation-grid {                    display: grid;                    grid-template-columns: repeat(5, 1fr);                  }                &lt;/style&gt;                    &lt;section style="min-height: 100vh"&gt;                  &lt;h1&gt;Animations&lt;/h1&gt;                  &lt;div class="animation-grid"&gt;                    &lt;div data-gjs-type="animation" style="animation-name: flash" class="animated-box"&gt;flash&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: pulse" class="animated-box"&gt;pulse&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: shake" class="animated-box"&gt;shake&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: tada" class="animated-box"&gt;tada&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: heartBeat" class="animated-box"&gt;heartBeat&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: bounce" class="animated-box"&gt;bounce&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: bounceIn" class="animated-box"&gt;bounceIn&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: bounceInDown" class="animated-box"&gt;bounceInDown&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: bounceInLeft" class="animated-box"&gt;bounceInLeft&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: bounceInRight" class="animated-box"&gt;bounceInRight&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: bounceInUp" class="animated-box"&gt;bounceInUp&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeIn" class="animated-box"&gt;fadeIn&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeInDown" class="animated-box"&gt;fadeInDown&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeInLeft" class="animated-box"&gt;fadeInLeft&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeInRight" class="animated-box"&gt;fadeInRight&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeInUp" class="animated-box"&gt;fadeInUp&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: flipInX" class="animated-box"&gt;flipInX&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: flipInY" class="animated-box"&gt;flipInY&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: rotateIn" class="animated-box"&gt;rotateIn&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: rotateInDownLeft" class="animated-box"&gt;rotateInDownLeft&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: rotateInDownRight" class="animated-box"&gt;rotateInDownRight&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: rotateInUpLeft" class="animated-box"&gt;rotateInUpLeft&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: rotateInUpRight" class="animated-box"&gt;rotateInUpRight&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: slideInDown" class="animated-box"&gt;slideInDown&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: slideInLeft" class="animated-box"&gt;slideInLeft&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: slideInRight" class="animated-box"&gt;slideInRight&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: slideInUp" class="animated-box"&gt;slideInUp&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: zoomIn" class="animated-box"&gt;zoomIn&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: zoomInDown" class="animated-box"&gt;zoomInDown&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: zoomInLeft" class="animated-box"&gt;zoomInLeft&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: zoomInRight" class="animated-box"&gt;zoomInRight&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: zoomInUp" class="animated-box"&gt;zoomInUp&lt;/div&gt;                  &lt;/div&gt;                &lt;/section&gt;                    &lt;section&gt;                  &lt;h1&gt;Scroll-triggered&lt;/h1&gt;                  &lt;div data-gjs-type="animation" style="animation-name: slideInLeft" class="animated-box"&gt;SlideInLeft&lt;/div&gt;                  &lt;div data-gjs-type="animation" style="animation-name: zoomIn; animation-delay: 0.5s" class="animated-box"&gt;ZoomIn with delay&lt;/div&gt;                &lt;/section&gt;                    &lt;section&gt;                  &lt;h1&gt;Repeat on scroll&lt;/h1&gt;                  &lt;div data-gjs-type="animation" style="animation-name: slideInLeft; --animation-repeat: true" class="animated-box"&gt;SlideInLeft&lt;/div&gt;                  &lt;div data-gjs-type="animation" style="animation-name: zoomIn; --animation-repeat: true" class="animated-box"&gt;ZoomIn&lt;/div&gt;                &lt;/section&gt;                    &lt;section&gt;                  &lt;h1&gt;Grouped Animations (Staggered)&lt;/h1&gt;                  &lt;div data-gjs-type="animation-group"&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeInDown" class="animated-box"&gt;Item 1&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeInLeft" class="animated-box"&gt;Item 2&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeInUp" class="animated-box"&gt;Item 3&lt;/div&gt;                  &lt;/div&gt;                &lt;/section&gt;                    &lt;section&gt;                  &lt;h1&gt;Grouped Animations (Repeat on scroll)&lt;/h1&gt;                  &lt;div data-gjs-type="animation-group" style="--animation-repeat: true"&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeIn" class="animated-box"&gt;Item 1&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeIn" class="animated-box"&gt;Item 2&lt;/div&gt;                    &lt;div data-gjs-type="animation" style="animation-name: fadeIn" class="animated-box"&gt;Item 3&lt;/div&gt;                  &lt;/div&gt;                &lt;/section&gt;                    &lt;section&gt;                  &lt;h1&gt;Custom Animations&lt;/h1&gt;                  &lt;div data-gjs-type="animation" style="animation-name: customWiggle; animation-duration: 1.5s" class="animated-box"&gt;                    Custom "wiggle" animation                  &lt;/div&gt;                &lt;/section&gt;</code>
+    } ] } } }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { animationComponent } from “<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>”;//
+    …createStudioEditor({ // … plugins: [ animationComponent.init({
+    animations({ items }) { return [ …items, // Keep existing animations
+    // Add your custom animations here { id: ‘customWiggle’, name:
+    ‘Custom Wiggle’, css:
+    <code>@keyframes customWiggle { 0% { transform: rotate(0deg); } 15% { transform: rotate(-5deg); } 30% { transform: rotate(5deg); } 45% { transform: rotate(-5deg); } 60% { transform: rotate(3deg); } 75% { transform: rotate(-2deg); } 100% { transform: rotate(0deg); } }</code>
+    } ]; } }) ], project: { default: { pages: [ { name: ‘Animation
+    Demo’, component:
+    <code>&lt;style&gt; body { font-family: sans-serif; padding: 0; margin: 0; } section { padding: 50px 20px; text-align: center; border-bottom: 1px solid #eee; } h1 { font-size: 2rem; margin-bottom: 20px; } .animated-box { background: #f3f4f6; padding: 20px; margin: 10px auto; max-width: 400px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); } .animation-grid { display: grid; grid-template-columns: repeat(5, 1fr); } &lt;/style&gt; &lt;section style="min-height: 100vh"&gt; &lt;h1&gt;Animations&lt;/h1&gt; &lt;div class="animation-grid"&gt; &lt;div data-gjs-type="animation" style="animation-name: flash" class="animated-box"&gt;flash&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: pulse" class="animated-box"&gt;pulse&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: shake" class="animated-box"&gt;shake&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: tada" class="animated-box"&gt;tada&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: heartBeat" class="animated-box"&gt;heartBeat&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: bounce" class="animated-box"&gt;bounce&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: bounceIn" class="animated-box"&gt;bounceIn&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: bounceInDown" class="animated-box"&gt;bounceInDown&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: bounceInLeft" class="animated-box"&gt;bounceInLeft&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: bounceInRight" class="animated-box"&gt;bounceInRight&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: bounceInUp" class="animated-box"&gt;bounceInUp&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeIn" class="animated-box"&gt;fadeIn&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeInDown" class="animated-box"&gt;fadeInDown&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeInLeft" class="animated-box"&gt;fadeInLeft&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeInRight" class="animated-box"&gt;fadeInRight&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeInUp" class="animated-box"&gt;fadeInUp&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: flipInX" class="animated-box"&gt;flipInX&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: flipInY" class="animated-box"&gt;flipInY&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: rotateIn" class="animated-box"&gt;rotateIn&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: rotateInDownLeft" class="animated-box"&gt;rotateInDownLeft&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: rotateInDownRight" class="animated-box"&gt;rotateInDownRight&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: rotateInUpLeft" class="animated-box"&gt;rotateInUpLeft&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: rotateInUpRight" class="animated-box"&gt;rotateInUpRight&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: slideInDown" class="animated-box"&gt;slideInDown&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: slideInLeft" class="animated-box"&gt;slideInLeft&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: slideInRight" class="animated-box"&gt;slideInRight&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: slideInUp" class="animated-box"&gt;slideInUp&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: zoomIn" class="animated-box"&gt;zoomIn&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: zoomInDown" class="animated-box"&gt;zoomInDown&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: zoomInLeft" class="animated-box"&gt;zoomInLeft&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: zoomInRight" class="animated-box"&gt;zoomInRight&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: zoomInUp" class="animated-box"&gt;zoomInUp&lt;/div&gt; &lt;/div&gt; &lt;/section&gt; &lt;section&gt; &lt;h1&gt;Scroll-triggered&lt;/h1&gt; &lt;div data-gjs-type="animation" style="animation-name: slideInLeft" class="animated-box"&gt;SlideInLeft&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: zoomIn; animation-delay: 0.5s" class="animated-box"&gt;ZoomIn with delay&lt;/div&gt; &lt;/section&gt; &lt;section&gt; &lt;h1&gt;Repeat on scroll&lt;/h1&gt; &lt;div data-gjs-type="animation" style="animation-name: slideInLeft; --animation-repeat: true" class="animated-box"&gt;SlideInLeft&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: zoomIn; --animation-repeat: true" class="animated-box"&gt;ZoomIn&lt;/div&gt; &lt;/section&gt; &lt;section&gt; &lt;h1&gt;Grouped Animations (Staggered)&lt;/h1&gt; &lt;div data-gjs-type="animation-group"&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeInDown" class="animated-box"&gt;Item 1&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeInLeft" class="animated-box"&gt;Item 2&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeInUp" class="animated-box"&gt;Item 3&lt;/div&gt; &lt;/div&gt; &lt;/section&gt; &lt;section&gt; &lt;h1&gt;Grouped Animations (Repeat on scroll)&lt;/h1&gt; &lt;div data-gjs-type="animation-group" style="--animation-repeat: true"&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeIn" class="animated-box"&gt;Item 1&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeIn" class="animated-box"&gt;Item 2&lt;/div&gt; &lt;div data-gjs-type="animation" style="animation-name: fadeIn" class="animated-box"&gt;Item 3&lt;/div&gt; &lt;/div&gt; &lt;/section&gt; &lt;section&gt; &lt;h1&gt;Custom Animations&lt;/h1&gt; &lt;div data-gjs-type="animation" style="animation-name: customWiggle; animation-duration: 1.5s" class="animated-box"&gt; Custom "wiggle" animation &lt;/div&gt; &lt;/section&gt;</code>
+    } ] } } })</p></li>
+    </ul>
+    <p>Code</p>
+    <p>.code-block-ngdtl2 code { max-height: 600px; }</p>
+    <h3 id="plugin-options">Plugin options<a href="#plugin-options"
+    title="Direct link to Plugin options">​</a></h3>
+    <p>Property</p>
+    <p>Type</p>
+    <p>Description</p>
+    <p>licenseKey</p>
+    <p>string</p>
+    <p>The license key for the plugin. This is optional, only required
+    if the plugin is used outside of Studio SDK.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>&quot;your-license-key&quot;</code></pre>
+    <p>block</p>
+    <p><a href="https://grapesjs.com/docs/api/block.html">Block</a></p>
+    <p>Additional Block properties of the animation component. Pass
+    `false` to avoid adding the block.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>{  &quot;category&quot;: &quot;Extra&quot;,  &quot;label&quot;: &quot;My label&quot;}</code></pre>
+    <p>blockGroup</p>
+    <p><a href="https://grapesjs.com/docs/api/block.html">Block</a></p>
+    <p>Additional Block properties of the animation group component.
+    Pass `false` to avoid adding the block.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>{  &quot;category&quot;: &quot;Extra&quot;,  &quot;label&quot;: &quot;My label&quot;}</code></pre>
+    <p>animations</p>
+    <p>function</p>
+    <p>Extend or update animation list.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>animations: ({ items }) =&gt; { return [   // Remove bounce animations   ...items.filter(item =&gt; !item.id.startsWith(&#39;bounce&#39;)),   // Add custom animation   {     id: &#39;animationId&#39;,     name: &#39;Custom animation&#39;,     css: &#39;@keyframes animationId { 0% { opacity: 0; } 100% { opacity: 1; } }&#39;,   } ]}</code></pre>
+    <p>animationStyle</p>
+    <p>object</p>
+    <p>Initial style object of the animation component.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>{  &quot;animation-duration&quot;: &quot;0.5s&quot;}</code></pre>
+    <p>animationGroupStyle</p>
+    <p>object</p>
+    <p>Initial style object of the animation group component.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>{  &quot;--stagger-delay&quot;: &quot;0.5s&quot;}</code></pre>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

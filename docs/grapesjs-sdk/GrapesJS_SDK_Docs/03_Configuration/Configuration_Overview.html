@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Overview - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="configuration-overview">Configuration Overview</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>Learn how to configure the Studio SDK and integrate it into your
+    application. This includes detailed instructions on setting up
+    various types of projects, how to load and store them, ensuring that
+    you can leverage the full capabilities of the Studio SDK. For more
+    information on setting up different types of projects, please refer
+    to the relevant pages.</p>
+    <h2 id="configuration-areas">Configuration Areas</h2>
+    <h3 id="projects">Projects</h3>
+    <p>Learn how to configure the Studio SDK and integrate it into your
+    application. This includes detailed instructions on setting up
+    various types of projects, how to load and store them, ensuring that
+    you can leverage the full capabilities of the Studio SDK.</p>
+    <p><strong>📖 <a href="./Configuration_Projects.md">Project
+    Configuration</a></strong></p>
+    <h3 id="blocks">Blocks</h3>
+    <p>The editor includes a Block module that allows you to define
+    reusable content elements for your users in the project. You can
+    customize blocks to include individual components or complex
+    layouts.</p>
+    <p><strong>📖 <a href="./Configuration_Blocks.md">Blocks
+    Configuration</a></strong></p>
+    <h3 id="pages">Pages</h3>
+    <p>The Studio SDK supports multipage functionality, allowing for
+    customization in managing pages within your project.</p>
+    <p><strong>📖 <a href="./Configuration_Pages.md">Pages
+    Configuration</a></strong></p>
+    <h3 id="assets">Assets</h3>
+    <p>Learn how to manage media and resources in your project,
+    including uploading files and configuring storage settings. You can
+    also integrate external services using Asset Providers, allowing you
+    to load custom asset types such as images, videos, and
+    documents.</p>
+    <p><strong>📖 <a
+    href="./Assets/Configuration_Assets_Overview.md">Assets
+    Configuration</a></strong></p>
+    <h3 id="themes">Themes</h3>
+    <p>Learn how to personalize the visual appearance of your editor,
+    including customizing icons, choosing themes, and modifying styles
+    to align with your brand’s identity.</p>
+    <p><strong>📖 <a href="./Configuration_Themes.md">Themes
+    Configuration</a></strong></p>
+    <h3 id="layout">Layout</h3>
+    <p>Discover how to adjust the layout interface of your editor,
+    customizing panel positioning, dynamic layouts, responsive
+    configurations and other structural elements to create an editor
+    layout that best fits your users’ workflow.</p>
+    <p><strong>📖 <a
+    href="./Layout/Configuration_Layout_Overview.md">Layout
+    Configuration</a></strong></p>
+    <h3 id="global-styles">Global Styles</h3>
+    <p>Define and manage styles that apply across your entire project,
+    creating a cohesive and easily maintainable design system. Configure
+    common styles, leverage CSS variables, and integrate external
+    libraries to ensure consistent theming and styling for all
+    components.</p>
+    <p><strong>📖 <a href="./Configuration_Global-Styles.md">Global
+    Styles Configuration</a></strong></p>
+    <h3 id="templates">Templates</h3>
+    <p>Enable your users to select and start with pre-configured designs
+    using our Template manager.</p>
+    <p><strong>📖 <a href="./Configuration_Templates.md">Templates
+    Configuration</a></strong></p>
+    <h3 id="data-sources">Data Sources</h3>
+    <p>Connect your content to structured data and build dynamic,
+    data-driven content with ease. Use variables, conditions, and
+    repeatable collections to personalize content and automate rendering
+    logic. Export fully resolved content or template-ready structures
+    using merge tags.</p>
+    <p><strong>📖 <a
+    href="./Data-Sources/Configuration_Data-Sources_Overview.md">Data
+    Sources Configuration</a></strong></p>
+    <h3 id="fonts">Fonts</h3>
+    <p>Customize the typography of your projects by managing fonts
+    directly within the editor. Add custom fonts through project
+    configuration, modify the default font list, and integrate external
+    providers like Google Fonts. Enable a flexible and extensible font
+    manager to give users full control over font selection.</p>
+    <p><strong>📖 <a href="./Configuration_Fonts.md">Fonts
+    Configuration</a></strong></p>
+    <hr />
+    <h2 id="quick-start-guide">Quick Start Guide</h2>
+    <ol type="1">
+    <li><strong>Choose Your Project Type</strong> - Start with <a
+    href="../02_Project-Types/">Project Types</a> to understand web,
+    email, and document projects</li>
+    <li><strong>Configure Storage</strong> - Set up <a
+    href="./Configuration_Projects.md#storage">project storage</a> and
+    <a
+    href="./Assets/Configuration_Assets_Overview.md#asset-storage">asset
+    storage</a></li>
+    <li><strong>Customize the Interface</strong> - Use <a
+    href="./Layout/Configuration_Layout_Components.md">layout
+    components</a> to tailor the editor</li>
+    <li><strong>Add Content</strong> - Configure <a
+    href="./Configuration_Blocks.md">blocks</a> and <a
+    href="./Configuration_Templates.md">templates</a></li>
+    <li><strong>Style Your Projects</strong> - Set up <a
+    href="./Configuration_Themes.md">themes</a> and <a
+    href="./Configuration_Global-Styles.md">global styles</a></li>
+    </ol>
+    <h2 id="configuration-best-practices">Configuration Best
+    Practices</h2>
+    <ul>
+    <li><strong>Start Simple</strong> - Begin with basic configuration
+    and gradually add complexity</li>
+    <li><strong>Use Cloud Storage</strong> - For production, use cloud
+    storage for both projects and assets</li>
+    <li><strong>Plan Your Blocks</strong> - Design reusable blocks that
+    match your content needs</li>
+    <li><strong>Test Responsive</strong> - Ensure your configuration
+    works across different devices</li>
+    <li><strong>Document Changes</strong> - Keep track of configuration
+    changes for your team</li>
+    </ul>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Assets
+Overview - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="assets">Assets</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>With Studio SDK, end-users can add images, fonts, videos and PDF
+    files to their projects. In this page we’ll see how to manage media
+    and resources in your project, including uploading files and
+    configuring storage settings. You can also integrate external
+    services using Asset Providers, allowing you to load custom asset
+    types such as images, videos, and documents.</p>
+    <h2 id="table-of-contents">Table of Contents</h2>
+    <ul>
+    <li><a href="#asset-storage">Asset Storage</a>
+    <ul>
+    <li><a href="#cloud-storage">Cloud Storage</a></li>
+    <li><a href="#custom-storage">Custom Storage</a></li>
+    </ul></li>
+    <li><a href="#custom-asset-manager">Custom Asset Manager</a></li>
+    </ul>
+    <h2 id="asset-storage">Asset Storage</h2>
+    <p>You can configure how to store these assets, so they can be used
+    safely in the published product. This is controlled by the
+    <code>assets</code> option of the SDK.</p>
+    <p>You can either use our cloud storage, or use a custom storage
+    method of your own.</p>
+    <blockquote>
+    <p><strong>⚠️ WARNING</strong><br />
+    Always configure one of these, otherwise assets will be added as
+    data URLs, resulting in heavy HTML exports and potentially slower
+    load times.</p>
+    </blockquote>
+    <h3 id="cloud-storage">Cloud Storage</h3>
+    <p>We provide an easy way to upload assets for your users. To use
+    this, set <code>assets.storageType</code> to <code>cloud</code>, and
+    add a unique id for each of your projects and end-users.</p>
+    <div class="sourceCode" id="cb1"><pre
+    class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> StudioEditor <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk/react&#39;</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&#39;@grapesjs/studio-sdk/style&#39;</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;StudioEditor</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="ot">options</span><span class="op">=</span><span class="va">{</span>{</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">licenseKey</span><span class="op">:</span> <span class="st">&quot;YOUR_LICENSE_KEY&quot;</span><span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">assets</span><span class="op">:</span> {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">storageType</span><span class="op">:</span> <span class="st">&quot;cloud&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">project</span><span class="op">:</span> {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;UNIQUE_PROJECT_ID&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">identity</span><span class="op">:</span> {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;UNIQUE_END_USER_ID&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  }<span class="va">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">/&gt;</span></span></code></pre></div>
+    <blockquote>
+    <p><strong>⚠️ Warning</strong><br />
+    Avoid sensitive data in these identifiers, like emails, or phone
+    numbers.</p>
+    </blockquote>
+    <p>These project and identity ids are mandatory. We use them for
+    allowing end-users to reuse their assets across different
+    projects.</p>
+    <h3 id="custom-storage">Custom Storage</h3>
+    <p>If you want to handle asset storage on your own, set
+    <code>assets.storageType</code> to <code>self</code> and specify
+    <code>assets.onUpload</code> and <code>assets.onDelete</code>
+    callbacks to indicate how to upload and delete assets with your
+    storage.</p>
+    <div class="sourceCode" id="cb2"><pre
+    class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> StudioEditor <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk/react&#39;</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&#39;@grapesjs/studio-sdk/style&#39;</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> myUploadAssetsLogic <span class="op">=</span> <span class="kw">async</span> (files) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">await</span> <span class="fu">waitAndFailRandomly</span>(<span class="st">&#39;Testing when upload assets failed&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mockUploadedFiles <span class="op">=</span> files<span class="op">.</span><span class="fu">map</span>(file <span class="kw">=&gt;</span> ({ </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    file<span class="op">,</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span><span class="op">:</span> URL<span class="op">.</span><span class="fu">createObjectURL</span>(file) </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Assets to upload to the self-hosted storage&#39;</span><span class="op">,</span> mockUploadedFiles)<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> mockUploadedFiles<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> myDeleteAssetsLogic <span class="op">=</span> <span class="kw">async</span> ({ assets }) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">await</span> <span class="fu">waitAndFailRandomly</span>(<span class="st">&#39;Testing when delete assets failed&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Assets to delete from the self-hosted storage&#39;</span><span class="op">,</span> </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    assets<span class="op">.</span><span class="fu">map</span>(asset <span class="kw">=&gt;</span> asset<span class="op">.</span><span class="fu">getSrc</span>()))<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> waitAndFailRandomly <span class="op">=</span> <span class="kw">async</span> (str) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">await</span> <span class="kw">new</span> <span class="bu">Promise</span>(res <span class="kw">=&gt;</span> <span class="pp">setTimeout</span>(res<span class="op">,</span> <span class="dv">1000</span>))<span class="op">;</span> <span class="co">// fake delay</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">&gt;=</span> <span class="fl">0.7</span>) <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(str)<span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;StudioEditor</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="ot">options</span><span class="op">=</span><span class="va">{</span>{</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">assets</span><span class="op">:</span> {</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">storageType</span><span class="op">:</span> <span class="st">&#39;self&#39;</span><span class="op">,</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="co">// this is an example, you can do whatever you want in these callbacks </span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="co">// as long as you return the same arrays.</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="dt">onUpload</span><span class="op">:</span> <span class="kw">async</span> ({ files<span class="op">,</span> editor }) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co">: implement myUploadAssetsLogic to upload files</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> results <span class="op">=</span> <span class="cf">await</span> <span class="fu">myUploadAssetsLogic</span>(files)<span class="op">;</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="co">// return an array with the uploaded assets</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> results<span class="op">.</span><span class="fu">map</span>(({ file<span class="op">,</span> url }) <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>          <span class="dt">id</span><span class="op">:</span> url<span class="op">,</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>          <span class="dt">src</span><span class="op">:</span> url<span class="op">,</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>          <span class="dt">name</span><span class="op">:</span> file<span class="op">.</span><span class="at">name</span><span class="op">,</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>          <span class="dt">mimeType</span><span class="op">:</span> file<span class="op">.</span><span class="at">type</span><span class="op">,</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>          <span class="dt">size</span><span class="op">:</span> file<span class="op">.</span><span class="at">size</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        }))<span class="op">;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>      <span class="dt">onDelete</span><span class="op">:</span> <span class="kw">async</span> ({ assets<span class="op">,</span> editor }) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co">: implement myDeleteAssetsLogic to delete assets</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> <span class="fu">myDeleteAssetsLogic</span>({ assets })<span class="op">;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="co">// No need to return anything, just let the promise resolve without errors</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="dt">project</span><span class="op">:</span> {</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>      <span class="cf">default</span><span class="op">:</span> {</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="co">// project assets</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        <span class="dt">assets</span><span class="op">:</span> <span class="bu">Array</span>(<span class="dv">5</span>)<span class="op">.</span><span class="fu">fill</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">map</span>((_<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>          <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Project image &#39;</span> <span class="op">+</span> i<span class="op">,</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>          <span class="dt">src</span><span class="op">:</span> <span class="vs">`https://picsum.photos/seed/from-project-</span><span class="sc">${</span>i<span class="sc">}</span><span class="vs">/300/300`</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        }))<span class="op">,</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="dt">pages</span><span class="op">:</span> [</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>          { </span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>            <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Home&#39;</span><span class="op">,</span> </span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>            <span class="dt">component</span><span class="op">:</span> <span class="st">&#39;&lt;h1&gt;Double click the image to open the Asset Manager&lt;/h1&gt;&lt;img src=&quot;https://picsum.photos/seed/x/300/300&quot;/&gt;&#39;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>          }<span class="op">,</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  }<span class="va">}</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="fu">/&gt;</span></span></code></pre></div>
+    <h3 id="custom-load">Custom Load</h3>
+    <p>By default, uploaded asset references
+    (e.g. <code>{ src: 'https://....' }</code>) are stored directly
+    inside the Project JSON. If you prefer to load the list of assets
+    directly from your storage, you can use a custom
+    <code>assets.onLoad</code> callback. When this callback is used, the
+    assets defined in the JSON will be ignored.</p>
+    <div class="sourceCode" id="cb3"><pre
+    class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> StudioEditor <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk/react&#39;</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&#39;@grapesjs/studio-sdk/style&#39;</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;StudioEditor</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="ot">options</span><span class="op">=</span><span class="va">{</span>{</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">assets</span><span class="op">:</span> {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">storageType</span><span class="op">:</span> <span class="st">&#39;self&#39;</span><span class="op">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">onUpload</span><span class="op">:</span> <span class="kw">async</span> ({ files<span class="op">,</span> editor }) <span class="kw">=&gt;</span> {</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> results <span class="op">=</span> <span class="cf">await</span> <span class="fu">myUploadAssetsLogic</span>(files)<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> results<span class="op">.</span><span class="fu">map</span>(({ file<span class="op">,</span> url }) <span class="kw">=&gt;</span> ({ </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>          <span class="dt">id</span><span class="op">:</span> url<span class="op">,</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>          <span class="dt">src</span><span class="op">:</span> url<span class="op">,</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>          <span class="dt">name</span><span class="op">:</span> file<span class="op">.</span><span class="at">name</span><span class="op">,</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>          <span class="dt">mimeType</span><span class="op">:</span> file<span class="op">.</span><span class="at">type</span><span class="op">,</span> </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>          <span class="dt">size</span><span class="op">:</span> file<span class="op">.</span><span class="at">size</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        }))<span class="op">;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">onDelete</span><span class="op">:</span> <span class="kw">async</span> ({ assets<span class="op">,</span> editor }) <span class="kw">=&gt;</span> {</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> <span class="fu">myDeleteAssetsLogic</span>({ assets })<span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>      <span class="dt">onLoad</span><span class="op">:</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Fetch and return assets from your storage backend</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">Array</span>(<span class="dv">10</span>)<span class="op">.</span><span class="fu">fill</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">map</span>((_<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>          <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Image from storage &#39;</span> <span class="op">+</span> i<span class="op">,</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>          <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;image&#39;</span><span class="op">,</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>          <span class="dt">src</span><span class="op">:</span> <span class="vs">`https://picsum.photos/seed/from-storage-</span><span class="sc">${</span>i<span class="sc">}</span><span class="vs">/300/300`</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        }))</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">project</span><span class="op">:</span> {</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      <span class="cf">default</span><span class="op">:</span> {</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        <span class="co">// These assets will be ignored</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="dt">assets</span><span class="op">:</span> <span class="bu">Array</span>(<span class="dv">5</span>)<span class="op">.</span><span class="fu">fill</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">map</span>((_<span class="op">,</span> i) <span class="kw">=&gt;</span> ({ </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>          <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Project image &#39;</span> <span class="op">+</span> i<span class="op">,</span> </span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>          <span class="dt">src</span><span class="op">:</span> <span class="vs">`https://picsum.photos/seed/from-project-</span><span class="sc">${</span>i<span class="sc">}</span><span class="vs">/300/300`</span> </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        }))<span class="op">,</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        <span class="dt">pages</span><span class="op">:</span> [</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>          { </span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>            <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Home&#39;</span><span class="op">,</span> </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>            <span class="dt">component</span><span class="op">:</span> <span class="st">&#39;&lt;h1&gt;Double click the image to open the Asset Manager&lt;/h1&gt;&lt;img src=&quot;https://picsum.photos/seed/x/300/300&quot;/&gt;&#39;</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>          }<span class="op">,</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  }<span class="va">}</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="fu">/&gt;</span></span></code></pre></div>
+    <h2 id="custom-asset-manager">Custom Asset Manager</h2>
+    <p>If your product requires a custom asset manager, you can opt out
+    of the default one by leveraging GrapesJS’s native interface and
+    providing your own callbacks.</p>
+    <p>To be compatible with the editor, your custom asset manager
+    should handle three key actions: - How to open the asset manager -
+    How to close it - How to select and return an asset</p>
+    <div class="sourceCode" id="cb4"><pre
+    class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> StudioEditor <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk/react&#39;</span><span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&#39;@grapesjs/studio-sdk/style&#39;</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;StudioEditor</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="ot">options</span><span class="op">=</span><span class="va">{</span>{</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">gjsOptions</span><span class="op">:</span> {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">storageManager</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="co">// Disabled for demo purposes</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">assetManager</span><span class="op">:</span> {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">custom</span><span class="op">:</span> {</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>          <span class="co">// Tell the editor how to open your custom Asset Manager</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">open</span>(props) {</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Example with a custom dialog (pseudo-code)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="kw">typeof</span> myCustomAssetManagerDialog <span class="op">!==</span> <span class="st">&#39;undefined&#39;</span>) {</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>              myCustomAssetManagerDialog<span class="op">.</span><span class="fu">open</span>({</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Indicate how to select the asset</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                <span class="fu">onSelect</span>(imageUrl) { props<span class="op">.</span><span class="fu">select</span>({ <span class="dt">src</span><span class="op">:</span> imageUrl }) }<span class="op">,</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Propagate the close action back to the editor</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                <span class="fu">onClose</span>() { props<span class="op">.</span><span class="fu">close</span>()<span class="op">;</span> }</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>              })<span class="op">;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            } <span class="cf">else</span> {</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>              <span class="co">// Fallback demo using native file picker</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>              <span class="kw">const</span> input <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">&#39;input&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>              input<span class="op">.</span><span class="at">type</span> <span class="op">=</span> <span class="st">&#39;file&#39;</span><span class="op">;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>              input<span class="op">.</span><span class="at">accept</span> <span class="op">=</span> <span class="st">&#39;image/*&#39;</span><span class="op">;</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>              input<span class="op">.</span><span class="at">onchange</span> <span class="op">=</span> (<span class="bu">event</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                <span class="kw">const</span> file <span class="op">=</span> <span class="bu">event</span><span class="op">.</span><span class="at">target</span><span class="op">.</span><span class="at">files</span>[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (file) {</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">const</span> reader <span class="op">=</span> <span class="kw">new</span> <span class="bu">FileReader</span>()<span class="op">;</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                  reader<span class="op">.</span><span class="at">onload</span> <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                    props<span class="op">.</span><span class="fu">select</span>({ <span class="dt">src</span><span class="op">:</span> reader<span class="op">.</span><span class="at">result</span> })<span class="op">;</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                    props<span class="op">.</span><span class="fu">close</span>()<span class="op">;</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                  }<span class="op">;</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                  reader<span class="op">.</span><span class="fu">readAsDataURL</span>(file)<span class="op">;</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                } <span class="cf">else</span> {</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                  props<span class="op">.</span><span class="fu">close</span>()<span class="op">;</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>              }<span class="op">;</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>              input<span class="op">.</span><span class="at">oncancel</span> <span class="op">=</span> () <span class="kw">=&gt;</span> props<span class="op">.</span><span class="fu">close</span>()<span class="op">;</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>              input<span class="op">.</span><span class="fu">click</span>()<span class="op">;</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>          }<span class="op">,</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>          <span class="co">// Tell the editor how to close your custom Asset Manager</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>          <span class="fu">close</span>(props) {</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="kw">typeof</span> myCustomAssetManagerDialog <span class="op">!==</span> <span class="st">&#39;undefined&#39;</span>) {</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>              myCustomAssetManagerDialog<span class="op">.</span><span class="fu">close</span>()<span class="op">;</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>            } <span class="cf">else</span> {</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>              <span class="fu">alert</span>(<span class="st">&#39;Custom Asset Manager closed!&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="dt">project</span><span class="op">:</span> {</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>      <span class="cf">default</span><span class="op">:</span> {</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>        <span class="dt">pages</span><span class="op">:</span> [</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>          { </span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>            <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Home&#39;</span><span class="op">,</span> </span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>            <span class="dt">component</span><span class="op">:</span> <span class="st">&#39;&lt;h1&gt;Double click the image to open the Asset Manager&lt;/h1&gt;&lt;img src=&quot;https://picsum.photos/seed/x/300/300&quot;/&gt;&#39;</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>          }<span class="op">,</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  }<span class="va">}</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="fu">/&gt;</span></span></code></pre></div>
+    <h2 id="related-documentation">Related Documentation</h2>
+    <ul>
+    <li><strong><a href="./Configuration_Assets_Providers.md">Asset
+    Providers</a></strong> - Integrate external asset sources</li>
+    <li><strong><a href="../Configuration_Projects.md">Project
+    Configuration</a></strong> - Overall project setup</li>
+    <li><strong><a href="../Configuration_Projects.md#storage">Storage
+    Configuration</a></strong> - Project data storage options</li>
+    </ul>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

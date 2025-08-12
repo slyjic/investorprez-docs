@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Templates - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="templates">Templates</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>The Studio SDK includes a powerful Template Manager, enabling you
+    to display available templates that users can select as starting
+    points for their projects. The Template Manager utilizes the <a
+    href="/docs-sdk/configuration/layout/components#paneltemplates">PanelTemplates
+    layout component</a>, giving you full flexibility to decide how and
+    where the templates are rendered within your application.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/templates-c15932661a1b99ef524c8b6cedb492c4.png"
+    alt="Templates" />
+    <figcaption aria-hidden="true">Templates</figcaption>
+    </figure>
+    <h2 id="table-of-contents">Table of Contents</h2>
+    <ul>
+    <li><a href="#initialization">Initialization</a></li>
+    <li><a href="#properties">Properties</a>
+    <ul>
+    <li><a href="#templatesconfig-properties">TemplatesConfig
+    properties</a></li>
+    <li><a href="#templateitem-properties">TemplateItem
+    properties</a></li>
+    </ul></li>
+    <li><a href="#i18n">I18n</a></li>
+    </ul>
+    <h2 id="initialization">Initialization<a href="#initialization"
+    title="Direct link to Initialization">​</a></h2>
+    <p>Customize the template-fetching logic by defining a handler using
+    the <code>templates.onLoad</code> option. This handler should return
+    an array of <code>TemplateItem</code> objects, representing the
+    available templates.</p>
+    <p>The example below demonstrates how to add a button in the
+    top-left corner of the editor to open the PanelTemplates within a
+    dialog:</p>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;//
+    …&lt;StudioEditor options={{ // … layout: { default: { type: ‘row’,
+    height: ‘100%’, children: [ { type: ‘canvasSidebarTop’, sidebarTop:
+    { leftContainer: { buttons: ({ items }) =&gt; [ …items, { id:
+    ‘openTemplatesButtonId’, size: ‘s’, icon:
+    ‘<svg viewBox="0 0 24 24"><path d="M20 14H6C3.8 14 2 15.8 2 18S3.8 22 6 22H20C21.1 22 22 21.1 22 20V16C22 14.9 21.1 14 20 14M6 20C4.9 20 4 19.1 4 18S4.9 16 6 16 8 16.9 8 18 7.1 20 6 20M6.3 12L13 5.3C13.8 4.5 15 4.5 15.8 5.3L18.6 8.1C19.4 8.9 19.4 10.1 18.6 10.9L17.7 12H6.3M2 13.5V4C2 2.9 2.9 2 4 2H8C9.1 2 10 2.9 10 4V5.5L2 13.5Z" /></svg>’,
+    onClick: ({ editor }) =&gt; {
+    editor.runCommand(‘studio:layoutToggle’, { id: ‘my-templates-panel’,
+    header: false, placer: { type: ‘dialog’, title: ‘Choose a template
+    for your project’, size: ‘l’ }, layout: { type: ‘panelTemplates’,
+    content: { itemsPerRow: 3 }, onSelect: ({ loadTemplate, template })
+    =&gt; { // Load the selected template to the current project
+    loadTemplate(template); // Close the dialog layout
+    editor.runCommand(‘studio:layoutRemove’, { id: ‘my-templates-panel’
+    }) } } }); } } ] } }, grow: true }, { type: ‘sidebarRight’ } ] } },
+    templates: { // The onLoad can be an asyncronous function, so you
+    can fetch templates from your API onLoad: async () =&gt; [ { id:
+    ‘template1’, name: ‘Template 1’, data: { pages: [ { name: ‘Home’,
+    component: ’] } }, { id: ‘template2’, name: ‘Template 2’, data: {
+    pages: [ { component: ’] } }, { id: ‘template3’, name: ‘Template 3’,
+    data: { pages: [ { component: ’] } }, { id: ‘template4’, name:
+    ‘Template 4’, data: { pages: [ { component: ’] } }, ] } }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;//
+    …createStudioEditor({ // … layout: { default: { type: ‘row’, height:
+    ‘100%’, children: [ { type: ‘canvasSidebarTop’, sidebarTop: {
+    leftContainer: { buttons: ({ items }) =&gt; [ …items, { id:
+    ‘openTemplatesButtonId’, size: ‘s’, icon:
+    ‘<svg viewBox="0 0 24 24"><path d="M20 14H6C3.8 14 2 15.8 2 18S3.8 22 6 22H20C21.1 22 22 21.1 22 20V16C22 14.9 21.1 14 20 14M6 20C4.9 20 4 19.1 4 18S4.9 16 6 16 8 16.9 8 18 7.1 20 6 20M6.3 12L13 5.3C13.8 4.5 15 4.5 15.8 5.3L18.6 8.1C19.4 8.9 19.4 10.1 18.6 10.9L17.7 12H6.3M2 13.5V4C2 2.9 2.9 2 4 2H8C9.1 2 10 2.9 10 4V5.5L2 13.5Z" /></svg>’,
+    onClick: ({ editor }) =&gt; {
+    editor.runCommand(‘studio:layoutToggle’, { id: ‘my-templates-panel’,
+    header: false, placer: { type: ‘dialog’, title: ‘Choose a template
+    for your project’, size: ‘l’ }, layout: { type: ‘panelTemplates’,
+    content: { itemsPerRow: 3 }, onSelect: ({ loadTemplate, template })
+    =&gt; { // Load the selected template to the current project
+    loadTemplate(template); // Close the dialog layout
+    editor.runCommand(‘studio:layoutRemove’, { id: ‘my-templates-panel’
+    }) } } }); } } ] } }, grow: true }, { type: ‘sidebarRight’ } ] } },
+    templates: { // The onLoad can be an asyncronous function, so you
+    can fetch templates from your API onLoad: async () =&gt; [ { id:
+    ‘template1’, name: ‘Template 1’, data: { pages: [ { name: ‘Home’,
+    component: ’] } }, { id: ‘template2’, name: ‘Template 2’, data: {
+    pages: [ { component: ’] } }, { id: ‘template3’, name: ‘Template 3’,
+    data: { pages: [ { component: ’] } }, { id: ‘template4’, name:
+    ‘Template 4’, data: { pages: [ { component: ’] } }, ] } })</p></li>
+    </ul>
+    <p>Code</p>
+    <p>.code-block-amtyg code { max-height: 600px; }</p>
+    <p>tip</p>
+    <p><code>template.data</code> is the GrapesJS project data JSON. You
+    can always get the current data from an existing project in Studio
+    via <code>editor.getProjectData()</code>.</p>
+    <p>warning</p>
+    <p>Templates returned by the custom onLoad handler are shared across
+    all panelTemplates instances. To have different templates in each
+    panel, use the <a
+    href="/docs-sdk/configuration/layout/components#paneltemplates">templates
+    prop</a> instead.</p>
+    <p>In this example, instead of using a button, we open the dialog
+    when the editor loads:</p>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;//
+    …&lt;StudioEditor options={{ // … plugins: [ editor =&gt;
+    editor.onReady(() =&gt; { editor.runCommand(‘studio:layoutToggle’, {
+    id: ‘my-templates-panel’, header: false, placer: { type: ‘dialog’,
+    title: ‘Choose a template for your project’, size: ‘l’ }, layout: {
+    type: ‘panelTemplates’, content: { itemsPerRow: 3 }, onSelect: ({
+    loadTemplate, template }) =&gt; { loadTemplate(template);
+    editor.runCommand(‘studio:layoutRemove’, { id: ‘my-templates-panel’
+    }) } } }); }) ], templates: { onLoad: async () =&gt; [ { id:
+    ‘template1’, name: ‘Template 1’, data: { pages: [ { name: ‘Home’,
+    component: ’] } }, { id: ‘template2’, name: ‘Template 2’, data: {
+    pages: [ { component: ’] } }, { id: ‘template3’, name: ‘Template 3’,
+    data: { pages: [ { component: ’] } }, { id: ‘template4’, name:
+    ‘Template 4’, data: { pages: [ { component: ’] } }, ] } }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;//
+    …createStudioEditor({ // … plugins: [ editor =&gt; editor.onReady(()
+    =&gt; { editor.runCommand(‘studio:layoutToggle’, { id:
+    ‘my-templates-panel’, header: false, placer: { type: ‘dialog’,
+    title: ‘Choose a template for your project’, size: ‘l’ }, layout: {
+    type: ‘panelTemplates’, content: { itemsPerRow: 3 }, onSelect: ({
+    loadTemplate, template }) =&gt; { loadTemplate(template);
+    editor.runCommand(‘studio:layoutRemove’, { id: ‘my-templates-panel’
+    }) } } }); }) ], templates: { onLoad: async () =&gt; [ { id:
+    ‘template1’, name: ‘Template 1’, data: { pages: [ { name: ‘Home’,
+    component: ’] } }, { id: ‘template2’, name: ‘Template 2’, data: {
+    pages: [ { component: ’] } }, { id: ‘template3’, name: ‘Template 3’,
+    data: { pages: [ { component: ’] } }, { id: ‘template4’, name:
+    ‘Template 4’, data: { pages: [ { component: ’] } }, ] } })</p></li>
+    </ul>
+    <p>Code</p>
+    <h2 id="properties">Properties<a href="#properties"
+    title="Direct link to Properties">​</a></h2>
+    <h3 id="templatesconfig-properties">TemplatesConfig properties<a
+    href="#templatesconfig-properties"
+    title="Direct link to TemplatesConfig properties">​</a></h3>
+    <p>Show properties</p>
+    <p>Property</p>
+    <p>Type</p>
+    <p>Description</p>
+    <p>onLoad</p>
+    <p>function</p>
+    <p>Provide a custom handler for loading list of available templates
+    to display in the templates layout panel. It should return an array
+    of TemplateItems.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>onLoad: async ({editor, fetchCommunityTemplates}) =&gt; {  const response = await fetch(&#39;TEMPLATES_URL&#39;);  const templates = await response.json();  return templates;}</code></pre>
+    <h3 id="templateitem-properties">TemplateItem properties<a
+    href="#templateitem-properties"
+    title="Direct link to TemplateItem properties">​</a></h3>
+    <p>Show properties</p>
+    <p>Property</p>
+    <p>Type</p>
+    <p>Description</p>
+    <p>id*</p>
+    <p>string</p>
+    <p>Unique id for this template item.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>&quot;template1&quot;</code></pre>
+    <p>name*</p>
+    <p>string</p>
+    <p>Name displayed for this template item.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>&quot;Template 1&quot;</code></pre>
+    <p>media</p>
+    <p>string</p>
+    <p>A thumbnail URL for this template.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>&quot;https://example.com/template1.jpg&quot;</code></pre>
+    <p>author</p>
+    <p>object</p>
+    <p>An object containing the name of the author and optionally a link
+    to his socials/website.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>{  &quot;name&quot;: &quot;GrapesJS&quot;,  &quot;link&quot;: &quot;grapesjs.com&quot;}</code></pre>
+    <p>data*</p>
+    <p>object</p>
+    <p>GrapesJS project data that will be loaded when the user selects
+    this template.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>{  &quot;pages&quot;: [    {      &quot;name&quot;: &quot;Home&quot;,      &quot;component&quot;: &quot;&lt;h1 class=\&quot;red-bg\&quot;&gt;Red background template&lt;/h1&gt;&lt;style&gt;.red-bg { color: white; background: red; height: 100dvh; }&lt;/style&gt;&quot;    }  ]}</code></pre>
+    <h2 id="i18n">I18n<a href="#i18n"
+    title="Direct link to I18n">​</a></h2>
+    <p>The labels of the templates panel can be translated into
+    different languages:</p>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;//
+    …&lt;StudioEditor options={{ // … plugins: [ editor =&gt;
+    editor.onReady(() =&gt; { editor.runCommand(‘studio:layoutToggle’, {
+    id: ‘my-templates-panel’, header: false, placer: { type: ‘dialog’,
+    title: ‘Choose a template for your project’, size: ‘l’ }, layout: {
+    type: ‘panelTemplates’, content: { itemsPerRow: 3 }, } }); }) ],
+    templates: { // return empty array onLoad: async () =&gt; [] },
+    i18n: { locales: { en: { templates: { notFound: ‘No templates found’
+    } } } } }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;//
+    …createStudioEditor({ // … plugins: [ editor =&gt; editor.onReady(()
+    =&gt; { editor.runCommand(‘studio:layoutToggle’, { id:
+    ‘my-templates-panel’, header: false, placer: { type: ‘dialog’,
+    title: ‘Choose a template for your project’, size: ‘l’ }, layout: {
+    type: ‘panelTemplates’, content: { itemsPerRow: 3 }, } }); }) ],
+    templates: { // return empty array onLoad: async () =&gt; [] },
+    i18n: { locales: { en: { templates: { notFound: ‘No templates found’
+    } } } }})</p></li>
+    </ul>
+    <p>Code</p>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

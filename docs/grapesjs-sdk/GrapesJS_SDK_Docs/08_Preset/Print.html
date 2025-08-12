@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="printable">Printable</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>Project types</p>
+    <p><code>document</code></p>
+    <p>Plan</p>
+    <p>Free plan</p>
+    <p>This preset plugin is designed to help you build HTML content
+    that’s consistent and optimized for printing. It includes default
+    printable device sizes (like A4, A5, etc.), additional components
+    (eg. pageBreak component) and provides utility commands such as
+    triggering the browser’s print preview across all pages.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/printable-plugin-1053616058e037d32b8ddf9aa8935ae6.webp"
+    alt="Printable plugin" />
+    <figcaption aria-hidden="true">Printable plugin</figcaption>
+    </figure>
+    <p>Install the Studio SDK plugins package:</p>
+    <ul>
+    <li><p>npm</p></li>
+    <li><p>pnpm</p></li>
+    <li><p>yarn</p></li>
+    <li><p>CDN</p>
+    <p>npm i <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>pnpm add <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>yarn add <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>// It’s recommended to replace the <code>latest</code> tag with
+    the specific latest version to avoid any potential breaking
+    changes.// The loaded plugin is globally available via
+    <code>globalThis.StudioSdkPlugins_presetPrintable</code>.”https://unpkg.com/<span
+    class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span><span
+    class="citation"
+    data-cites="latest/dist/presetPrintable/index.umd.js">@latest/dist/presetPrintable/index.umd.js</span>”</p></li>
+    </ul>
+    <p>Import and use the plugin in your project:</p>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { presetPrintable, canvasFullSize } from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>’;//
+    …&lt;StudioEditor options={{ // … plugins: [ presetPrintable,
+    canvasFullSize, // Optional ], project: { type: ‘document’, //
+    Ensure the project type is set to ‘document’ default: { pages: [ {
+    name: ‘Invoice’, component:
+    <code>&lt;!DOCTYPE html&gt;                &lt;html&gt;                  &lt;body style="padding: 40px; font-family: Arial, Helvetica, sans-serif"&gt;                    &lt;header class="invoice-header flex-between mb-40"&gt;                      &lt;div&gt;                        &lt;h1&gt;INVOICE&lt;/h1&gt;                        &lt;p class="mb-4"&gt;#INV-00123&lt;/p&gt;                        &lt;p class="mb-4"&gt;Date: 2025-05-28&lt;/p&gt;                      &lt;/div&gt;                      &lt;div style="line-height: 1.5rem"&gt;                        &lt;strong&gt;Your Company&lt;/strong&gt;&lt;br /&gt;                        123 Business Street&lt;br /&gt;                        City, Country                      &lt;/div&gt;                    &lt;/header&gt;                        &lt;section class="mb-40"&gt;                      &lt;h3 class="mb-10"&gt;Bill To:&lt;/h3&gt;                      &lt;div style="line-height: 1.5rem"&gt;                        Client Name&lt;br/&gt;                        Client Company&lt;br/&gt;                        456 Client Road&lt;br/&gt;                        City, Country&lt;br/&gt;                      &lt;/div&gt;                    &lt;/section&gt;                        &lt;table class="invoice-table"&gt;                      &lt;thead&gt;                        &lt;tr&gt;                          &lt;th&gt;Description&lt;/th&gt;                          &lt;th&gt;Qty&lt;/th&gt;                          &lt;th&gt;Unit Price&lt;/th&gt;                          &lt;th&gt;Total&lt;/th&gt;                        &lt;/tr&gt;                      &lt;/thead&gt;                      &lt;tbody&gt;                        &lt;tr&gt;                          &lt;td&gt;Design Services&lt;/td&gt;                          &lt;td&gt;10&lt;/td&gt;                          &lt;td&gt;$50&lt;/td&gt;                          &lt;td&gt;$500&lt;/td&gt;                        &lt;/tr&gt;                        &lt;tr&gt;                          &lt;td&gt;Hosting (3 months)&lt;/td&gt;                          &lt;td&gt;1&lt;/td&gt;                          &lt;td&gt;$150&lt;/td&gt;                          &lt;td&gt;$150&lt;/td&gt;                        &lt;/tr&gt;                      &lt;/tbody&gt;                    &lt;/table&gt;                        &lt;section class="total-section mb-40" style="text-align: right;"&gt;                      &lt;p class="mb-4"&gt;&lt;strong&gt;Subtotal:&lt;/strong&gt; $650&lt;/p&gt;                      &lt;p class="mb-4"&gt;&lt;strong&gt;Tax (10%):&lt;/strong&gt; $65&lt;/p&gt;                      &lt;p class="mb-4" style="font-size: 18px;"&gt;&lt;strong&gt;Total:&lt;/strong&gt; $715&lt;/p&gt;                    &lt;/section&gt;                        &lt;footer class="invoice-footer" style="text-align: center;"&gt;                      Thank you for your business!&lt;br /&gt;                      Payment is due within 15 days.                    &lt;/footer&gt;                  &lt;/body&gt;                  &lt;style&gt;                    .flex-between {                      display: flex;                      justify-content: space-between;                      align-items: center;                    }                        .mb-40 { margin-bottom: 40px; }                    .mb-10 { margin-bottom: 10px; }                    .mb-4 { margin-bottom: 4px; }                        .invoice-header h1 {                      margin: 0;                    }                        .invoice-table {                      width: 100%;                      border-collapse: collapse;                      margin-bottom: 40px;                    }                        .invoice-table th,                    .invoice-table td {                      padding: 12px;                      border: 1px solid #ddd;                      text-align: right;                    }                        .invoice-table th:first-child,                    .invoice-table td:first-child {                      text-align: left;                    }                        .invoice-table thead {                      background-color: #f5f5f5;                    }                        .invoice-footer {                      font-size: 12px;                      color: #888;                    }                  &lt;/style&gt;                &lt;html&gt;</code>,
+    } ] } }, // Custom layout for demo purposes layout: { default: {
+    type: ‘row’, height: ‘100%’, children: [ { type: ‘sidebarLeft’,
+    children: { type: ‘panelLayers’, header: { label: ‘Layers’,
+    collapsible: false, icon: ‘layers’ } } }, { type:
+    ‘canvasSidebarTop’, sidebarTop: { rightContainer: { buttons: ({
+    items }) =&gt; [ { id: ‘print’, icon:
+    ‘<svg viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3Z"/></svg>’,
+    onClick: ({ editor }) =&gt;
+    editor.runCommand(‘presetPrintable:print’) }, …items.filter(item
+    =&gt; ![‘showImportCode’, ‘fullscreen’].includes(item.id)) ] } } },
+    { type: ‘sidebarRight’ } ] } }, }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { presetPrintable, canvasFullSize } from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>’;//
+    …createStudioEditor({ // … plugins: [ presetPrintable,
+    canvasFullSize, // Optional ], project: { type: ‘document’, //
+    Ensure the project type is set to ‘document’ default: { pages: [ {
+    name: ‘Invoice’, component:
+    <code>&lt;!DOCTYPE html&gt; &lt;html&gt; &lt;body style="padding: 40px; font-family: Arial, Helvetica, sans-serif"&gt; &lt;header class="invoice-header flex-between mb-40"&gt; &lt;div&gt; &lt;h1&gt;INVOICE&lt;/h1&gt; &lt;p class="mb-4"&gt;#INV-00123&lt;/p&gt; &lt;p class="mb-4"&gt;Date: 2025-05-28&lt;/p&gt; &lt;/div&gt; &lt;div style="line-height: 1.5rem"&gt; &lt;strong&gt;Your Company&lt;/strong&gt;&lt;br /&gt; 123 Business Street&lt;br /&gt; City, Country &lt;/div&gt; &lt;/header&gt; &lt;section class="mb-40"&gt; &lt;h3 class="mb-10"&gt;Bill To:&lt;/h3&gt; &lt;div style="line-height: 1.5rem"&gt; Client Name&lt;br/&gt; Client Company&lt;br/&gt; 456 Client Road&lt;br/&gt; City, Country&lt;br/&gt; &lt;/div&gt; &lt;/section&gt; &lt;table class="invoice-table"&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;Description&lt;/th&gt; &lt;th&gt;Qty&lt;/th&gt; &lt;th&gt;Unit Price&lt;/th&gt; &lt;th&gt;Total&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td&gt;Design Services&lt;/td&gt; &lt;td&gt;10&lt;/td&gt; &lt;td&gt;$50&lt;/td&gt; &lt;td&gt;$500&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Hosting (3 months)&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;$150&lt;/td&gt; &lt;td&gt;$150&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;section class="total-section mb-40" style="text-align: right;"&gt; &lt;p class="mb-4"&gt;&lt;strong&gt;Subtotal:&lt;/strong&gt; $650&lt;/p&gt; &lt;p class="mb-4"&gt;&lt;strong&gt;Tax (10%):&lt;/strong&gt; $65&lt;/p&gt; &lt;p class="mb-4" style="font-size: 18px;"&gt;&lt;strong&gt;Total:&lt;/strong&gt; $715&lt;/p&gt; &lt;/section&gt; &lt;footer class="invoice-footer" style="text-align: center;"&gt; Thank you for your business!&lt;br /&gt; Payment is due within 15 days. &lt;/footer&gt; &lt;/body&gt; &lt;style&gt; .flex-between { display: flex; justify-content: space-between; align-items: center; } .mb-40 { margin-bottom: 40px; } .mb-10 { margin-bottom: 10px; } .mb-4 { margin-bottom: 4px; } .invoice-header h1 { margin: 0; } .invoice-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; } .invoice-table th, .invoice-table td { padding: 12px; border: 1px solid #ddd; text-align: right; } .invoice-table th:first-child, .invoice-table td:first-child { text-align: left; } .invoice-table thead { background-color: #f5f5f5; } .invoice-footer { font-size: 12px; color: #888; } &lt;/style&gt; &lt;html&gt;</code>,
+    } ] } }, // Custom layout for demo purposes layout: { default: {
+    type: ‘row’, height: ‘100%’, children: [ { type: ‘sidebarLeft’,
+    children: { type: ‘panelLayers’, header: { label: ‘Layers’,
+    collapsible: false, icon: ‘layers’ } } }, { type:
+    ‘canvasSidebarTop’, sidebarTop: { rightContainer: { buttons: ({
+    items }) =&gt; [ { id: ‘print’, icon:
+    ‘<svg viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3Z"/></svg>’,
+    onClick: ({ editor }) =&gt;
+    editor.runCommand(‘presetPrintable:print’) }, …items.filter(item
+    =&gt; ![‘showImportCode’, ‘fullscreen’].includes(item.id)) ] } } },
+    { type: ‘sidebarRight’ } ] } }, })</p></li>
+    </ul>
+    <p>Code</p>
+    <p>.code-block-gmewd code { max-height: 600px; }</p>
+    <h3 id="repeatable-elements">Repeatable Elements<a
+    href="#repeatable-elements"
+    title="Direct link to Repeatable Elements">​</a></h3>
+    <p>The example below shows how to render collections of repeatable
+    elements using dynamic data, ideal for print-ready layouts like
+    badges, labels, or employee cards.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/printable-repeat-el-78f2c8a15aa9a526422aadbacc43b695.webp"
+    alt="Printable plugin - Repeatable Elements" />
+    <figcaption aria-hidden="true">Printable plugin - Repeatable
+    Elements</figcaption>
+    </figure>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { presetPrintable, canvasFullSize } from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>’;//
+    …&lt;StudioEditor options={{ // … plugins: [ presetPrintable.init({
+    blockPageBreak: false }), canvasFullSize, ], project: { type:
+    ‘document’, default: { pages: [ { name: ‘Invoice’, component:
+    <code>&lt;!DOCTYPE html&gt;                &lt;html&gt;                  &lt;head&gt;                    &lt;style&gt;                      .cards {                        display: grid;                        grid-template-columns: repeat(2, 1fr);                        gap: 1em;                      }                      .card {                        background-image:linear-gradient(120deg,rgba(217,56,143,1) 8%,rgba(227,118,128,1) 55%,rgba(247,234,244,1) 55%);                        border-radius: 12px;                        padding: 20px;                        color: white;                        height: 171px;                        border: 1px solid #ddd;                        display: flex;                        flex-direction: column;                        justify-content: center;                      }                          .card-left {                        align-self: flex-start;                      }                          .card-right {                        align-self: flex-end;                        text-align: right;                        color: #555;                      }                          .name {                        font-size: 1.3em;                        font-weight: 700;                      }                          .title {                        font-size: 0.8em;                        opacity: 0.85;                        margin: 4px 0;                      }                          .company {                        font-size: 0.9em;                        font-weight: 600;                        margin-bottom: 8px;                        opacity: 0.9;                      }                          .contact {                        font-size: 0.7em;                        line-height: 1.5;                        opacity: 0.9;                      }                    &lt;/style&gt;                  &lt;/head&gt;                  &lt;body style="padding: 10px 40px; font-family: Arial, Helvetica, sans-serif"&gt;                    &lt;data-collection                      class="cards"                      data-gjs-data-resolver='{"collectionId": "ppl", "dataSource": {"type":"data-variable", "path":"globalData.people.data" } }'                    &gt;                      &lt;data-collection-item class="card"&gt;                        &lt;div class="card-left"&gt;                          &lt;div class="name" data-gjs-type="data-variable" data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "name" }'&gt;&lt;/div&gt;                          &lt;div class="title" data-gjs-type="data-variable" data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "title" }'&gt;&lt;/div&gt;                          &lt;div class="company" data-gjs-type="data-variable" data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "company" }'&gt;&lt;/div&gt;                        &lt;/div&gt;                        &lt;div class="card-right"&gt;                          &lt;div class="contact"&gt;                            &lt;data-variable data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "email" }'&gt;&lt;/data-variable&gt;&lt;br/&gt;                            &lt;data-variable data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "phone" }'&gt;&lt;/data-variable&gt;&lt;br/&gt;                            &lt;b data-gjs-type="data-variable" data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "website" }'&gt;&lt;/b&gt;                          &lt;/div&gt;                        &lt;/div&gt;                      &lt;/data-collection-item&gt;                    &lt;/ul&gt;                  &lt;/body&gt;                &lt;html&gt;</code>,
+    } ] } }, dataSources: { globalData: { people: [ { name: ‘Alice
+    Morgan’, title: ‘Creative Director’, company: ‘Morgan Studio’,
+    email: ‘alice@morganstudio.com’, phone: ‘+1 234 567 8901’, website:
+    ‘morganstudio.com’ }, { name: ‘Ben Carter’, title: ‘Product
+    Manager’, company: ‘Carter Labs’, email: ‘ben@carterlabs.io’, phone:
+    ‘+1 555 987 1234’, website: ‘carterlabs.io’ }, { name: ‘Carla
+    Rossi’, title: ‘Marketing Lead’, company: ‘Rossi &amp; Co’, email:
+    ‘carla@rossico.com’, phone: ‘+39 012 3456 789’, website:
+    ‘rossico.com’ }, { name: ‘Daniel Kim’, title: ‘UX Designer’,
+    company: ‘Designory’, email: ‘daniel@designory.com’, phone: ‘+82 10
+    1234 5678’, website: ‘designory.com’ }, { name: ‘Eva Liu’, title:
+    ‘Software Engineer’, company: ‘Codeverse’, email:
+    ‘eva@codeverse.dev’, phone: ‘+44 20 7946 0958’, website:
+    ‘codeverse.dev’ }, { name: ‘Frank Zane’, title: ‘Operations Lead’,
+    company: ‘Logify’, email: ‘frank@logify.org’, phone: ‘+1 312 321
+    4321’, website: ‘logify.org’ }, { name: ‘Grace Tang’, title: ‘Data
+    Analyst’, company: ‘QuantIQ’, email: ‘grace@quantiq.com’, phone:
+    ‘+61 3 9123 4567’, website: ‘quantiq.com’ }, { name: ‘Hugo Martins’,
+    title: ‘Art Director’, company: ‘Studio Verde’, email:
+    ‘hugo@verde.studio’, phone: ‘+55 11 98765 4321’, website:
+    ‘verde.studio’ }, { name: ‘Isabel Romero’, title: ‘HR Manager’,
+    company: ‘PeopleFlow’, email: ‘isabel@peopleflow.com’, phone: ‘+34
+    91 234 5678’, website: ‘peopleflow.com’ }, { name: ‘Jason Lee’,
+    title: ‘CTO’, company: ‘Devstream’, email: ‘jason@devstream.io’,
+    phone: ‘+1 800 123 4567’, website: ‘devstream.io’ }, { name: ‘Klara
+    Schmidt’, title: ‘Finance Consultant’, company: ‘LedgerWise’, email:
+    ‘klara@ledgerwise.de’, phone: ‘+49 30 1234 5678’, website:
+    ‘ledgerwise.de’ }, { name: ‘Luis Hernandez’, title: ‘Full Stack
+    Developer’, company: ‘BitForge’, email: ‘luis@bitforge.tech’, phone:
+    ‘+52 55 1234 5678’, website: ‘bitforge.tech’ }, { name: ‘Nina
+    Patel’, title: ‘Content Strategist’, company: ‘StoryGrid’, email:
+    ‘nina@storygrid.com’, phone: ‘+91 22 4000 1234’, website:
+    ‘storygrid.com’ }, { name: ‘Omar Khalid’, title: ‘Growth Hacker’,
+    company: ‘ScaleUp’, email: ‘omar@scaleup.app’, phone: ‘+971 4 567
+    1234’, website: ‘scaleup.app’ }, { name: ‘Yuki Tanaka’, title:
+    ‘Innovation Lead’, company: ‘Neogenics’, email: ‘yuki@neogenics.jp’,
+    phone: ‘+81 3 1234 5678’, website: ‘neogenics.jp’ } ] } }, // Custom
+    layout for demo purposes layout: { default: { type: ‘row’, height:
+    ‘100%’, children: [ { type: ‘sidebarLeft’, children: { type:
+    ‘panelLayers’, header: { label: ‘Layers’, collapsible: false, icon:
+    ‘layers’ } } }, { type: ‘canvasSidebarTop’, sidebarTop: {
+    rightContainer: { buttons: ({ items }) =&gt; [ { id: ‘print’, icon:
+    ‘<svg viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3Z"/></svg>’,
+    onClick: ({ editor }) =&gt;
+    editor.runCommand(‘presetPrintable:print’) }, …items.filter(item
+    =&gt; ![‘showImportCode’, ‘fullscreen’].includes(item.id)) ] } } },
+    { type: ‘sidebarRight’ } ] } }, }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { presetPrintable, canvasFullSize } from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>’;//
+    …createStudioEditor({ // … plugins: [ presetPrintable.init({
+    blockPageBreak: false }), canvasFullSize, ], project: { type:
+    ‘document’, default: { pages: [ { name: ‘Invoice’, component:
+    <code>&lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;style&gt; .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em; } .card { background-image:linear-gradient(120deg,rgba(217,56,143,1) 8%,rgba(227,118,128,1) 55%,rgba(247,234,244,1) 55%); border-radius: 12px; padding: 20px; color: white; height: 171px; border: 1px solid #ddd; display: flex; flex-direction: column; justify-content: center; } .card-left { align-self: flex-start; } .card-right { align-self: flex-end; text-align: right; color: #555; } .name { font-size: 1.3em; font-weight: 700; } .title { font-size: 0.8em; opacity: 0.85; margin: 4px 0; } .company { font-size: 0.9em; font-weight: 600; margin-bottom: 8px; opacity: 0.9; } .contact { font-size: 0.7em; line-height: 1.5; opacity: 0.9; } &lt;/style&gt; &lt;/head&gt; &lt;body style="padding: 10px 40px; font-family: Arial, Helvetica, sans-serif"&gt; &lt;data-collection class="cards" data-gjs-data-resolver='{"collectionId": "ppl", "dataSource": {"type":"data-variable", "path":"globalData.people.data" } }' &gt; &lt;data-collection-item class="card"&gt; &lt;div class="card-left"&gt; &lt;div class="name" data-gjs-type="data-variable" data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "name" }'&gt;&lt;/div&gt; &lt;div class="title" data-gjs-type="data-variable" data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "title" }'&gt;&lt;/div&gt; &lt;div class="company" data-gjs-type="data-variable" data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "company" }'&gt;&lt;/div&gt; &lt;/div&gt; &lt;div class="card-right"&gt; &lt;div class="contact"&gt; &lt;data-variable data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "email" }'&gt;&lt;/data-variable&gt;&lt;br/&gt; &lt;data-variable data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "phone" }'&gt;&lt;/data-variable&gt;&lt;br/&gt; &lt;b data-gjs-type="data-variable" data-gjs-data-resolver='{"collectionId": "ppl", "variableType": "currentItem", "path": "website" }'&gt;&lt;/b&gt; &lt;/div&gt; &lt;/div&gt; &lt;/data-collection-item&gt; &lt;/ul&gt; &lt;/body&gt; &lt;html&gt;</code>,
+    } ] } }, dataSources: { globalData: { people: [ { name: ‘Alice
+    Morgan’, title: ‘Creative Director’, company: ‘Morgan Studio’,
+    email: ‘alice@morganstudio.com’, phone: ‘+1 234 567 8901’, website:
+    ‘morganstudio.com’ }, { name: ‘Ben Carter’, title: ‘Product
+    Manager’, company: ‘Carter Labs’, email: ‘ben@carterlabs.io’, phone:
+    ‘+1 555 987 1234’, website: ‘carterlabs.io’ }, { name: ‘Carla
+    Rossi’, title: ‘Marketing Lead’, company: ‘Rossi &amp; Co’, email:
+    ‘carla@rossico.com’, phone: ‘+39 012 3456 789’, website:
+    ‘rossico.com’ }, { name: ‘Daniel Kim’, title: ‘UX Designer’,
+    company: ‘Designory’, email: ‘daniel@designory.com’, phone: ‘+82 10
+    1234 5678’, website: ‘designory.com’ }, { name: ‘Eva Liu’, title:
+    ‘Software Engineer’, company: ‘Codeverse’, email:
+    ‘eva@codeverse.dev’, phone: ‘+44 20 7946 0958’, website:
+    ‘codeverse.dev’ }, { name: ‘Frank Zane’, title: ‘Operations Lead’,
+    company: ‘Logify’, email: ‘frank@logify.org’, phone: ‘+1 312 321
+    4321’, website: ‘logify.org’ }, { name: ‘Grace Tang’, title: ‘Data
+    Analyst’, company: ‘QuantIQ’, email: ‘grace@quantiq.com’, phone:
+    ‘+61 3 9123 4567’, website: ‘quantiq.com’ }, { name: ‘Hugo Martins’,
+    title: ‘Art Director’, company: ‘Studio Verde’, email:
+    ‘hugo@verde.studio’, phone: ‘+55 11 98765 4321’, website:
+    ‘verde.studio’ }, { name: ‘Isabel Romero’, title: ‘HR Manager’,
+    company: ‘PeopleFlow’, email: ‘isabel@peopleflow.com’, phone: ‘+34
+    91 234 5678’, website: ‘peopleflow.com’ }, { name: ‘Jason Lee’,
+    title: ‘CTO’, company: ‘Devstream’, email: ‘jason@devstream.io’,
+    phone: ‘+1 800 123 4567’, website: ‘devstream.io’ }, { name: ‘Klara
+    Schmidt’, title: ‘Finance Consultant’, company: ‘LedgerWise’, email:
+    ‘klara@ledgerwise.de’, phone: ‘+49 30 1234 5678’, website:
+    ‘ledgerwise.de’ }, { name: ‘Luis Hernandez’, title: ‘Full Stack
+    Developer’, company: ‘BitForge’, email: ‘luis@bitforge.tech’, phone:
+    ‘+52 55 1234 5678’, website: ‘bitforge.tech’ }, { name: ‘Nina
+    Patel’, title: ‘Content Strategist’, company: ‘StoryGrid’, email:
+    ‘nina@storygrid.com’, phone: ‘+91 22 4000 1234’, website:
+    ‘storygrid.com’ }, { name: ‘Omar Khalid’, title: ‘Growth Hacker’,
+    company: ‘ScaleUp’, email: ‘omar@scaleup.app’, phone: ‘+971 4 567
+    1234’, website: ‘scaleup.app’ }, { name: ‘Yuki Tanaka’, title:
+    ‘Innovation Lead’, company: ‘Neogenics’, email: ‘yuki@neogenics.jp’,
+    phone: ‘+81 3 1234 5678’, website: ‘neogenics.jp’ } ] } }, // Custom
+    layout for demo purposes layout: { default: { type: ‘row’, height:
+    ‘100%’, children: [ { type: ‘sidebarLeft’, children: { type:
+    ‘panelLayers’, header: { label: ‘Layers’, collapsible: false, icon:
+    ‘layers’ } } }, { type: ‘canvasSidebarTop’, sidebarTop: {
+    rightContainer: { buttons: ({ items }) =&gt; [ { id: ‘print’, icon:
+    ‘<svg viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3Z"/></svg>’,
+    onClick: ({ editor }) =&gt;
+    editor.runCommand(‘presetPrintable:print’) }, …items.filter(item
+    =&gt; ![‘showImportCode’, ‘fullscreen’].includes(item.id)) ] } } },
+    { type: ‘sidebarRight’ } ] } }, })</p></li>
+    </ul>
+    <p>Code</p>
+    <p>.code-block-i8uusl code { max-height: 600px; }</p>
+    <h3 id="plugin-options">Plugin options<a href="#plugin-options"
+    title="Direct link to Plugin options">​</a></h3>
+    <p>Property</p>
+    <p>Type</p>
+    <p>Description</p>
+    <p>licenseKey</p>
+    <p>string</p>
+    <p>The license key for the plugin. This is optional, only required
+    if the plugin is used outside of Studio SDK.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>&quot;your-license-key&quot;</code></pre>
+    <p>blockPageBreak</p>
+    <p><a href="https://grapesjs.com/docs/api/block.html">Block</a></p>
+    <p>Additional Block properties of the page break component. Pass
+    `false` to avoid adding the block.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>{  &quot;category&quot;: &quot;Extra&quot;,  &quot;label&quot;: &quot;My label&quot;}</code></pre>
+    <p>fixedHeight</p>
+    <p>boolean</p>
+    <p>With this option enabled the document won’t grow in height and it
+    won’t be possible to scroll.</p>
+    <p><strong>Default</strong></p>
+    <pre><code>false</code></pre>
+    <p>devices</p>
+    <p>function</p>
+    <p>Customize the printable devices.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>devices: ({ items }) =&gt; { return [   ...items,   {     id: &#39;custom&#39;,     name: &#39;Custom&#39;,     width: 100,     height: 200,     unit: &#39;mm&#39;  } ]}</code></pre>
+    <p>selectedDevice</p>
+    <p>string</p>
+    <p>Selected device id. Available printable sizes: ‘a5’,
+    ‘a5-portrait’, ‘a4’, ‘a3’, ‘b5’, ‘b4’, ‘letter’, ‘legal’,
+    ‘ledger’.</p>
+    <p><strong>Default</strong></p>
+    <pre><code>a4</code></pre>
+    <p>enablePageBreaksSpot</p>
+    <p>boolean</p>
+    <p>Enables the page break indicators in the canvas.</p>
+    <p><strong>Default</strong></p>
+    <pre><code>true</code></pre>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project-Types Email - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="email">Email</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>Studio SDK lets you create various projects, including email
+    templates for building newsletters using MJML.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/studio-editor-email-8deb36da5e80e75b66383ab121de9f70.png"
+    alt="Projects Email" />
+    <figcaption aria-hidden="true">Projects Email</figcaption>
+    </figure>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;//
+    …&lt;StudioEditor options={{ // … project: { type: ‘email’, // The
+    default project to use for new projects default: { pages: [ {
+    component: ‘<mjml><mj-body><mj-section><mj-column><mj-text>My
+    email</mj-text></mj-column></mj-section></mj-body></mjml>’ }, ] }, }
+    }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;//
+    …createStudioEditor({ // … project: { type: ‘email’, // The default
+    project to use for new projects default: { pages: [ { component:
+    ‘<mjml><mj-body><mj-section><mj-column><mj-text>My
+    email</mj-text></mj-column></mj-section></mj-body></mjml>’ }, ] },
+    }})</p></li>
+    </ul>
+    <p>Code</p>
+    <p>.code-block-hy42t code { max-height: 600px; }</p>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

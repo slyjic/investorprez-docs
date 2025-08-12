@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="grapesjs-studio-sdk-documentation">GrapesJS Studio SDK
+    Documentation</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>This directory contains comprehensive documentation for the
+    GrapesJS Studio SDK used in InvestorPrez.</p>
+    <h2 id="documentation-structure">📚 Documentation Structure</h2>
+    <h3 id="overview">1. Overview</h3>
+    <ul>
+    <li><a href="01_Overview/Overview_Getting-Started.md">Getting
+    Started</a> - Quick start guide</li>
+    <li><a href="01_Overview/Overview_Editor-Configurator.md">Editor
+    Configurator</a> - Editor configuration basics</li>
+    <li><a href="01_Overview/Overview_Licenses.md">Licenses</a> -
+    Licensing information</li>
+    </ul>
+    <h3 id="project-types">2. Project Types</h3>
+    <ul>
+    <li><a href="02_Project-Types/Project-Types_Web.md">Web Projects</a>
+    - Standard web page builder</li>
+    <li><a href="02_Project-Types/Project-Types_Email.md">Email
+    Projects</a> - MJML-powered email builder</li>
+    <li><a href="02_Project-Types/Project-Types_Document.md">Document
+    Projects</a> - Document creation</li>
+    </ul>
+    <h3 id="configuration">3. Configuration</h3>
+    <ul>
+    <li><a
+    href="03_Configuration/Configuration_Overview.md">Configuration
+    Overview</a> - Main configuration guide</li>
+    <li><a
+    href="03_Configuration/Configuration_Projects.md">Projects</a> -
+    Project setup and management</li>
+    <li><a href="03_Configuration/Configuration_Blocks.md">Blocks</a> -
+    Block configuration</li>
+    <li><a href="03_Configuration/Configuration_Pages.md">Pages</a> -
+    Multi-page support</li>
+    <li><a
+    href="03_Configuration/Configuration_Templates.md">Templates</a> -
+    Template management</li>
+    <li><a href="03_Configuration/Configuration_Themes.md">Themes</a> -
+    Theme customization</li>
+    <li><a href="03_Configuration/Configuration_Global-Styles.md">Global
+    Styles</a> - CSS and styling</li>
+    <li><a href="03_Configuration/Configuration_Fonts.md">Fonts</a> -
+    Font management</li>
+    <li><strong>Assets</strong>
+    <ul>
+    <li><a
+    href="03_Configuration/Assets/Configuration_Assets_Overview.md">Assets
+    Overview</a></li>
+    <li><a
+    href="03_Configuration/Assets/Configuration_Assets_Providers.md">Asset
+    Providers</a></li>
+    </ul></li>
+    <li><strong>Components</strong>
+    <ul>
+    <li><a
+    href="03_Configuration/Components/Configuration_Components_Overview.md">Components
+    Overview</a></li>
+    <li><a
+    href="03_Configuration/Components/Configuration_Component_Properties.md">Component
+    Properties</a></li>
+    <li><a
+    href="03_Configuration/Components/Configuration_Components_Methods.md">Component
+    Methods</a></li>
+    </ul></li>
+    <li><strong>Layout</strong>
+    <ul>
+    <li><a
+    href="03_Configuration/Layout/Configuration_Layout_Overview.md">Layout
+    Overview</a></li>
+    <li><a
+    href="03_Configuration/Layout/Configuration_Layout_Components.md">Layout
+    Components</a></li>
+    </ul></li>
+    <li><strong>Data Sources</strong>
+    <ul>
+    <li><a
+    href="03_Configuration/Data-Sources/Configuration_Data-Sources_Overview.md">Data
+    Sources Overview</a></li>
+    <li><a
+    href="03_Configuration/Data-Sources/Configuration_Data-sources_Template-engine.md">Template
+    Engine</a></li>
+    </ul></li>
+    </ul>
+    <h3 id="device-manager-api">4. Device Manager API</h3>
+    <ul>
+    <li><a
+    href="04_Device-Manager-API/Device-Manager-API_Overview.md">Device
+    Manager Overview</a> - Responsive design management</li>
+    </ul>
+    <h3 id="plugins">5. Plugins</h3>
+    <ul>
+    <li><a href="05_Plugins/Plugins_Overview.md"><strong>Plugins
+    Overview</strong></a> - Introduction to plugin system</li>
+    <li><a href="05_Plugins/Complete_Plugins_Guide.md"><strong>Complete
+    Plugins Guide</strong></a> - Comprehensive plugin reference</li>
+    <li><a href="05_Plugins/README.md"><strong>Plugins
+    Directory</strong></a> - All plugin documentation</li>
+    <li><strong>Available Plugins</strong>:
+    <ul>
+    <li><a href="05_Plugins/Absolute-mode.md">Absolute Mode</a> -
+    Absolute positioning</li>
+    <li><a href="05_Plugins/Grid-mode.md">Grid Mode</a> - Grid layout
+    system</li>
+    <li><a href="05_Plugins/Rich-text_editor_proseMirror.txt">Rich Text
+    Editor</a> - ProseMirror integration</li>
+    <li><a href="05_Plugins/iconify.md">Iconify</a> - Icon
+    integration</li>
+    <li><a href="05_Plugins/sidebar-buttons.md">Sidebar Buttons</a> -
+    Custom sidebar buttons</li>
+    <li><a href="05_Plugins/custom-renderer_react.md">Custom Renderer
+    React</a> - React rendering</li>
+    <li><a href="05_Plugins/Data_Sources_Overview.md">Data Sources
+    Overview</a> - Dynamic content systems</li>
+    <li><a href="05_Plugins/Data_Sources_Handlebars.md">Handlebars Data
+    Sources</a> - Template engine integration</li>
+    <li><a href="05_Plugins/Canvas_Full_Size.md">Canvas Full Size</a> -
+    Enhanced canvas controls</li>
+    </ul></li>
+    </ul>
+    <h3 id="components">6. Components</h3>
+    <ul>
+    <li><a href="06_Components/Animation.md">Animation</a> - Animation
+    components</li>
+    <li><a href="06_Components/table.md">Table</a> - Table
+    component</li>
+    <li><a href="06_Components/List-pages.md">List Pages</a> - Page
+    listing component</li>
+    </ul>
+    <h3 id="custom-renderer">7. Custom Renderer</h3>
+    <ul>
+    <li><a href="07_Custom-Renderer/React-renderer.md">React
+    Renderer</a> - Custom React rendering</li>
+    </ul>
+    <h3 id="presets">8. Presets</h3>
+    <ul>
+    <li><a href="08_Preset/Printable.md">Printable</a> - Print-optimized
+    document creation preset</li>
+    </ul>
+    <h3 id="investorprez-integration">9. InvestorPrez Integration</h3>
+    <ul>
+    <li><a
+    href="09_InvestorPrez-Integration/InvestorPrez_Integration_Overview.md"><strong>InvestorPrez
+    Integration Overview</strong></a> - Complete InvestorPrez-specific
+    implementation guide
+    <ul>
+    <li>Multi-presentation isolation</li>
+    <li>React 18.3.1 integration patterns</li>
+    <li>Storage and auto-save configuration</li>
+    <li>Troubleshooting InvestorPrez-specific issues</li>
+    </ul></li>
+    </ul>
+    <h3 id="reference">10. Reference</h3>
+    <ul>
+    <li><a href="SDK_Commands_Reference.md"><strong>SDK Commands
+    Reference</strong></a> - Complete command API</li>
+    <li><a href="Migration_Guide.md"><strong>Migration
+    Guide</strong></a> - Version migration and updates</li>
+    <li><a href="Rich-text-editor.md">Rich Text Editor</a> - Rich text
+    capabilities</li>
+    <li><a href="GrapesJS_open-source_device.md">Open Source Device</a>
+    - Device management</li>
+    </ul>
+    <h2 id="quick-links">🚀 Quick Links</h2>
+    <h3 id="essential-reads">Essential Reads</h3>
+    <ol type="1">
+    <li><a href="01_Overview/Overview_Getting-Started.md">Getting
+    Started</a></li>
+    <li><a
+    href="03_Configuration/Configuration_Overview.md">Configuration
+    Overview</a></li>
+    <li><a href="SDK_Commands_Reference.md">SDK Commands
+    Reference</a></li>
+    </ol>
+    <h3 id="investorprez-specific-implementation">InvestorPrez-Specific
+    Implementation</h3>
+    <ol type="1">
+    <li><a
+    href="09_InvestorPrez-Integration/InvestorPrez_Integration_Overview.md"><strong>InvestorPrez
+    Integration Overview</strong></a> - <strong>START HERE</strong> for
+    InvestorPrez implementation</li>
+    <li><a href="07_Custom-Renderer/React-renderer.md">React
+    Renderer</a> - React-specific patterns after reading integration
+    guide</li>
+    <li><a
+    href="03_Configuration/Configuration_Overview.md">Configuration
+    Overview</a> - General configuration reference</li>
+    </ol>
+    <h3 id="common-tasks">Common Tasks</h3>
+    <ul>
+    <li><strong>InvestorPrez Implementation</strong>: See <a
+    href="09_InvestorPrez-Integration/InvestorPrez_Integration_Overview.md">InvestorPrez
+    Integration Overview</a></li>
+    <li><strong>Setting up a new project</strong>: See <a
+    href="02_Project-Types/">Project Types</a></li>
+    <li><strong>Customizing blocks</strong>: See <a
+    href="03_Configuration/Configuration_Blocks.md">Blocks
+    Configuration</a></li>
+    <li><strong>Managing assets</strong>: See <a
+    href="03_Configuration/Assets/Configuration_Assets_Overview.md">Assets
+    Overview</a></li>
+    <li><strong>Adding custom fonts</strong>: See <a
+    href="03_Configuration/Configuration_Fonts.md">Fonts
+    Configuration</a></li>
+    <li><strong>Creating custom components</strong>: See <a
+    href="03_Configuration/Components/Configuration_Components_Overview.md">Components
+    Overview</a></li>
+    </ul>
+    <h2 id="notes">📝 Notes</h2>
+    <ul>
+    <li>This documentation is based on GrapesJS Studio SDK v1.0.51</li>
+    <li>For the latest updates, check the <a
+    href="https://grapesjs.com/docs/">official GrapesJS
+    documentation</a></li>
+    <li>InvestorPrez-specific implementations may differ from standard
+    SDK usage</li>
+    </ul>
+    <h2 id="investorprez-integration-1">🔧 InvestorPrez Integration</h2>
+    <p>InvestorPrez uses the GrapesJS Studio SDK with the following
+    customizations:</p>
+    <ol type="1">
+    <li><strong>Project Type</strong>: Web project type for presentation
+    building</li>
+    <li><strong>Storage</strong>: Custom storage manager with auto-save
+    functionality</li>
+    <li><strong>Blocks</strong>: Custom presentation blocks (Hero,
+    Features, Team, etc.)</li>
+    <li><strong>Themes</strong>: Professional presentation themes</li>
+    <li><strong>Assets</strong>: Vercel Blob storage integration</li>
+    <li><strong>Typography</strong>: 6 professional typography
+    presets</li>
+    <li><strong>Components</strong>: Custom comment-pin component
+    (archived)</li>
+    </ol>
+    <p>For InvestorPrez-specific implementation details, see the main <a
+    href="../../ARCHITECTURE_DECISIONS.md">Architecture Decisions</a>
+    document.</p>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

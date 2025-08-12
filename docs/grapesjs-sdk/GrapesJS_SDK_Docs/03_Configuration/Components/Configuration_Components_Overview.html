@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Components
+Overview - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="components">Components</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <blockquote>
+    <p>warning: This page is a work in progress. as at 27 June 8:04am
+    -</p>
+    </blockquote>
+    <p>Components are the building blocks of a Studio SDK project. A
+    component can be a simple element like an image or text box, or a
+    more complex structure composed of multiple nested components, such
+    as sections or even entire pages.</p>
+    <h3 id="table-of-contents">Table of Contents</h3>
+    <ul>
+    <li>When do you need Components?</li>
+    <li>How do Components work?</li>
+    <li>Component Properties</li>
+    <li>Component Methods</li>
+    </ul>
+    <h2 id="when-do-you-need-components">When do you need
+    Components?</h2>
+    <p>The Components allows developers to define custom behaviors,
+    interactions, and constraints such as specifying what can be edited,
+    how the component is rendered, and where it can be placed on the
+    page.</p>
+    <p>With the Components API, you can:</p>
+    <ul>
+    <li>Control editing behavior: Define which parts of a component are
+    editable and how users interact with it (e.g., enabling inline text
+    editing or restricting modifications).</li>
+    <li>Customize rendering: Modify how the component is structured in
+    the DOM and how it exports to the final HTML.</li>
+    <li>Define placement rules: Set constraints on where components can
+    be dropped or nested within other components.</li>
+    <li>Bind dynamic actions: Attach custom logic to user interactions,
+    such as triggering the Asset Manager when an image is
+    double-clicked.</li>
+    </ul>
+    <p>By leveraging these features, developers can create highly
+    interactive and reusable components tailored to their needs.</p>
+    <h2 id="how-do-components-work">How do Components work?</h2>
+    <p>Let’s start exploring how components work by adding some basic
+    components to a new project.</p>
+    <p>tip: Check the Demo tab to the see the code in action.</p>
+    <pre><code>    import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+    import &#39;@grapesjs/studio-sdk/style&#39;;
+
+    // ...
+    &lt;StudioEditor
+      options={{
+        // ...
+        project: {
+          // Define a default project that acts as a fallback when no Storage is configured.
+          default: {
+            pages: [{ name: &#39;Home&#39;, component: &#39;&lt;h1&gt;Home page&lt;/h1&gt;&#39; }]
+          }
+        },
+        plugins: [
+          // Use a plugin as a playground for our examples
+          editor =&gt; {
+            // Wait for the project to load before interacting with its components
+            editor.onReady(() =&gt; {
+              // The first page is selected by default
+              const homePage = editor.Pages.getSelected();
+              // The main component (usually the &lt;body&gt;) is created with the page
+              const rootComponent = homePage.getMainComponent();
+
+              // Append a new component as an HTML string
+              const newComponent = rootComponent.append(`&lt;div&gt;
+                &lt;img src=&quot;https://picsum.photos/seed/my-image/150/150&quot;/&gt;
+                &lt;p&gt;Content text here&lt;/p&gt;
+              &lt;/div&gt;`)[0];
+            });
+          }
+
+        ],
+      }}
+    /&gt;</code></pre>
+    <h3 id="component-definition">Component Definition</h3>
+    <p>The Component Definition is an object that details the
+    configuration of a Component.</p>
+    <p>A complete Component Definition may contain additional
+    information, but it can be as simple as you want:</p>
+    <pre><code>    {
+      &quot;tagName&quot;: &quot;div&quot;,
+      &quot;components&quot;: [ // Nested components
+        {
+          &quot;type&quot;: &quot;image&quot;, // Detected as an image type
+          &quot;attributes&quot;: { &quot;src&quot;: &quot;https://picsum.photos/seed/my-image/150/150&quot; }
+        },
+        {
+          &quot;type&quot;: &quot;text&quot;, // Detected as an editable text
+          &quot;tagName&quot;: &quot;p&quot;,
+          &quot;components&quot;: [ // Nested components
+            { &quot;type&quot;: &quot;textnode&quot;, &quot;content&quot;: &quot;Content text here&quot; }
+          ]
+        }
+      ]
+    }</code></pre>
+    <p>The editor automatically recognizes predefined Components like
+    image or text, and applies the appropriate behavior in the canvas.
+    This allows you to double-click on the image to open the Asset
+    Manager or edit a text directly in the canvas.</p>
+    <p>In the first example of this page we import elements from an HTML
+    string, which then gets parsed and transformed into a Component
+    Definition automatically.</p>
+    <p>You can append components by passing in a component definition
+    object instead of using HTML:</p>
+    <pre><code>    const newComponent = rootComponent.append({
+      tagName: &#39;div&#39;,
+      components: [
+        {
+          type: &#39;image&#39;,
+          attributes: { src: &#39;https://picsum.photos/seed/my-image/150/150&#39; }
+        },
+        {
+          type: &#39;text&#39;,
+          tagName: &#39;p&#39;,
+          components: [{ type: &#39;textnode&#39;, content: &#39;Content text here&#39; }]
+        }
+      ]
+    })[0];</code></pre>
+    <p>In the next section, we’ll define a custom component and learn
+    how to make the editor recognize it after parsing the HTML
+    string.</p>
+    <h3 id="define-a-custom-component">Define a Custom Component</h3>
+    <p>To define a custom component, use the editor.Components.addType
+    method. This allows you to create a new component type or extend an
+    existing one.</p>
+    <p>Using the isComponent property, you can specify how the editor
+    should recognize the component when parsing an HTML element.</p>
+    <blockquote>
+    <p>warning: Custom components should always be defined inside a
+    plugin to ensure proper integration.</p>
+    </blockquote>
+    <pre><code>    import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+    import &#39;@grapesjs/studio-sdk/style&#39;;
+
+    // ...
+    &lt;StudioEditor
+      options={{
+        // ...
+        plugins: [
+          editor =&gt; {
+            // Register a new component type
+            editor.Components.addType(&#39;card&#39;, {
+              // Make the editor understand how to recognize the component from parsed HTML
+              isComponent: el =&gt; el.classList?.contains(&#39;card&#39;),
+              // Provide the default properties of the component (more about it in the next section).
+              model: {
+                defaults: {
+                  attributes: { &#39;data-custom-attr&#39;: &#39;my-value&#39; },
+                }
+              }
+            });
+
+            editor.onReady(() =&gt; {
+              // ...
+
+              // Add the &#39;card&#39; class to make our div component recognizable by the custom type
+              const component = rootComponent.append(`&lt;div class=&quot;card&quot;&gt;
+                &lt;img src=&quot;https://picsum.photos/seed/my-image/150/150&quot;/&gt;
+                &lt;p&gt;Content text here&lt;/p&gt;
+              &lt;/div&gt;`)[0];
+
+              alert(&#39;New component added: &#39; + component.get(&#39;type&#39;));
+
+            });
+          }
+
+        ],
+      }}
+    /&gt;</code></pre>
+    <h3 id="add-components-to-blocks">Add Components to Blocks</h3>
+    <p>Your new Component can now be used in the editor canvas, but you
+    still need to bind it to a block for it to show up in the Block
+    Manager, an UI where your users can select component types to add
+    into the canvas.</p>
+    <blockquote>
+    <p>tip: You can open the block manager by clicking the purple plus
+    icon in the top right corner of the editor.</p>
+    </blockquote>
+    <pre><code>    import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+    import &#39;@grapesjs/studio-sdk/style&#39;;
+
+    // ...
+    &lt;StudioEditor
+      options={{
+        // ...
+        plugins: [
+        editor =&gt; {
+            // ...
+            // Add new custom component type to block manager
+            editor.Blocks.add(&#39;card&#39;, {
+              label: &#39;Card&#39;,
+              category: &#39;My Components&#39;,
+              media: &#39;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; height=&quot;40px&quot; viewBox=&quot;0 -960 960 960&quot; width=&quot;40px&quot; fill=&quot;#e8eaed&quot;&gt;&lt;path d=&quot;M560-440h200v-80H560v80Zm0-120h200v-80H560v80ZM200-320h320v-22q0-45-44-71.5T360-440q-72 0-116 26.5T200-342v22Zm160-160q33 0 56.5-23.5T440-560q0-33-23.5-56.5T360-640q-33 0-56.5 23.5T280-560q0 33 23.5 56.5T360-480ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z&quot;/&gt;&lt;/svg&gt;&#39;,
+              content: &#39;&lt;div class=&quot;card&quot;&gt;&lt;img src=&quot;https://picsum.photos/seed/my-image/150/150&quot;/&gt;&lt;p&gt;Content text here&lt;/p&gt;&lt;/div&gt;&#39;
+            });
+            // ...
+          }
+
+        ],
+      }}
+    /&gt;</code></pre>
+    <h2 id="component-properties">Component Properties</h2>
+    <p>Every custom component can have its own properties, along with a
+    set of built-in properties that can be customized or extended.</p>
+    <p>To explore all available properties and learn how to use them to
+    customize component behavior in the editor, refer to the Component
+    Properties page.</p>
+    <h2 id="component-methods">Component Methods</h2>
+    <p>Every component created inside the editor has a component
+    instance that provide a set of built-in methods that you can use to
+    manipulate components, retrieve their properties, or listen to
+    events.</p>
+    <p>To explore the available methods, how to extend and use them to
+    customize component behavior in the editor, refer to the Component
+    Methods page.</p>
+    <blockquote>
+    <p>warning: This page is a work in progress.</p>
+    </blockquote>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device-Manager-API
+Overview - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="device-manager-api">Device Manager API</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>The Device Manager allows you to manage different device
+    breakpoints for responsive design in your GrapesJS editor. You can
+    customize device configurations, add new devices, and switch between
+    them to preview your content across different screen sizes.</p>
+    <h2 id="table-of-contents">Table of Contents</h2>
+    <ul>
+    <li><a href="#configuration">Configuration</a></li>
+    <li><a href="#api-usage">API Usage</a></li>
+    <li><a href="#available-events">Available Events</a></li>
+    <li><a href="#methods">Methods</a>
+    <ul>
+    <li><a href="#add">add</a></li>
+    <li><a href="#get">get</a></li>
+    <li><a href="#getdevices">getDevices</a></li>
+    <li><a href="#remove">remove</a></li>
+    <li><a href="#select">select</a></li>
+    <li><a href="#getselected">getSelected</a></li>
+    </ul></li>
+    </ul>
+    <h2 id="configuration">Configuration</h2>
+    <p>You can customize the initial state of the module from the editor
+    initialization, by passing the following Configuration Object:</p>
+    <div class="sourceCode" id="cb1"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> editor <span class="op">=</span> grapesjs<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">deviceManager</span><span class="op">:</span> {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// options</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+    <h2 id="api-usage">API Usage</h2>
+    <p>Once the editor is instantiated you can use its API. Before using
+    these methods you should get the module from the instance:</p>
+    <div class="sourceCode" id="cb2"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> deviceManager <span class="op">=</span> editor<span class="op">.</span><span class="at">Devices</span><span class="op">;</span></span></code></pre></div>
+    <h2 id="available-events">Available Events</h2>
+    <ul>
+    <li><code>device:add</code> - Added new device. The Device is passed
+    as an argument to the callback</li>
+    <li><code>device:remove</code> - Device removed. The Device is
+    passed as an argument to the callback</li>
+    <li><code>device:select</code> - New device selected. The newly
+    selected Device and the previous one, are passed as arguments to the
+    callback</li>
+    <li><code>device:update</code> - Device updated. The updated Device
+    and the object containing changes are passed as arguments to the
+    callback</li>
+    <li><code>device</code> - Catch-all event for all the events
+    mentioned above. An object containing all the available data about
+    the triggered event is passed as an argument to the callback</li>
+    </ul>
+    <h2 id="methods">Methods</h2>
+    <h3 id="add">add</h3>
+    <p>Add new device</p>
+    <p><strong>Parameters:</strong> - <code>props</code> (Object) -
+    Device properties - <code>options</code> (Record&lt;string, any&gt;)
+    - Optional configuration (default: {})</p>
+    <p><strong>Examples:</strong></p>
+    <div class="sourceCode" id="cb3"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> device1 <span class="op">=</span> deviceManager<span class="op">.</span><span class="fu">add</span>({</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Without an explicit ID, the `name` will be taken. In case of missing `name`, a random ID will be created.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">id</span><span class="op">:</span> <span class="st">&#39;tablet&#39;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Tablet&#39;</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="st">&#39;900px&#39;</span><span class="op">,</span> <span class="co">// This width will be applied on the canvas frame and for the CSS media</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> device2 <span class="op">=</span> deviceManager<span class="op">.</span><span class="fu">add</span>({</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">id</span><span class="op">:</span> <span class="st">&#39;tablet2&#39;</span><span class="op">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;Tablet 2&#39;</span><span class="op">,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="st">&#39;800px&#39;</span><span class="op">,</span> <span class="co">// This width will be applied on the canvas frame</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">widthMedia</span><span class="op">:</span> <span class="st">&#39;810px&#39;</span><span class="op">,</span> <span class="co">// This width that will be used for the CSS media</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="st">&#39;600px&#39;</span><span class="op">,</span> <span class="co">// Height will be applied on the canvas frame</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+    <p><strong>Returns:</strong> Device - Added device</p>
+    <h3 id="get">get</h3>
+    <p>Return device by ID</p>
+    <p><strong>Parameters:</strong> - <code>id</code> (String) - ID of
+    the device</p>
+    <p><strong>Examples:</strong></p>
+    <div class="sourceCode" id="cb4"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> device <span class="op">=</span> deviceManager<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;Tablet&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(device))<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// {name: &#39;Tablet&#39;, width: &#39;900px&#39;}</span></span></code></pre></div>
+    <p><strong>Returns:</strong> Device | null</p>
+    <h3 id="getdevices">getDevices</h3>
+    <p>Return all devices</p>
+    <p><strong>Examples:</strong></p>
+    <div class="sourceCode" id="cb5"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> devices <span class="op">=</span> deviceManager<span class="op">.</span><span class="fu">getDevices</span>()<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(devices))<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">// [{name: &#39;Desktop&#39;, width: &#39;&#39;}, ...]</span></span></code></pre></div>
+    <p><strong>Returns:</strong> Array<Device></p>
+    <h3 id="remove">remove</h3>
+    <p>Remove device</p>
+    <p><strong>Parameters:</strong> - <code>device</code> (String |
+    Device) - Device or device id - <code>opts</code> (optional,
+    default: {})</p>
+    <p><strong>Examples:</strong></p>
+    <div class="sourceCode" id="cb6"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> removed <span class="op">=</span> deviceManager<span class="op">.</span><span class="fu">remove</span>(<span class="st">&#39;device-id&#39;</span>)<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">// or by passing the Device</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> device <span class="op">=</span> deviceManager<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;device-id&#39;</span>)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>deviceManager<span class="op">.</span><span class="fu">remove</span>(device)<span class="op">;</span></span></code></pre></div>
+    <p><strong>Returns:</strong> Device - Removed device</p>
+    <h3 id="select">select</h3>
+    <p>Change the selected device. This will update the frame in the
+    canvas</p>
+    <p><strong>Parameters:</strong> - <code>device</code> (String |
+    Device) - Device or device id - <code>opts</code> (optional,
+    default: {})</p>
+    <p><strong>Examples:</strong></p>
+    <div class="sourceCode" id="cb7"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>deviceManager<span class="op">.</span><span class="fu">select</span>(<span class="st">&#39;some-id&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">// or by passing the device</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> device <span class="op">=</span> deviceManager<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;some-id&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>deviceManager<span class="op">.</span><span class="fu">select</span>(device)<span class="op">;</span></span></code></pre></div>
+    <h3 id="getselected">getSelected</h3>
+    <p>Get the selected device</p>
+    <p><strong>Examples:</strong></p>
+    <div class="sourceCode" id="cb8"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> selected <span class="op">=</span> deviceManager<span class="op">.</span><span class="fu">getSelected</span>()<span class="op">;</span></span></code></pre></div>
+    <p><strong>Returns:</strong> Device</p>
+    <hr />
+    <h2 id="related-documentation">Related Documentation</h2>
+    <ul>
+    <li><strong><a
+    href="../03_Configuration/Layout/Configuration_Layout_Overview.md">Layout
+    Configuration</a></strong> - Configure editor layout and
+    interface</li>
+    <li><strong><a
+    href="../03_Configuration/Configuration_Projects.md">Project
+    Configuration</a></strong> - Overall project setup</li>
+    <li><strong><a
+    href="../03_Configuration/Configuration_Global-Styles.md">Global
+    Styles</a></strong> - Responsive styling across devices</li>
+    </ul>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

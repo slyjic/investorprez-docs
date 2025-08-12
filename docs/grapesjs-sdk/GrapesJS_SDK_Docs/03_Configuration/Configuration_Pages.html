@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Pages - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="pages">Pages</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>Pages allow you to create projects with multiple pages, making it
+    ideal for various types of web projects. In Studio SDK, the Pages
+    Manager is a direct extension of the GrapesJS Pages module, meaning
+    you can always reuse the existing Pages API for flexibility and
+    consistency.</p>
+    <h3 id="table-of-contents">Table of Contents</h3>
+    <ul>
+    <li>Initialization</li>
+    <li>Configuration</li>
+    <li>I18n</li>
+    <li>Commands</li>
+    </ul>
+    <h2 id="initialization">Initialization</h2>
+    <p>During the web project type initialization, pages are enabled by
+    default with all available features.</p>
+    <blockquote>
+    <p>warning: Pages are automatically disabled in the email project
+    type.</p>
+    </blockquote>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                project: {
+                type: &#39;web&#39;,
+                // The default project to use for new projects
+                default: {
+                    pages: [
+                    { name: &#39;Home&#39;, component: &#39;&lt;h1&gt;Home page&lt;/h1&gt;&#39; },
+                    { name: &#39;About&#39;, component: &#39;&lt;h1&gt;About page&lt;/h1&gt;&#39; },
+                    { name: &#39;Contact&#39;, component: &#39;&lt;h1&gt;Contact page&lt;/h1&gt;&#39; },
+                    ]
+                },
+                }
+            }}
+            /&gt;</code></pre>
+    <p>If you’re working on a single-page project (e.g., a landing page
+    builder), you can easily disable the Pages Manager.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: false
+            }}
+            /&gt;</code></pre>
+    <h2 id="configuration">Configuration</h2>
+    <p>By default, users can manage pages without restrictions,
+    including creating, duplicating, or deleting them. With Studio SDK,
+    you can easily customize each of these operations to suit your
+    needs.</p>
+    <h3 id="add-page">Add Page</h3>
+    <p>By default, new pages are created with a basic name and content.
+    You can easily modify this behavior by implementing your own page
+    creation logic.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: {
+                add: ({ editor, rename }) =&gt; {
+                    // Add new page via GrapesJS API
+                    const page = editor.Pages.add({
+                    name: &#39;New page&#39;,
+                    component: &#39;&lt;div&gt;New page&lt;/div&gt;&#39;
+                    }, {
+                    select: true // Select added page
+                    });
+                    rename(page); // Trigger page rename action
+                },
+                }
+            }}
+            /&gt;</code></pre>
+    <p>If you want to disable page creation, simply set the add option
+    to false. This will hide the Add button.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: {
+                add: false,
+                }
+            }}
+            /&gt;</code></pre>
+    <h2 id="duplicate-page">Duplicate Page</h2>
+    <p>Users can duplicate pages through the command items (3 dots icon)
+    available on the selected page. You can customize the duplication
+    logic using the duplicate option.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: {
+                duplicate: ({ editor, page, rename }) =&gt; {
+                    const root = page.getMainComponent();
+                    const newPage = editor.Pages.add({
+                    name: `${page.getName()} (Copy)`,
+                    component: root.clone(),
+                    }, { select: true });
+
+                    rename(newPage);
+                },
+
+                }
+            }}
+            /&gt;</code></pre>
+    <p>To disable page duplication, set the duplicate option to false.
+    This will remove the duplication command from the menu.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: {
+                duplicate: false,
+                }
+            }}
+            /&gt;</code></pre>
+    <h2 id="remove-page">Remove Page</h2>
+    <p>Page removal is also available in the command items and can be
+    easily customized.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: {
+                remove: ({ editor, page }) =&gt; {
+                    const { Pages } = editor;
+                    if (confirm(&#39;Are you sure?&#39;)) {
+                    Pages.remove(page);
+                    }
+                    // Select the first page
+                    Pages.select(Pages.getAll()[0]);
+                },
+                }
+            }}
+            /&gt;</code></pre>
+    <p>Like other commands, you can easily disable the page removal
+    option if needed.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: {
+                remove: false,
+                }
+            }}
+            /&gt;</code></pre>
+    <h2 id="command-items">Command Items</h2>
+    <p>If you need to add more operations to your pages, you can
+    customize the page command items using the commandItems option. This
+    allows you to tailor the set of actions available on each page
+    according to your specific requirements.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: {
+                commandItems: ({ items }) =&gt; {
+                    return [
+                    ...items, // default items
+                    {
+                        id: &#39;custom-command&#39;,
+                        label: &#39;Custom command&#39;,
+                        cmd: ({ page }) =&gt; alert(&#39;Page: &#39; + page.getName())
+                    }
+                    ];
+                }
+                }
+            }}
+            /&gt;</code></pre>
+    <h2 id="settings">Settings</h2>
+    <p>Studio includes a built-in page settings panel that enables users
+    to configure various aspects of their HTML page. This includes meta
+    elements for SEO, social media tags, and the inclusion of custom
+    code.</p>
+    <p><img
+    src="https://app.grapesjs.com/docs-sdk/assets/images/page-setting-1-bbf149a6a3e58494fa7999a25232d593.png"
+    alt="Page setting 1" /> <img
+    src="https://app.grapesjs.com/docs-sdk/assets/images/page-setting-2-e5759065be89ee03172021d5f72241f0.png"
+    alt="Page setting 2" /></p>
+    <p>To disable the settings panel, simply pass false to the settings
+    option.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                pages: {
+                settings: false,
+                }
+            }}
+            /&gt;</code></pre>
+    <h3 id="load-page-settings">Load page settings</h3>
+    <p>All page settings, both global and page-specific, can be loaded
+    from your project JSON file (e.g., retrieved from your Storage or
+    provided as a Template).</p>
+    <p>Page-specific settings can also be parsed directly from HTML
+    strings in your project file, if the page is initialized as an HTML
+    string. Global settings are stored and accessed via
+    projectFile.custom.globalPageSettings.</p>
+    <p>Below is an example demonstrating how to load different pages
+    along with their global and page-specific settings.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                project: {
+                type: &#39;web&#39;,
+                default: {
+                    custom: {
+                    globalPageSettings: {
+                        title: &#39;Global title&#39;,
+                        description: &#39;Global description&#39;,
+                        customCodeHead: `
+                        &lt;meta name=&quot;meta-global&quot; content=&quot;Global meta&quot;/&gt;
+                        &lt;link href=&quot;https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+                        &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+                        &lt;script&gt;console.log(&#39;[GLOBAL]: Custom HTML head&#39;);&lt;/script&gt;
+                        &lt;style&gt;.title { font-size: 5rem; }&lt;/style&gt;
+                        `,
+                        customCodeBody: &#39;&lt;div&gt;Global Custom HTML body&lt;/div&gt;&#39;,
+                    }
+                    },
+                    pages: [
+                    {
+                        name: &#39;Home&#39;,
+                        component: `&lt;!DOCTYPE html&gt;
+                        &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;title&gt;Home title&lt;/title&gt;
+                            &lt;meta name=&quot;description&quot; content=&quot;Home description&quot; /&gt;
+                            &lt;meta name=&quot;meta-home&quot; content=&quot;Home meta&quot;&gt;
+                            &lt;script&gt;console.log(&#39;[HOME]: Custom HTML head&#39;);&lt;/script&gt;
+                            &lt;/head&gt;
+                            &lt;body&gt;
+                            &lt;div class=&quot;title&quot;&gt;Home page&lt;/div&gt;
+                            &lt;div data-custom-html-body&gt;
+                                &lt;div&gt;Home Custom HTML body&lt;/div&gt;
+                                &lt;script&gt;
+                                console.log(&#39;[HOME]: Custom HTML body&#39;);
+                                &lt;/script&gt;
+                            &lt;/div&gt;
+                            &lt;/body&gt;
+                        &lt;html&gt;`
+                    },
+                    {
+                        name: &#39;About&#39;,
+                        settings: { slug: &#39;about-slug&#39; },
+                        component: `&lt;!DOCTYPE html&gt;
+                        &lt;html&gt;
+                            &lt;head&gt;
+                            &lt;title&gt;About title&lt;/title&gt;
+                            &lt;meta name=&quot;description&quot; content=&quot;About description&quot; /&gt;
+                            &lt;meta name=&quot;meta-about&quot; content=&quot;About meta&quot;&gt;
+                            &lt;script&gt;console.log(&#39;[ABOUT]: Custom HTML head&#39;);&lt;/script&gt;
+                            &lt;/head&gt;
+                            &lt;body&gt;
+                            &lt;div class=&quot;title&quot;&gt;About page&lt;/div&gt;
+                            &lt;/body&gt;
+                        &lt;html&gt;`
+                    },
+                    {
+                        name: &#39;Contact&#39;,
+                        settings: { slug: &#39;contact-slug&#39; },
+                        component: `&lt;!DOCTYPE html&gt;
+                        &lt;html&gt;
+                            &lt;body&gt;
+                            &lt;div class=&quot;title&quot;&gt;Contact page&lt;/div&gt;
+                            &lt;/body&gt;
+                        &lt;html&gt;`
+                    }
+                    ]
+                },
+                }
+            }}
+            /&gt;</code></pre>
+    <h2 id="i18n">I18n</h2>
+    <p>All the labels of the page manager are connected to the i18n
+    GrapesJS module. Below, you’ll find the reference for each key.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                i18n: {
+                locales: {
+                    en: {
+                    pageManager: {
+                        pages: &#39;Pages&#39;,
+                        page: &#39;Page&#39;,
+                        newPage: &#39;New Page&#39;,
+                        add: &#39;Add page&#39;,
+                        rename: &#39;Rename&#39;,
+                        duplicate: &#39;Duplicate&#39;,
+                        copy: &#39;Copy&#39;,
+                        delete: &#39;Delete&#39;,
+                        deletePage: &#39;Delete Page&#39;,
+                        confirmDelete: &#39;Are you sure you want to delete the page?&#39;,
+                        settings: {
+                        label: &#39;Settings&#39;,
+                        title: &#39;Page settings&#39;,
+                        global: &#39;Global settings&#39;,
+                        fields: {
+                            name: {
+                            label: &#39;Name&#39;
+                            },
+                            slug: {
+                            label: &#39;Slug&#39;,
+                            description: &#39;...&#39;
+                            },
+                            favicon: {
+                            label: &#39;Favicon&#39;,
+                            description: &#39;...&#39;
+                            },
+                            title: {
+                            label: &#39;Title&#39;,
+                            description: &#39;...&#39;
+                            },
+                            description: {
+                            label: &#39;Description&#39;,
+                            description: &#39;...&#39;
+                            },
+                            keywords: {
+                            label: &#39;Keywords&#39;,
+                            description: &#39;...&#39;
+                            },
+                            socialTitle: {
+                            label: &#39;Social title&#39;,
+                            description: &#39;...&#39;
+                            },
+                            socialImage: {
+                            label: &#39;Social image&#39;,
+                            description: &#39;...&#39;
+                            },
+                            socialDescription: {
+                            label: &#39;Social description&#39;,
+                            description: &#39;...&#39;
+                            },
+                            customCodeHead: {
+                            label: &#39;Custom HTML head&#39;,
+                            description: &#39;...&#39;
+                            },
+                            customCodeBody: {
+                            label: &#39;Custom HTML body&#39;,
+                            description: &#39;...&#39;
+                            }
+                        }
+                        }
+                    }
+                    }
+                }
+                }
+            }}
+            /&gt;</code></pre>
+    <h2 id="commands">Commands</h2>
+    <p>Here below you can find a list of commands that allow you to
+    interact programmatically with the Page Manager.</p>
+    <h3 id="get-config">Get config</h3>
+    <p>Get current Pages config.</p>
+    <pre><code>            const config = editor.runCommand(StudioCommands.getPagesConfig);</code></pre>
+    <h3 id="update-config">Update config</h3>
+    <p>Update Pages config.</p>
+    <pre><code>            editor.runCommand(StudioCommands.setPagesConfig, {
+            config: { add: false }
+            });</code></pre>
+    <h3 id="get-page-settings">Get page settings</h3>
+    <p>Get page settings panel state.</p>
+    <pre><code>            const state: PanelPageSettingsState = editor.runCommand(StudioCommands.getPageSettings);</code></pre>
+    <h3 id="update-page-settings">Update page settings</h3>
+    <p>Update page settings panel state.</p>
+    <pre><code>            editor.runCommand(StudioCommands.setPageSettings, { isOpen: true });</code></pre>
+    <h3 id="project-files">Project files</h3>
+    <p>Get project files.</p>
+    <pre><code>            const files: ProjectFile[] = await editor.runCommand(StudioCommands.projectFiles);</code></pre>
+    <h3 id="example">Example</h3>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            const onReady = (editor) =&gt; {
+            // store the editor in your state manager
+            };
+
+            const toggleAddPage = () =&gt; {
+            const config = editor.runCommand(StudioCommands.getPagesConfig) || {};
+            editor.runCommand(StudioCommands.setPagesConfig, {
+                config: { add: !config.add }
+            });
+            }
+            const togglePageSettings = () =&gt; {
+            const state = editor.runCommand(StudioCommands.getPageSettings) || {};
+            editor.runCommand(StudioCommands.setPageSettings, { isOpen: !state.isOpen });
+            }
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                onReady,
+            }}
+            /&gt;</code></pre>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

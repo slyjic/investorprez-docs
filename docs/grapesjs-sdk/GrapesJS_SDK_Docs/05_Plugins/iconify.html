@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iconify - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="iconify">Iconify</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>Project types</p>
+    <p><code>web</code></p>
+    <p>Plan</p>
+    <p>Startup plan</p>
+    <p>Add an icon component with the icon picker by levering the <a
+    href="https://iconify.design">Iconify collections</a>.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/iconify-plugin-265b0e0e9218b0d33744366e5a069bef.png"
+    alt="Iconify plugin" />
+    <figcaption aria-hidden="true">Iconify plugin</figcaption>
+    </figure>
+    <p>Install the Studio SDK plugins package:</p>
+    <ul>
+    <li><p>npm</p></li>
+    <li><p>pnpm</p></li>
+    <li><p>yarn</p></li>
+    <li><p>CDN</p>
+    <p>npm i <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>pnpm add <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>yarn add <span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span></p>
+    <p>// It’s recommended to replace the <code>latest</code> tag with
+    the specific latest version to avoid any potential breaking
+    changes.// The loaded plugin is globally available via
+    <code>globalThis.StudioSdkPlugins_iconifyComponent</code>.”https://unpkg.com/<span
+    class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span><span
+    class="citation"
+    data-cites="latest/dist/iconifyComponent/index.umd.js">@latest/dist/iconifyComponent/index.umd.js</span>”</p></li>
+    </ul>
+    <p>Import and use the plugin in your project:</p>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { iconifyComponent } from “<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>”;//
+    …&lt;StudioEditor options={{ // … plugins: [ iconifyComponent.init({
+    block: { category: ‘Extra’, label: ‘Iconify’ } }) ], project: {
+    default: { pages: [ { name: ‘Home’, component:
+    <code>&lt;h2&gt;Double click the icon below to show the icon picker&lt;/h2&gt;                &lt;div data-type-iconify&gt;                  &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M12 2.5L8.42 8.06L2 9.74l4.2 5.14l-.38 6.62L12 19.09l6.18 2.41l-.38-6.62L22 9.74l-6.42-1.68zm-2.62 8c.62 0 1.12.5 1.12 1.13a1.12 1.12 0 0 1-1.12 1.12c-.63 0-1.13-.5-1.13-1.12c0-.63.5-1.13 1.13-1.13m5.25 0c.62 0 1.12.5 1.12 1.13a1.12 1.12 0 0 1-1.12 1.12c-.63 0-1.13-.5-1.13-1.12c0-.63.5-1.13 1.13-1.13M9 15h6a3.249 3.249 0 0 1-6 0"&gt;&lt;/path&gt;&lt;/svg                &lt;/div&gt;</code>,
+    } ] } } }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { iconifyComponent } from “<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>”;//
+    …createStudioEditor({ // … plugins: [ iconifyComponent.init({ block:
+    { category: ‘Extra’, label: ‘Iconify’ } }) ], project: { default: {
+    pages: [ { name: ‘Home’, component:
+    <code>&lt;h2&gt;Double click the icon below to show the icon picker&lt;/h2&gt; &lt;div data-type-iconify&gt; &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M12 2.5L8.42 8.06L2 9.74l4.2 5.14l-.38 6.62L12 19.09l6.18 2.41l-.38-6.62L22 9.74l-6.42-1.68zm-2.62 8c.62 0 1.12.5 1.12 1.13a1.12 1.12 0 0 1-1.12 1.12c-.63 0-1.13-.5-1.13-1.12c0-.63.5-1.13 1.13-1.13m5.25 0c.62 0 1.12.5 1.12 1.13a1.12 1.12 0 0 1-1.12 1.12c-.63 0-1.13-.5-1.13-1.12c0-.63.5-1.13 1.13-1.13M9 15h6a3.249 3.249 0 0 1-6 0"&gt;&lt;/path&gt;&lt;/svg &lt;/div&gt;</code>,
+    } ] } } })</p></li>
+    </ul>
+    <p>Code</p>
+    <p>.code-block-js29t1 code { max-height: 600px; }</p>
+    <h3 id="plugin-options">Plugin options<a href="#plugin-options"
+    title="Direct link to Plugin options">​</a></h3>
+    <p>Property</p>
+    <p>Type</p>
+    <p>Description</p>
+    <p>licenseKey</p>
+    <p>string</p>
+    <p>The license key for the plugin. This is optional, only required
+    if the plugin is used outside of Studio SDK.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>&quot;your-license-key&quot;</code></pre>
+    <p>block</p>
+    <p><a href="https://grapesjs.com/docs/api/block.html">Block</a></p>
+    <p>Additional Block properties of the component. Pass `false` to
+    avoid adding the block.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>{  &quot;category&quot;: &quot;Extra&quot;,  &quot;label&quot;: &quot;My label&quot;}</code></pre>
+    <p>collections</p>
+    <p>array</p>
+    <p>List of icon collections to load.</p>
+    <p><strong>Example</strong></p>
+    <pre><code>[  &quot;mdi&quot;,  &quot;fa-solid&quot;]</code></pre>
+    <p>extendIconComponent</p>
+    <p>boolean</p>
+    <p>Extend the icon picker trait to the default icon component.</p>
+    <p><strong>Default</strong></p>
+    <pre><code>true</code></pre>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

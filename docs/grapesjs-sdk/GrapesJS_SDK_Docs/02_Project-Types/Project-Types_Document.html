@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project-Types Document - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="document">Document</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>The Document project type extends the default <a
+    href="/docs-sdk/project-types/web">Web</a> project, offering a
+    simplified setup for print-friendly HTML content. Ideal for layouts
+    like invoices, reports, or badges, it ensures your designs remain
+    consistent when exported for print.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/printable-plugin-1053616058e037d32b8ddf9aa8935ae6.webp"
+    alt="Document Builder" />
+    <figcaption aria-hidden="true">Document Builder</figcaption>
+    </figure>
+    <p>To function correctly, this project type requires the <a
+    href="/docs-sdk/plugins/preset/printable">Printable plugin</a>.</p>
+    <ul>
+    <li><p>React</p></li>
+    <li><p>JS</p></li>
+    <li><p>🍇  Demo</p>
+    <p>import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { presetPrintable, canvasFullSize } from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>’;//
+    …&lt;StudioEditor options={{ // … plugins: [ presetPrintable,
+    canvasFullSize, // Optional ], project: { type: ‘document’, //
+    Ensure the project type is set to ‘document’ default: { pages: [ {
+    name: ‘Invoice’, component:
+    <code>&lt;!DOCTYPE html&gt;                &lt;html&gt;                  &lt;body style="padding: 40px; font-family: Arial, Helvetica, sans-serif"&gt;                    &lt;h1&gt;New Document&lt;/h1&gt;                    &lt;p&gt;Content of the document.&lt;/p&gt;                  &lt;/body&gt;                &lt;html&gt;</code>,
+    } ] } }, // Custom layout for demo purposes layout: { default: {
+    type: ‘row’, height: ‘100%’, children: [ { type: ‘sidebarLeft’,
+    children: { type: ‘panelLayers’, header: { label: ‘Layers’,
+    collapsible: false, icon: ‘layers’ } } }, { type:
+    ‘canvasSidebarTop’, sidebarTop: { rightContainer: { buttons: ({
+    items }) =&gt; [ { id: ‘print’, icon:
+    ‘<svg viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3Z"/></svg>’,
+    onClick: ({ editor }) =&gt;
+    editor.runCommand(‘presetPrintable:print’) }, …items.filter(item
+    =&gt; ![‘showImportCode’, ‘fullscreen’].includes(item.id)) ] } } },
+    { type: ‘sidebarRight’ } ] } }, }}/&gt;</p>
+    <p>import createStudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk">@grapesjs/studio-sdk</span>’;import
+    ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;import
+    { presetPrintable, canvasFullSize } from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk-plugins">@grapesjs/studio-sdk-plugins</span>’;//
+    …createStudioEditor({ // … plugins: [ presetPrintable,
+    canvasFullSize, // Optional ], project: { type: ‘document’, //
+    Ensure the project type is set to ‘document’ default: { pages: [ {
+    name: ‘Invoice’, component:
+    <code>&lt;!DOCTYPE html&gt; &lt;html&gt; &lt;body style="padding: 40px; font-family: Arial, Helvetica, sans-serif"&gt; &lt;h1&gt;New Document&lt;/h1&gt; &lt;p&gt;Content of the document.&lt;/p&gt; &lt;/body&gt; &lt;html&gt;</code>,
+    } ] } }, // Custom layout for demo purposes layout: { default: {
+    type: ‘row’, height: ‘100%’, children: [ { type: ‘sidebarLeft’,
+    children: { type: ‘panelLayers’, header: { label: ‘Layers’,
+    collapsible: false, icon: ‘layers’ } } }, { type:
+    ‘canvasSidebarTop’, sidebarTop: { rightContainer: { buttons: ({
+    items }) =&gt; [ { id: ‘print’, icon:
+    ‘<svg viewBox="0 0 24 24"><path d="M18 3H6v4h12m1 5a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1m-3 7H8v-5h8m3-6H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3Z"/></svg>’,
+    onClick: ({ editor }) =&gt;
+    editor.runCommand(‘presetPrintable:print’) }, …items.filter(item
+    =&gt; ![‘showImportCode’, ‘fullscreen’].includes(item.id)) ] } } },
+    { type: ‘sidebarRight’ } ] } }, })</p></li>
+    </ul>
+    <p>Code</p>
+    <p>.code-block-fyqqw5 code { max-height: 600px; }</p>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

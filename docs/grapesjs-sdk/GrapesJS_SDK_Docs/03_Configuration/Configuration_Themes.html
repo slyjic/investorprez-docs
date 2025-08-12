@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Themes - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="themes">Themes</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>Customize the look and feel of your editor UI by selecting
+    themes, modifying styles, and personalizing icons to match your
+    brand’s identity.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/example-light-default-15f56c00115e4ea887a64b5ad6440b8d.jpeg"
+    alt="Default light theme" />
+    <figcaption aria-hidden="true">Default light theme</figcaption>
+    </figure>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/example-dark-default-eb15c7af877fdc85baff8c02e999cbad.jpeg"
+    alt="Default dark theme" />
+    <figcaption aria-hidden="true">Default dark theme</figcaption>
+    </figure>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/example-dark-exaggerated-0eafda5210e222b9a3cddfa9342497ef.jpeg"
+    alt="Custom dark theme" />
+    <figcaption aria-hidden="true">Custom dark theme</figcaption>
+    </figure>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/example-light-exaggerated-ced25e08a8ed8333517dd0e16b134622.jpeg"
+    alt="Custom light theme" />
+    <figcaption aria-hidden="true">Custom light theme</figcaption>
+    </figure>
+    <h2 id="table-of-contents">Table of Contents</h2>
+    <ul>
+    <li><a href="#base-themes">Base Themes</a></li>
+    <li><a href="#custom-themes">Custom Themes</a></li>
+    <li><a href="#theme-builder">Theme Builder</a></li>
+    <li><a href="#custom-icons">Custom Icons</a></li>
+    </ul>
+    <h2 id="base-themes">Base Themes<a href="#base-themes"
+    title="Direct link to Base Themes">​</a></h2>
+    <p>The editor includes two base themes: <code>light</code> and
+    <code>dark</code>. You can select a base theme and further customize
+    it to match your brand’s style.</p>
+    <h3 id="light">Light<a href="#light"
+    title="Direct link to Light">​</a></h3>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/example-light-default-15f56c00115e4ea887a64b5ad6440b8d.jpeg"
+    alt="Editor Light Theme" />
+    <figcaption aria-hidden="true">Editor Light Theme</figcaption>
+    </figure>
+    <ul>
+    <li><p>React</p>
+    <pre><code>          import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+          import &#39;@grapesjs/studio-sdk/style&#39;;
+
+          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              theme: &#39;light&#39;
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <h3 id="dark">Dark<a href="#dark"
+    title="Direct link to Dark">​</a></h3>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/example-dark-default-eb15c7af877fdc85baff8c02e999cbad.jpeg"
+    alt="Editor Dark Theme" />
+    <figcaption aria-hidden="true">Editor Dark Theme</figcaption>
+    </figure>
+    <ul>
+    <li><p>React</p>
+    <pre><code>          import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+          import &#39;@grapesjs/studio-sdk/style&#39;;
+
+          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              theme: &#39;dark&#39;
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <h2 id="custom-themes">Custom Themes<a href="#custom-themes"
+    title="Direct link to Custom Themes">​</a></h2>
+    <p>You can overrides the base theme by using the
+    <code>customTheme</code> option.</p>
+    <ul>
+    <li><p>React</p>
+    <pre><code>          import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+          import &#39;@grapesjs/studio-sdk/style&#39;;
+
+          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              theme: &#39;light&#39;,
+              customTheme: {
+              default: {
+                  colors: {
+                  global: {
+                      // Make the global text color red
+                      text: &#39;#ff0000&#39;
+                  }
+                  }
+              }
+              }
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <h3 id="custom-theme-colors">Custom Theme Colors<a
+    href="#custom-theme-colors"
+    title="Direct link to Custom Theme Colors">​</a></h3>
+    <p>The default theme has five main color categories:</p>
+    <ul>
+    <li><code>global</code></li>
+    <li><code>primary</code></li>
+    <li><code>component</code></li>
+    <li><code>symbol</code></li>
+    <li><code>selector</code></li>
+    </ul>
+    <p>Each of these categories has 5 colors you can tweak with any CSS
+    color:</p>
+    <ul>
+    <li><code>background1</code> (higher emphasis)</li>
+    <li><code>background2</code> (medium emphasis)</li>
+    <li><code>background3</code> (lower emphasis)</li>
+    <li><code>backgroundHover</code></li>
+    <li><code>text</code></li>
+    </ul>
+    <h3 id="examples">Examples<a href="#examples"
+    title="Direct link to Examples">​</a></h3>
+    <h4 id="light-configuration">Light configuration<a
+    href="#light-configuration"
+    title="Direct link to Light configuration">​</a></h4>
+    <p>Below is the full configuration for the <code>light</code>
+    theme.</p>
+    <ul>
+    <li><p>React</p>
+    <pre><code>          import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+          import &#39;@grapesjs/studio-sdk/style&#39;;
+
+          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              customTheme: {
+              default: {
+                  colors: {
+                  global: {
+                      background1: &#39;#f4f4f4&#39;,
+                      background2: &#39;#fdfdfd&#39;,
+                      background3: &#39;#ffffff&#39;,
+                      backgroundHover: &#39;#f4f4f4&#39;,
+                      text: &#39;#181818&#39;,
+                      border: &#39;#d2d2d2&#39;,
+                      focus: &#39;hsl(252 95% 85% / 80%)&#39;,
+                      placeholder: &#39;#a3a3a3&#39;
+                  },
+                  primary: {
+                      background1: &#39;hsl(258 90% 66%)&#39;,
+                      background2: &#39;hsl(250 95% 92%)&#39;,
+                      background3: &#39;hsl(250 100% 97%)&#39;,
+                      backgroundHover: &#39;hsl(263 69% 42%)&#39;,
+                      text: &#39;#ffffff&#39;
+                  },
+                  component: {
+                      background1: &#39;hsl(210 75% 50%)&#39;,
+                      background2: &#39;hsl(210 75% 70%)&#39;,
+                      background3: &#39;hsl(210 75% 90%)&#39;,
+                      backgroundHover: &#39;hsl(210 75% 60%)&#39;,
+                      text: &#39;#ffffff&#39;
+                  },
+                  selector: {
+                      background1: &#39;hsl(336 69% 30%)&#39;,
+                      background2: &#39;hsl(336 84% 90%)&#39;,
+                      background3: &#39;hsl(336 84% 97%)&#39;,
+                      backgroundHover: &#39;hsl(336 84% 80%)&#39;,
+                      text: &#39;#ffffff&#39;
+                  },
+                  symbol: {
+                      background1: &#39;hsl(258 90% 66%)&#39;,
+                      background2: &#39;hsl(250 95% 92%)&#39;,
+                      background3: &#39;hsl(250 100% 97%)&#39;,
+                      backgroundHover: &#39;hsl(263 69% 42%)&#39;,
+                      text: &#39;#ffffff&#39;
+                  }
+                  }
+              }
+              }
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <h4 id="dark-configuration">Dark configuration<a
+    href="#dark-configuration"
+    title="Direct link to Dark configuration">​</a></h4>
+    <p>Below is the full configuration for the <code>dark</code>
+    theme.</p>
+    <ul>
+    <li><p>React</p>
+    <pre><code>          import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+          import &#39;@grapesjs/studio-sdk/style&#39;;
+
+          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              customTheme: {
+              default: {
+                  colors: {
+                  global: {
+                      background1: &#39;#3f3f3f&#39;,
+                      background2: &#39;#272727&#39;,
+                      background3: &#39;#181818&#39;,
+                      backgroundHover: &#39;#373737&#39;,
+                      text: &#39;#a3a3a3&#39;,
+                      border: &#39;#3f3f3f&#39;,
+                      focus: &#39;hsl(252 95% 85% / 80%)&#39;,
+                      placeholder: &#39;#a3a3a3&#39;
+                  },
+                  primary: {
+                      background1: &#39;hsl(258 90% 66%)&#39;,
+                      background2: &#39;hsl(250 95% 92%)&#39;,
+                      background3: &#39;#272727&#39;,
+                      backgroundHover: &#39;hsl(263 69% 42%)&#39;,
+                      text: &#39;#ffffff&#39;
+                  },
+                  component: {
+                      background1: &#39;hsl(210 71% 53%)&#39;,
+                      background2: &#39;hsl(201 90% 27%)&#39;,
+                      background3: &#39;hsl(215 28% 17%)&#39;,
+                      backgroundHover: &#39;hsl(210 75% 60%)&#39;,
+                      text: &#39;#ffffff&#39;
+                  },
+                  selector: {
+                      background1: &#39;hsl(336 69% 30%)&#39;,
+                      background2: &#39;hsl(336 84% 90%)&#39;,
+                      background3: &#39;hsl(336 84% 97%)&#39;,
+                      backgroundHover: &#39;hsl(336 84% 80%)&#39;,
+                      text: &#39;#ffffff&#39;
+                  },
+                  symbol: {
+                      background1: &#39;hsl(258 90% 66%)&#39;,
+                      background2: &#39;hsl(263 69% 42%)&#39;,
+                      background3: &#39;hsl(262 47% 20%)&#39;,
+                      backgroundHover: &#39;hsl(263 69% 42%)&#39;,
+                      text: &#39;#ffffff&#39;
+                  }
+                  }
+              }
+              }
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <h4 id="light-extended">Light extended<a href="#light-extended"
+    title="Direct link to Light extended">​</a></h4>
+    <p>Colors exaggerated for visibility.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/example-light-exaggerated-ced25e08a8ed8333517dd0e16b134622.jpeg"
+    alt="Custom Theme Editor" />
+    <figcaption aria-hidden="true">Custom Theme Editor</figcaption>
+    </figure>
+    <ul>
+    <li><p>React import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;
+    import ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;</p>
+    <pre><code>          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              customTheme: {
+              default: {
+                  colors: {
+                  global: {
+                      background1: &#39;#bbb&#39;,
+                      background2: &#39;#ddd&#39;,
+                      background3: &#39;#fff&#39;,
+                      backgroundHover: &#39;#999&#39;,
+                      text: &#39;#f00&#39;,
+                      border: &#39;#0ff&#39;,
+                      focus: &#39;hsl(200 100% 50% / 75)&#39;,
+                      placeholder: &#39;#888&#39;
+                  },
+                  primary: {
+                      background1: &#39;hsl(100 91% 50%)&#39;,
+                      background2: &#39;hsl(100 91% 70%)&#39;,
+                      background3: &#39;hsl(100 91% 90%)&#39;,
+                      backgroundHover: &#39;hsl(100 91% 60%)&#39;,
+                      text: &#39;hsl(0 100% 100%)&#39;
+                  },
+                  component: {
+                      background1: &#39;hsl(30 75% 50%)&#39;,
+                      background2: &#39;hsl(30 75% 70%)&#39;,
+                      background3: &#39;hsl(30 75% 90%)&#39;,
+                      backgroundHover: &#39;hsl(30 75% 60%)&#39;,
+                      text: &#39;hsl(0 100% 100%)&#39;
+                  },
+                  selector: {
+                      background1: &#39;hsl(200 84% 50%)&#39;,
+                      background2: &#39;hsl(200 84% 90%)&#39;,
+                      background3: &#39;hsl(200 84% 97%)&#39;,
+                      backgroundHover: &#39;hsl(200 84% 60%)&#39;,
+                      text: &#39;hsl(0 100% 100%)&#39;
+                  },
+                  symbol: {
+                      background1: &#39;hsl(160 91% 50%)&#39;,
+                      background2: &#39;hsl(160 91% 70%)&#39;,
+                      background3: &#39;hsl(160 91% 90%)&#39;,
+                      backgroundHover: &#39;hsl(160 91% 60%)&#39;,
+                      text: &#39;hsl(0 100% 100%)&#39;
+                  }
+                  }
+              }
+              }
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <h4 id="dark-extended">Dark extended<a href="#dark-extended"
+    title="Direct link to Dark extended">​</a></h4>
+    <p>Colors exaggerated for visibility.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/example-dark-exaggerated-0eafda5210e222b9a3cddfa9342497ef.jpeg"
+    alt="Custom Theme Editor" />
+    <figcaption aria-hidden="true">Custom Theme Editor</figcaption>
+    </figure>
+    <ul>
+    <li><p>React import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;
+    import ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;</p>
+    <pre><code>          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              customTheme: {
+              default: {
+                  colors: {
+                  global: {
+                      background1: &#39;#444&#39;,
+                      background2: &#39;#222&#39;,
+                      background3: &#39;#000&#39;,
+                      backgroundHover: &#39;#666&#39;,
+                      text: &#39;#f00&#39;,
+                      border: &#39;#0ff&#39;,
+                      focus: &#39;hsl(200 100% 50% / 75)&#39;,
+                      placeholder: &#39;#777&#39;
+                  },
+                  primary: {
+                      background1: &#39;hsl(100 100% 50%)&#39;,
+                      background2: &#39;hsl(100 100% 30%)&#39;,
+                      background3: &#39;hsl(100 100% 10%)&#39;,
+                      backgroundHover: &#39;hsl(100 100% 40%)&#39;,
+                      text: &#39;hsl(0 100% 100%)&#39;
+                  },
+                  component: {
+                      background1: &#39;hsl(30 100% 50%)&#39;,
+                      background2: &#39;hsl(30 100% 30%)&#39;,
+                      background3: &#39;hsl(30 100% 10%)&#39;,
+                      backgroundHover: &#39;hsl(30 100% 40%)&#39;,
+                      text: &#39;hsl(0 100% 100%)&#39;
+                  },
+                  selector: {
+                      background1: &#39;hsl(200 100% 50%)&#39;,
+                      background2: &#39;hsl(200 100% 90%)&#39;,
+                      background3: &#39;hsl(200 100% 97%)&#39;,
+                      backgroundHover: &#39;hsl(200 100% 40%)&#39;,
+                      text: &#39;hsl(0 100% 100%)&#39;
+                  },
+                  symbol: {
+                      background1: &#39;hsl(160 100% 50%)&#39;,
+                      background2: &#39;hsl(160 100% 30%)&#39;,
+                      background3: &#39;hsl(160 100% 10%)&#39;,
+                      backgroundHover: &#39;hsl(160 100% 40%)&#39;,
+                      text: &#39;hsl(0 100% 100%)&#39;
+                  }
+                  }
+              }
+              }
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <h2 id="theme-builder">Theme Builder<a href="#theme-builder"
+    title="Direct link to Theme Builder">​</a></h2>
+    <p>You can generate the theme configuration visually with our <a
+    href="/docs-sdk/overview/editor-configurator">Editor
+    Configurator</a> in the <a
+    href="https://app.grapesjs.com/dashboard/sdk/licenses">SDK License
+    Dashboard</a>.</p>
+    <p>Here we pick the light theme as base, and change the global text
+    color to red.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/editor-ad9dd180abef6a413baf6400a8883d81.png"
+    alt="Custom Theme Editor" />
+    <figcaption aria-hidden="true">Custom Theme Editor</figcaption>
+    </figure>
+    <p>Open The Theme Editor</p>
+    <p>To reach this page, go to the <a
+    href="https://app.grapesjs.com/dashboard/sdk/licenses">SDK License
+    Dashboard</a> and click on “Edit” in one of your licenses, or create
+    a new SDK License.</p>
+    <figure>
+    <img
+    src="/docs-sdk/assets/images/license-card-87d171012513347e5f3b5f37fb899dff.png"
+    alt="License Card" />
+    <figcaption aria-hidden="true">License Card</figcaption>
+    </figure>
+    <h2 id="custom-icons">Custom Icons<a href="#custom-icons"
+    title="Direct link to Custom Icons">​</a></h2>
+    <p>You can customize the icons in Studio’s user interface with the
+    <code>customTheme.icons</code> option.</p>
+    <p>Here we set a custom SVG for the plus icon:</p>
+    <ul>
+    <li><p>React import StudioEditor from ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/react">@grapesjs/studio-sdk/react</span>’;
+    import ‘<span class="citation"
+    data-cites="grapesjs/studio-sdk/style">@grapesjs/studio-sdk/style</span>’;</p>
+    <pre><code>          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              customTheme: {
+              icons: {
+                  plus: &#39;&lt;svg viewBox=&quot;0 0 32 32&quot;&gt;&lt;path d=&quot;M22 17h-5v5a1.001 1.001 0 01-2 0v-5h-5a1.001 1.001 0 010-2h5v-5a1.001 1.001 0 012 0v5h5a1.001 1.001 0 010 2zM16 0C7.163 0 0 7.16 0 16s7.163 16 16 16 16-7.16 16-16S24.837 0 16 0z&quot; /&gt;&lt;/svg&gt;&#39;
+              }
+              }
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <p>Fill color and width/height set at the root
+    <code>&lt;svg&gt;</code> tag will be overridden by Studio’s
+    styles.</p>
+    <h3 id="default-icons">Default Icons<a href="#default-icons"
+    title="Direct link to Default Icons">​</a></h3>
+    <p>Here’s a list of all icons currently used in Studio:</p>
+    <p>alertRhombus</p>
+    <p>alignHorizontalCenter</p>
+    <p>alignHorizontalLeft</p>
+    <p>alignHorizontalRight</p>
+    <p>applicationBracketsOutline</p>
+    <p>arrowDown</p>
+    <p>arrowRight</p>
+    <p>arrowULeftTop</p>
+    <p>arrowURightTop</p>
+    <p>borderAllVariant</p>
+    <p>borderRadius</p>
+    <p>borderStyle</p>
+    <p>cellphoneLink</p>
+    <p>check</p>
+    <p>checkBold</p>
+    <p>checkboxBlank</p>
+    <p>chevronUp</p>
+    <p>chevronDown</p>
+    <p>chevronLeft</p>
+    <p>chevronRight</p>
+    <p>close</p>
+    <p>codeBraces</p>
+    <p>cog</p>
+    <p>contentCopy</p>
+    <p>contentSave</p>
+    <p>delete</p>
+    <p>dotsVertical</p>
+    <p>email</p>
+    <p>emailOutline</p>
+    <p>eye</p>
+    <p>eyedropperVariant</p>
+    <p>eyeOff</p>
+    <p>eyeOffOutline</p>
+    <p>eyeOutline</p>
+    <p>fire</p>
+    <p>flare</p>
+    <p>floppy</p>
+    <p>folder</p>
+    <p>fullscreen</p>
+    <p>gradientVertical</p>
+    <p>helpCircle</p>
+    <p>image</p>
+    <p>information</p>
+    <p>informationVariant</p>
+    <p>layers</p>
+    <p>link</p>
+    <p>lock</p>
+    <p>lockOpenVariant</p>
+    <p>menuDown</p>
+    <p>newspaperVariantOutline</p>
+    <p>paletteSwatch</p>
+    <p>panVertical</p>
+    <p>phone</p>
+    <p>plus</p>
+    <p>plusBox</p>
+    <p>powerPlug</p>
+    <p>refresh</p>
+    <p>rhombusOutline</p>
+    <p>tag</p>
+    <p>target</p>
+    <p>targetVariant</p>
+    <p>textBoxMultiple</p>
+    <p>trayArrowDown</p>
+    <p>unfoldLessHorizontal</p>
+    <p>unfoldMoreHorizontal</p>
+    <p>viewDayOutline</p>
+    <p>viewGridPlus</p>
+    <p>web</p>
+    <p>xml</p>
+    <p>databaseOutline</p>
+    <p>databaseOutlineOn</p>
+    <p>databaseOutlineOff</p>
+    <p>codeBrackets</p>
+    <p>toggleSwitchOutline</p>
+    <p>toggleSwitchOffOutline</p>
+    <p>null</p>
+    <p>string</p>
+    <p>number</p>
+    <p>cloudUpload</p>
+    <p>chat</p>
+    <p>creation</p>
+    <p>viewDashboard</p>
+    <p>rocketLaunch</p>
+    <p>lightningBolt</p>
+    <p>stop</p>
+    <p>arrowUp</p>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

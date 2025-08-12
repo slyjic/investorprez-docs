@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEPLOYMENT GUIDE - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="investorprez-deployment-guide---complete">🚀 InvestorPrez
+    Deployment Guide - Complete</h1>
+    <p><em>Last Updated: July 23, 2025</em><br />
+    <em>Status: Current - v1.4.0 Enterprise Infrastructure</em><br />
+    <em>Consolidates: DEPLOYMENT_GUIDE.md,
+    PRODUCTION_DEPLOYMENT_STEPS.md,
+    PRODUCTION_DEPLOYMENT_CHECKLIST.md</em></p>
+    <hr />
+    <h2 id="pre-deployment-checklist">📋 Pre-Deployment Checklist</h2>
+    <h3 id="development-verification"><strong>Development
+    Verification</strong></h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />All features tested in local
+    development environment</label></li>
+    <li><label><input type="checkbox" />TypeScript compilation passes
+    (<code>npm run build</code>)</label></li>
+    <li><label><input type="checkbox" />All tests passing
+    (<code>npm test</code>)</label></li>
+    <li><label><input type="checkbox" />No console errors in production
+    build</label></li>
+    <li><label><input type="checkbox" />Asset uploads working with
+    Vercel Blob storage</label></li>
+    </ul>
+    <h3 id="infrastructure-preparation"><strong>Infrastructure
+    Preparation</strong></h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Vercel account configured with
+    custom domain (app.investorprez.com)</label></li>
+    <li><label><input type="checkbox" />Railway account configured with
+    custom domain (api.investorprez.com)</label></li>
+    <li><label><input type="checkbox" />PostgreSQL database accessible
+    and migrated</label></li>
+    <li><label><input type="checkbox" />Vercel Blob storage token
+    generated</label></li>
+    <li><label><input type="checkbox" />All environment variables
+    documented and ready</label></li>
+    </ul>
+    <h3 id="security-verification"><strong>Security
+    Verification</strong></h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />All secrets stored securely (not
+    in code)</label></li>
+    <li><label><input type="checkbox" />CORS origins configured for
+    production domains</label></li>
+    <li><label><input type="checkbox" />Rate limiting configured and
+    tested</label></li>
+    <li><label><input type="checkbox" />SSL certificates active for
+    custom domains</label></li>
+    </ul>
+    <hr />
+    <h2 id="infrastructure-overview">🏗️ Infrastructure Overview</h2>
+    <h3 id="production-architecture"><strong>Production
+    Architecture</strong></h3>
+    <ul>
+    <li><strong>Frontend</strong>: Vercel hosting with custom domain
+    (app.investorprez.com)</li>
+    <li><strong>Backend</strong>: Railway hosting with custom domain
+    (api.investorprez.com)</li>
+    <li><strong>Database</strong>: Railway PostgreSQL with automated
+    backups</li>
+    <li><strong>Storage</strong>: Vercel Blob with global CDN</li>
+    <li><strong>Monitoring</strong>: Sentry error tracking + Google
+    Analytics 4</li>
+    <li><strong>Email</strong>: Resend service integration</li>
+    </ul>
+    <h3 id="auto-deployment-flow"><strong>Auto-Deployment
+    Flow</strong></h3>
+    <ol type="1">
+    <li>Push to <code>main</code> branch triggers automatic
+    deployments</li>
+    <li>Vercel builds and deploys frontend changes</li>
+    <li>Railway builds and deploys backend changes</li>
+    <li>Database migrations run automatically if configured</li>
+    </ol>
+    <hr />
+    <h2 id="step-by-step-deployment">🚀 Step-by-Step Deployment</h2>
+    <h3 id="step-1-environment-variables-setup"><strong>Step 1:
+    Environment Variables Setup</strong></h3>
+    <h4 id="vercel-frontend-variables"><strong>1.1 Vercel (Frontend)
+    Variables</strong></h4>
+    <p>Go to: <a href="https://vercel.com/dashboard">Vercel Dashboard →
+    Project → Settings → Environment Variables</a></p>
+    <div class="sourceCode" id="cb1"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Required Variables</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">NODE_ENV</span><span class="op">=</span>production</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">VITE_API_BASE_URL</span><span class="op">=</span>https://api.investorprez.com/api</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">VITE_GA_MEASUREMENT_ID</span><span class="op">=</span>your-ga-measurement-id</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: Sentry Frontend</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">VITE_SENTRY_DSN</span><span class="op">=</span>your_frontend_sentry_dsn_here</span></code></pre></div>
+    <h4 id="railway-backend-variables"><strong>1.2 Railway (Backend)
+    Variables</strong></h4>
+    <p>Go to: Railway Dashboard → Backend Service → Variables</p>
+    <div class="sourceCode" id="cb2"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Database (Auto-configured by Railway)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">DATABASE_URL</span><span class="op">=</span>postgresql://... <span class="kw">(</span><span class="ex">auto-generated</span> by Railway<span class="kw">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Required Application Variables</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">JWT_SECRET</span><span class="op">=</span>your_super_secure_jwt_secret_here</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">RESEND_API_KEY</span><span class="op">=</span>re_your_resend_api_key_here</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">FRONTEND_URL</span><span class="op">=</span>https://app.investorprez.com</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">NODE_ENV</span><span class="op">=</span>production</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Storage</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="va">BLOB_READ_WRITE_TOKEN</span><span class="op">=</span>vercel_blob_rw_YOUR_ACTUAL_TOKEN_HERE</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitoring (v1.4.0)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">SENTRY_DSN</span><span class="op">=</span>your_backend_sentry_dsn_here</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="va">GA_MEASUREMENT_ID</span><span class="op">=</span>your-ga-measurement-id</span></code></pre></div>
+    <h3 id="step-2-database-setup"><strong>Step 2: Database
+    Setup</strong></h3>
+    <h4 id="railway-postgresql-configuration"><strong>2.1 Railway
+    PostgreSQL Configuration</strong></h4>
+    <ol type="1">
+    <li>Railway automatically provisions PostgreSQL database</li>
+    <li><code>DATABASE_URL</code> environment variable is
+    auto-configured</li>
+    <li>Database accessible via Railway dashboard SQL editor</li>
+    </ol>
+    <h4 id="run-database-migrations"><strong>2.2 Run Database
+    Migrations</strong></h4>
+    <div class="sourceCode" id="cb3"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option A: Via Railway CLI</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">railway</span> login</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">railway</span> link <span class="pp">[</span><span class="ss">your</span><span class="pp">-</span><span class="ss">project</span><span class="pp">-</span><span class="ss">id</span><span class="pp">]</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">railway</span> run <span class="at">--service</span><span class="op">=</span>backend npm run db:migrate</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Option B: Via Railway Dashboard</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Go to PostgreSQL service → Connect → psql</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste migration SQL manually</span></span></code></pre></div>
+    <h4 id="verify-database-schema"><strong>2.3 Verify Database
+    Schema</strong></h4>
+    <p>Ensure these tables exist: - <code>users</code> (authentication
+    and profiles) - <code>presentations</code> (presentation data and
+    metadata) - <code>assets</code> (file references and blob URLs)</p>
+    <h3 id="step-3-storage-configuration"><strong>Step 3: Storage
+    Configuration</strong></h3>
+    <h4 id="vercel-blob-token-setup"><strong>3.1 Vercel Blob Token
+    Setup</strong></h4>
+    <ol type="1">
+    <li>Go to <a href="https://vercel.com/dashboard">Vercel
+    Dashboard</a></li>
+    <li>Navigate to Blob storage section</li>
+    <li>Create new token with Read &amp; Write permissions</li>
+    <li>Copy token (starts with <code>vercel_blob_rw_</code>)</li>
+    <li>Add to both Vercel and Railway environment variables</li>
+    </ol>
+    <h4 id="test-storage-integration"><strong>3.2 Test Storage
+    Integration</strong></h4>
+    <div class="sourceCode" id="cb4"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test locally first</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">BLOB_READ_WRITE_TOKEN</span><span class="op">=</span>your_token <span class="ex">npm</span> run dev</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Try uploading an asset in the editor</span></span></code></pre></div>
+    <h3 id="step-4-custom-domain-setup"><strong>Step 4: Custom Domain
+    Setup</strong></h3>
+    <h4 id="frontend-domain-vercel"><strong>4.1 Frontend Domain
+    (Vercel)</strong></h4>
+    <ol type="1">
+    <li>Vercel Dashboard → Project → Settings → Domains</li>
+    <li>Add custom domain: <code>app.investorprez.com</code></li>
+    <li>Configure DNS CNAME: <code>app.investorprez.com</code> →
+    <code>cname.vercel-dns.com</code></li>
+    <li>Wait for SSL certificate provisioning</li>
+    </ol>
+    <h4 id="backend-domain-railway"><strong>4.2 Backend Domain
+    (Railway)</strong></h4>
+    <ol type="1">
+    <li>Railway Dashboard → Backend Service → Settings → Domains</li>
+    <li>Add custom domain: <code>api.investorprez.com</code><br />
+    </li>
+    <li>Configure DNS CNAME: <code>api.investorprez.com</code> →
+    <code>[your-railway-app].railway.app</code></li>
+    <li>Wait for SSL certificate provisioning</li>
+    </ol>
+    <h3 id="step-5-monitoring-setup-v1.4.0"><strong>Step 5: Monitoring
+    Setup (v1.4.0)</strong></h3>
+    <h4 id="sentry-error-tracking"><strong>5.1 Sentry Error
+    Tracking</strong></h4>
+    <ol type="1">
+    <li>Create Sentry project for InvestorPrez</li>
+    <li>Get DSN for both frontend and backend</li>
+    <li>Add Sentry DSN to environment variables</li>
+    <li>Deploy and verify error tracking in Sentry dashboard</li>
+    </ol>
+    <h4 id="google-analytics-4"><strong>5.2 Google Analytics
+    4</strong></h4>
+    <ol type="1">
+    <li>GA4 already configured with ID:
+    <code>your-ga-measurement-id</code></li>
+    <li>Verify tracking in GA4 dashboard after deployment</li>
+    <li>Check conversion events for signup and presentation
+    creation</li>
+    </ol>
+    <h3 id="step-6-deployment-execution"><strong>Step 6: Deployment
+    Execution</strong></h3>
+    <h4 id="frontend-deployment-vercel"><strong>6.1 Frontend Deployment
+    (Vercel)</strong></h4>
+    <div class="sourceCode" id="cb5"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatic via Git</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual deployment (alternative)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> vercel <span class="at">--prod</span></span></code></pre></div>
+    <h4 id="backend-deployment-railway"><strong>6.2 Backend Deployment
+    (Railway)</strong></h4>
+    <div class="sourceCode" id="cb6"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatic via Git (recommended)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Railway CLI deployment (alternative)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">railway</span> up <span class="at">--service</span><span class="op">=</span>backend</span></code></pre></div>
+    <h3 id="step-7-post-deployment-verification"><strong>Step 7:
+    Post-Deployment Verification</strong></h3>
+    <h4 id="health-checks"><strong>7.1 Health Checks</strong></h4>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Frontend loads:
+    https://app.investorprez.com</label></li>
+    <li><label><input type="checkbox" />API responds:
+    https://api.investorprez.com/health</label></li>
+    <li><label><input type="checkbox" />Database connection
+    working</label></li>
+    <li><label><input type="checkbox" />Authentication flow functional
+    (signup/login)</label></li>
+    <li><label><input type="checkbox" />Presentation editor loads
+    without errors</label></li>
+    </ul>
+    <h4 id="feature-verification"><strong>7.2 Feature
+    Verification</strong></h4>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Create test presentation and
+    save</label></li>
+    <li><label><input type="checkbox" />Upload test asset
+    (image/file)</label></li>
+    <li><label><input type="checkbox" />Publish presentation and verify
+    public access</label></li>
+    <li><label><input type="checkbox" />Typography presets accessible
+    and functional</label></li>
+    <li><label><input type="checkbox" />User registration and email
+    verification working</label></li>
+    </ul>
+    <h4 id="monitoring-verification"><strong>7.3 Monitoring
+    Verification</strong></h4>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Sentry receiving error events
+    (create test error if needed)</label></li>
+    <li><label><input type="checkbox" />GA4 tracking user actions and
+    page views</label></li>
+    <li><label><input type="checkbox" />Performance metrics showing in
+    monitoring dashboards</label></li>
+    </ul>
+    <hr />
+    <h2 id="common-deployment-issues-solutions">🚨 Common Deployment
+    Issues &amp; Solutions</h2>
+    <h3 id="environment-variable-issues"><strong>Environment Variable
+    Issues</strong></h3>
+    <div class="sourceCode" id="cb7"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Issue: CORS errors</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Verify FRONTEND_URL matches actual domain</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">FRONTEND_URL</span><span class="op">=</span>https://app.investorprez.com</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Issue: Database connection failed</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Check DATABASE_URL in Railway variables</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure PostgreSQL service is running</span></span></code></pre></div>
+    <h3 id="asset-upload-issues"><strong>Asset Upload
+    Issues</strong></h3>
+    <div class="sourceCode" id="cb8"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Issue: Asset uploads failing</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Verify Vercel Blob token is correct</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check BLOB_READ_WRITE_TOKEN in Railway variables</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure token has Read &amp; Write permissions</span></span></code></pre></div>
+    <h3 id="build-issues"><strong>Build Issues</strong></h3>
+    <div class="sourceCode" id="cb9"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Issue: TypeScript compilation errors</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Standard build command</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Issue: Missing dependencies</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Clear cache and reinstall</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> node_modules package-lock.json</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span></code></pre></div>
+    <h3 id="custom-domain-issues"><strong>Custom Domain
+    Issues</strong></h3>
+    <div class="sourceCode" id="cb10"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Issue: Domain not resolving</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Verify DNS configuration</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># CNAME records must point to correct hosting provider</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Wait up to 48 hours for DNS propagation</span></span></code></pre></div>
+    <hr />
+    <h2 id="production-configuration-summary">📊 Production
+    Configuration Summary</h2>
+    <h3 id="current-production-status-v1.4.0"><strong>Current Production
+    Status (v1.4.0)</strong></h3>
+    <ul>
+    <li><strong>Frontend</strong>: ✅ Live at
+    https://app.investorprez.com</li>
+    <li><strong>Backend</strong>: ✅ Live at
+    https://api.investorprez.com<br />
+    </li>
+    <li><strong>Database</strong>: ✅ Railway PostgreSQL with
+    auto-backups</li>
+    <li><strong>Storage</strong>: ✅ Vercel Blob with global CDN</li>
+    <li><strong>Monitoring</strong>: ✅ Sentry + GA4 active</li>
+    <li><strong>SSL</strong>: ✅ Automatic HTTPS on both domains</li>
+    </ul>
+    <h3 id="performance-metrics"><strong>Performance
+    Metrics</strong></h3>
+    <ul>
+    <li><strong>Frontend Load Time</strong>: &lt; 2 seconds (94% bundle
+    reduction achieved)</li>
+    <li><strong>API Response Time</strong>: &lt; 500ms average</li>
+    <li><strong>Database Queries</strong>: Optimized with indexes</li>
+    <li><strong>Asset Loading</strong>: Global CDN distribution</li>
+    </ul>
+    <h3 id="security-features"><strong>Security Features</strong></h3>
+    <ul>
+    <li><strong>HTTPS</strong>: Enforced on all domains</li>
+    <li><strong>CORS</strong>: Properly configured for custom
+    domains<br />
+    </li>
+    <li><strong>Rate Limiting</strong>: 1000 requests per 15-minute
+    window</li>
+    <li><strong>JWT Authentication</strong>: Secure token-based
+    auth</li>
+    <li><strong>Password Hashing</strong>: bcrypt with secure
+    rounds</li>
+    </ul>
+    <hr />
+    <h2 id="maintenance-updates">🔧 Maintenance &amp; Updates</h2>
+    <h3 id="regular-deployment-process"><strong>Regular Deployment
+    Process</strong></h3>
+    <ol type="1">
+    <li>Develop and test changes locally</li>
+    <li>Commit to feature branch</li>
+    <li>Create pull request for review</li>
+    <li>Merge to <code>main</code> for automatic deployment</li>
+    <li>Monitor deployment in Vercel/Railway dashboards</li>
+    <li>Verify functionality in production</li>
+    </ol>
+    <h3 id="database-migrations"><strong>Database
+    Migrations</strong></h3>
+    <div class="sourceCode" id="cb11"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new migration</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add SQL file to backend/database/migrations/</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy via Railway CLI or dashboard</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">railway</span> run <span class="at">--service</span><span class="op">=</span>backend npm run db:migrate</span></code></pre></div>
+    <h3 id="environment-variable-updates"><strong>Environment Variable
+    Updates</strong></h3>
+    <ol type="1">
+    <li>Update variables in Vercel/Railway dashboards</li>
+    <li>Services automatically restart with new variables</li>
+    <li>Verify changes take effect in production</li>
+    </ol>
+    <hr />
+    <p><em>This consolidated guide replaces multiple overlapping
+    deployment documents and provides complete, current instructions for
+    InvestorPrez v1.4.0 deployment.</em></p>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

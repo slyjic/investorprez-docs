@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migration Guide - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="grapesjs-studio-sdk-migration-guide">GrapesJS Studio SDK
+    Migration Guide</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <h2 id="overview">Overview</h2>
+    <p>This guide helps developers migrate between different versions of
+    the GrapesJS Studio SDK and understand breaking changes.</p>
+    <h2 id="current-version">Current Version</h2>
+    <p>InvestorPrez uses <strong>GrapesJS Studio SDK
+    v1.0.51</strong></p>
+    <h2 id="migration-from-core-grapesjs-to-studio-sdk">Migration from
+    Core GrapesJS to Studio SDK</h2>
+    <h3 id="key-differences">Key Differences</h3>
+    <ol type="1">
+    <li><p><strong>Import Changes</strong></p>
+    <div class="sourceCode" id="cb1"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Old (Core GrapesJS)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> grapesjs <span class="im">from</span> <span class="st">&#39;grapesjs&#39;</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// New (Studio SDK)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { Studio } <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk&#39;</span><span class="op">;</span></span></code></pre></div></li>
+    <li><p><strong>Initialization</strong></p>
+    <div class="sourceCode" id="cb2"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Old</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> editor <span class="op">=</span> grapesjs<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">container</span><span class="op">:</span> <span class="st">&#39;#gjs&#39;</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ... config</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">// New</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> studio <span class="op">=</span> <span class="kw">new</span> <span class="fu">Studio</span>({</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">root</span><span class="op">:</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&#39;studio-root&#39;</span>)<span class="op">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">project</span><span class="op">:</span> projectConfig<span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ... config</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div></li>
+    <li><p><strong>Storage Manager</strong></p>
+    <div class="sourceCode" id="cb3"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Old</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>storageManager<span class="op">:</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;remote&#39;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">autosave</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ... storage config</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// New</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>storageManager<span class="op">:</span> {</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;none&#39;</span> <span class="co">// Handle storage externally</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></li>
+    </ol>
+    <h2 id="common-migration-issues">Common Migration Issues</h2>
+    <h3 id="plugin-compatibility">1. Plugin Compatibility</h3>
+    <p>Not all core GrapesJS plugins are compatible with Studio SDK.
+    Check compatibility:</p>
+    <ul>
+    <li>✅ Compatible: Most official plugins</li>
+    <li>⚠️ May need updates: Community plugins</li>
+    <li>❌ Incompatible: Plugins that modify core UI</li>
+    </ul>
+    <h3 id="custom-components">2. Custom Components</h3>
+    <p>Update component definitions:</p>
+    <div class="sourceCode" id="cb4"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Old</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>editor<span class="op">.</span><span class="at">DomComponents</span><span class="op">.</span><span class="fu">addType</span>(<span class="st">&#39;custom-component&#39;</span><span class="op">,</span> {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">model</span><span class="op">:</span> {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">defaults</span><span class="op">:</span> {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="co">// ... component config</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">// New</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>editor<span class="op">.</span><span class="at">Components</span><span class="op">.</span><span class="fu">addType</span>(<span class="st">&#39;custom-component&#39;</span><span class="op">,</span> {</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">model</span><span class="op">:</span> {</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">defaults</span><span class="op">:</span> {</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="co">// ... component config</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+    <h3 id="event-handling">3. Event Handling</h3>
+    <p>Event names have changed:</p>
+    <div class="sourceCode" id="cb5"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Old</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>editor<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;component:add&#39;</span><span class="op">,</span> handler)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">// New</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>editor<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;component:create&#39;</span><span class="op">,</span> handler)<span class="op">;</span></span></code></pre></div>
+    <h3 id="asset-management">4. Asset Management</h3>
+    <p>Asset handling is now more structured:</p>
+    <div class="sourceCode" id="cb6"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Old</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>editor<span class="op">.</span><span class="at">AssetManager</span><span class="op">.</span><span class="fu">add</span>([<span class="op">...</span>])<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">// New - Use asset providers</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>assets<span class="op">:</span> {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">providers</span><span class="op">:</span> [{</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">&#39;custom-provider&#39;</span><span class="op">,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">onLoad</span><span class="op">:</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> [<span class="op">...</span>]<span class="op">,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">onAdd</span><span class="op">:</span> <span class="kw">async</span> (asset) <span class="kw">=&gt;</span> {<span class="op">...</span>}</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  }]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+    <h2 id="breaking-changes">Breaking Changes</h2>
+    <h3 id="v1.0.0-v1.0.51">v1.0.0 → v1.0.51</h3>
+    <ol type="1">
+    <li><strong>License Key Required</strong>
+    <ul>
+    <li>All deployments now require a valid license key</li>
+    <li>Add to configuration: <code>licenseKey: 'your-key'</code></li>
+    </ul></li>
+    <li><strong>Import Path Changes</strong>
+    <ul>
+    <li>Style imports no longer use <code>.css</code> extension</li>
+    <li><code>import '@grapesjs/studio-sdk/style'</code> (not
+    <code>style.css</code>)</li>
+    </ul></li>
+    <li><strong>Default Storage</strong>
+    <ul>
+    <li>Default storage type changed from ‘local’ to ‘none’</li>
+    <li>Must explicitly configure storage</li>
+    </ul></li>
+    </ol>
+    <h2 id="best-practices-for-migration">Best Practices for
+    Migration</h2>
+    <ol type="1">
+    <li><p><strong>Test in Development First</strong></p>
+    <ul>
+    <li>Create a separate branch for migration</li>
+    <li>Test all custom components and plugins</li>
+    <li>Verify storage and asset handling</li>
+    </ul></li>
+    <li><p><strong>Update Dependencies</strong></p>
+    <div class="sourceCode" id="cb7"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> update @grapesjs/studio-sdk</span></code></pre></div></li>
+    <li><p><strong>Review Custom Code</strong></p>
+    <ul>
+    <li>Check all custom components</li>
+    <li>Update event listeners</li>
+    <li>Verify command usage</li>
+    </ul></li>
+    <li><p><strong>Backup Projects</strong></p>
+    <ul>
+    <li>Export all projects before migration</li>
+    <li>Test import after migration</li>
+    </ul></li>
+    </ol>
+    <h2 id="investorprez-specific-migration-notes">InvestorPrez-Specific
+    Migration Notes</h2>
+    <h3 id="custom-blocks">Custom Blocks</h3>
+    <p>Update block definitions in
+    <code>presentationBlocks.ts</code>:</p>
+    <div class="sourceCode" id="cb8"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Ensure all blocks use new structure</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">id</span><span class="op">:</span> <span class="st">&#39;block-id&#39;</span><span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">&#39;Block Label&#39;</span><span class="op">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">category</span><span class="op">:</span> <span class="st">&#39;Category&#39;</span><span class="op">,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">content</span><span class="op">:</span> {</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;component-type&#39;</span><span class="op">,</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ... component definition</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+    <h3 id="storage-integration">Storage Integration</h3>
+    <p>Update <code>presentationService.ts</code>:</p>
+    <div class="sourceCode" id="cb9"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Ensure storage methods align with new SDK</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="fu">savePresentation</span>(id<span class="op">:</span> string<span class="op">,</span> data<span class="op">:</span> any) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Convert to new format if needed</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> studioData <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="fu">convertToStudioFormat</span>(data)<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ... save logic</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+    <h3 id="typography-presets">Typography Presets</h3>
+    <p>Verify typography presets still work:</p>
+    <div class="sourceCode" id="cb10"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Check preset application</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>editor<span class="op">.</span><span class="fu">getSelected</span>()<span class="op">?.</span><span class="fu">setStyle</span>({</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;font-family&#39;</span><span class="op">:</span> preset<span class="op">.</span><span class="at">fontFamily</span><span class="op">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;font-size&#39;</span><span class="op">:</span> preset<span class="op">.</span><span class="at">fontSize</span><span class="op">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ... other styles</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+    <h2 id="troubleshooting">Troubleshooting</h2>
+    <h3 id="common-errors">Common Errors</h3>
+    <ol type="1">
+    <li><strong>“licenseKey option not provided”</strong>
+    <ul>
+    <li>Add valid license key to configuration</li>
+    <li>Check environment variables</li>
+    </ul></li>
+    <li><strong>“Component type not found”</strong>
+    <ul>
+    <li>Re-register custom components after initialization</li>
+    <li>Check component type names</li>
+    </ul></li>
+    <li><strong>“Storage manager error”</strong>
+    <ul>
+    <li>Verify storage configuration</li>
+    <li>Check API endpoints</li>
+    </ul></li>
+    </ol>
+    <h3 id="debug-mode">Debug Mode</h3>
+    <p>Enable debug mode for migration:</p>
+    <div class="sourceCode" id="cb11"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> studio <span class="op">=</span> <span class="kw">new</span> <span class="fu">Studio</span>({</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ... config</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">debug</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">log</span><span class="op">:</span> [<span class="st">&#39;warning&#39;</span><span class="op">,</span> <span class="st">&#39;error&#39;</span><span class="op">,</span> <span class="st">&#39;debug&#39;</span>]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+    <h2 id="resources">Resources</h2>
+    <ul>
+    <li><a href="https://grapesjs.com/docs/migration">Official Migration
+    Guide</a></li>
+    <li><a href="https://github.com/GrapesJS/studio-sdk/releases">Studio
+    SDK Changelog</a></li>
+    <li><a
+    href="https://github.com/slyjic/investorprez/issues">InvestorPrez
+    Issues</a></li>
+    </ul>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

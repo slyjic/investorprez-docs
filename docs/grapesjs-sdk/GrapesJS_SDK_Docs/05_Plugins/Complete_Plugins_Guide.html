@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Plugins Guide - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="complete-grapesjs-studio-sdk-plugins-guide">Complete
+    GrapesJS Studio SDK Plugins Guide</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <h2 id="installation">Installation</h2>
+    <p>All official Studio SDK plugins are available through a single
+    package:</p>
+    <div class="sourceCode" id="cb1"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># npm</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i @grapesjs/studio-sdk-plugins</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pnpm</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pnpm</span> add @grapesjs/studio-sdk-plugins</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># yarn</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> add @grapesjs/studio-sdk-plugins</span></code></pre></div>
+    <h2 id="official-plugins">Official Plugins</h2>
+    <h3 id="absolute-mode-plugin">1. Absolute Mode Plugin</h3>
+    <p><strong>Purpose</strong>: Enables free drag-and-drop positioning
+    using absolute coordinates.</p>
+    <p><strong>Use Cases</strong>: - Fixed-layout designs - Print
+    documents - Business cards - Certificates - Static prototypes</p>
+    <p><strong>Usage</strong>:</p>
+    <div class="sourceCode" id="cb2"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { canvasAbsoluteMode } <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk-plugins&#39;</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    canvasAbsoluteMode</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+    <p><strong>Conditional Usage</strong>:</p>
+    <div class="sourceCode" id="cb3"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Only for elements already using position: absolute</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plugins<span class="op">:</span> [</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  canvasAbsoluteMode<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">conditional</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+    <h3 id="grid-mode-plugin">2. Grid Mode Plugin</h3>
+    <p><strong>Purpose</strong>: Visually manage CSS Grid layouts
+    directly in the editor.</p>
+    <p><strong>Features</strong>: - Drag grid elements on canvas -
+    Update grid CSS properties from Style Manager - Visual grid lines
+    and helpers</p>
+    <p><strong>Usage</strong>:</p>
+    <div class="sourceCode" id="cb4"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { canvasGridMode } <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk-plugins&#39;</span><span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    canvasGridMode<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">styleableGrid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+    <p><strong>Example Grid Structure</strong>:</p>
+    <div class="sourceCode" id="cb5"><pre
+    class="sourceCode css"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.grid-container</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">grid</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">grid-template-columns</span><span class="ch">:</span> <span class="fu">repeat(</span><span class="dv">12</span><span class="op">,</span> <span class="dv">1</span><span class="dt">fr</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">grid-template-rows</span><span class="ch">:</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gap</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">rem</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">.grid-item</span> {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">grid-column</span><span class="ch">:</span> <span class="dv">span 4</span><span class="op">;</span> <span class="co">/* 4 columns out of 12 */</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+    <h3 id="iconify-plugin">3. Iconify Plugin</h3>
+    <p><strong>Purpose</strong>: Add icon components with an icon picker
+    using Iconify collections.</p>
+    <p><strong>Features</strong>: - Access to thousands of icons -
+    Visual icon picker - Multiple icon collections - Customizable icon
+    properties</p>
+    <p><strong>Usage</strong>:</p>
+    <div class="sourceCode" id="cb6"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { iconifyComponent } <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk-plugins&#39;</span><span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    iconifyComponent<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">block</span><span class="op">:</span> { </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">category</span><span class="op">:</span> <span class="st">&#39;Extra&#39;</span><span class="op">,</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">label</span><span class="op">:</span> <span class="st">&#39;Icon&#39;</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">collections</span><span class="op">:</span> [<span class="st">&#39;mdi&#39;</span><span class="op">,</span> <span class="st">&#39;fa-solid&#39;</span><span class="op">,</span> <span class="st">&#39;heroicons&#39;</span>]<span class="op">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">extendIconComponent</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+    <p><strong>Options</strong>: - <code>licenseKey</code> (string):
+    Optional, for use outside SDK - <code>block</code> (object): Block
+    properties or <code>false</code> to skip - <code>collections</code>
+    (array): Icon collections to load - <code>extendIconComponent</code>
+    (boolean): Extend default icon component</p>
+    <h3 id="rich-text-editor-prosemirror">4. Rich Text Editor
+    (ProseMirror)</h3>
+    <p><strong>Purpose</strong>: Advanced rich text editing
+    capabilities.</p>
+    <p><strong>Features</strong>: - Full rich text formatting - Lists,
+    headings, quotes - Links and media - Keyboard shortcuts</p>
+    <p><strong>Usage</strong>:</p>
+    <div class="sourceCode" id="cb7"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { richTextEditor } <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk-plugins&#39;</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    richTextEditor<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="co">// ProseMirror options</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+    <h3 id="sidebar-buttons-plugin">5. Sidebar Buttons Plugin</h3>
+    <p><strong>Purpose</strong>: Add custom buttons to the editor
+    sidebar.</p>
+    <p><strong>Features</strong>: - Custom action buttons - Icon support
+    - Tooltips - Keyboard shortcuts</p>
+    <p><strong>Usage</strong>:</p>
+    <div class="sourceCode" id="cb8"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { sidebarButtons } <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk-plugins&#39;</span><span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    sidebarButtons<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">buttons</span><span class="op">:</span> [</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>          <span class="dt">id</span><span class="op">:</span> <span class="st">&#39;custom-action&#39;</span><span class="op">,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>          <span class="dt">label</span><span class="op">:</span> <span class="st">&#39;Custom Action&#39;</span><span class="op">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>          <span class="dt">icon</span><span class="op">:</span> <span class="st">&#39;icon-class&#39;</span><span class="op">,</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>          <span class="dt">command</span><span class="op">:</span> <span class="st">&#39;custom-command&#39;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+    <h3 id="custom-renderer-react">6. Custom Renderer (React)</h3>
+    <p><strong>Purpose</strong>: Render components using React instead
+    of vanilla HTML.</p>
+    <p><strong>Use Cases</strong>: - React component integration -
+    Dynamic component rendering - Advanced interactivity</p>
+    <p><strong>Usage</strong>:</p>
+    <div class="sourceCode" id="cb9"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { customRendererReact } <span class="im">from</span> <span class="st">&#39;@grapesjs/studio-sdk-plugins&#39;</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    customRendererReact<span class="op">.</span><span class="fu">init</span>({</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">components</span><span class="op">:</span> {</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;my-react-component&#39;</span><span class="op">:</span> MyReactComponent</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+    <h2 id="plugin-development">Plugin Development</h2>
+    <h3 id="creating-a-custom-plugin">Creating a Custom Plugin</h3>
+    <div class="sourceCode" id="cb10"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> myCustomPlugin <span class="op">=</span> (editor<span class="op">,</span> options <span class="op">=</span> {}) <span class="kw">=&gt;</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> defaults <span class="op">=</span> {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Default options</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">enabled</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">position</span><span class="op">:</span> <span class="st">&#39;top&#39;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> opts <span class="op">=</span> { <span class="op">...</span>defaults<span class="op">,</span> <span class="op">...</span>options }<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plugin initialization</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  editor<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;load&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Plugin loaded&#39;</span>)<span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom command</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    editor<span class="op">.</span><span class="at">Commands</span><span class="op">.</span><span class="fu">add</span>(<span class="st">&#39;my-plugin:command&#39;</span><span class="op">,</span> {</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">run</span>(editor) {</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Command logic</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(editor) {</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Cleanup</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add custom component</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    editor<span class="op">.</span><span class="at">Components</span><span class="op">.</span><span class="fu">addType</span>(<span class="st">&#39;my-component&#39;</span><span class="op">,</span> {</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>      <span class="dt">model</span><span class="op">:</span> {</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        <span class="dt">defaults</span><span class="op">:</span> {</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>          <span class="dt">name</span><span class="op">:</span> <span class="st">&#39;My Component&#39;</span><span class="op">,</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>          <span class="co">// Component config</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>      <span class="dt">view</span><span class="op">:</span> {</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Component view</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add block</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (opts<span class="op">.</span><span class="at">addBlock</span>) {</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>      editor<span class="op">.</span><span class="at">Blocks</span><span class="op">.</span><span class="fu">add</span>(<span class="st">&#39;my-block&#39;</span><span class="op">,</span> {</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>        <span class="dt">label</span><span class="op">:</span> <span class="st">&#39;My Block&#39;</span><span class="op">,</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>        <span class="dt">content</span><span class="op">:</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;my-component&#39;</span> }<span class="op">,</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>        <span class="dt">category</span><span class="op">:</span> <span class="st">&#39;Custom&#39;</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Cleanup</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>  editor<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;destroy&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Remove listeners, clear intervals, etc.</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="co">// Export</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> myCustomPlugin<span class="op">;</span></span></code></pre></div>
+    <h3 id="plugin-best-practices">Plugin Best Practices</h3>
+    <ol type="1">
+    <li><strong>Namespace Everything</strong></li>
+    </ol>
+    <div class="sourceCode" id="cb11"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> PLUGIN_NAME <span class="op">=</span> <span class="st">&#39;my-plugin&#39;</span><span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> COMMAND_PREFIX <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>PLUGIN_NAME<span class="sc">}</span><span class="vs">:`</span><span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> COMPONENT_PREFIX <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>PLUGIN_NAME<span class="sc">}</span><span class="vs">-`</span><span class="op">;</span></span></code></pre></div>
+    <ol start="2" type="1">
+    <li><strong>Provide TypeScript Types</strong></li>
+    </ol>
+    <div class="sourceCode" id="cb12"><pre
+    class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> MyPluginOptions {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  enabled<span class="op">?:</span> <span class="dt">boolean</span><span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  position<span class="op">?:</span> <span class="st">&#39;top&#39;</span> <span class="op">|</span> <span class="st">&#39;bottom&#39;</span> <span class="op">|</span> <span class="st">&#39;left&#39;</span> <span class="op">|</span> <span class="st">&#39;right&#39;</span><span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  customOption<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">declare</span> <span class="kw">function</span> <span class="fu">myPlugin</span>(editor<span class="op">:</span> Editor<span class="op">,</span> options<span class="op">?:</span> MyPluginOptions)<span class="op">:</span> <span class="dt">void</span><span class="op">;</span></span></code></pre></div>
+    <ol start="3" type="1">
+    <li><strong>Handle Errors Gracefully</strong></li>
+    </ol>
+    <div class="sourceCode" id="cb13"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plugin logic</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">catch</span> (error) {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="vs">`</span><span class="sc">${</span>PLUGIN_NAME<span class="sc">}</span><span class="vs"> Error:`</span><span class="op">,</span> error)<span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Fallback behavior</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+    <ol start="4" type="1">
+    <li><strong>Document Thoroughly</strong></li>
+    </ol>
+    <div class="sourceCode" id="cb14"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * My Custom Plugin</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">{Editor}</span><span class="co"> editor - GrapesJS editor instance</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">{Object}</span><span class="co"> options - Plugin options</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">{boolean}</span><span class="co"> [options.enabled=true] - Enable/disable plugin</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">{string}</span><span class="co"> [options.position=&#39;top&#39;] - Position of elements</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@example</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"> * plugins: [</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"> *   myPlugin.init({ enabled: true, position: &#39;bottom&#39; })</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"> * ]</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span></code></pre></div>
+    <h2 id="plugin-configuration">Plugin Configuration</h2>
+    <h3 id="global-plugin-options">Global Plugin Options</h3>
+    <div class="sourceCode" id="cb15"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pluginManager</span><span class="op">:</span> {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Options applied to all plugins</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">theme</span><span class="op">:</span> <span class="st">&#39;dark&#39;</span><span class="op">,</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">locale</span><span class="op">:</span> <span class="st">&#39;en&#39;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Individual plugins</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+    <h3 id="conditional-loading">Conditional Loading</h3>
+    <div class="sourceCode" id="cb16"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> plugins <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Load based on project type</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (projectType <span class="op">===</span> <span class="st">&#39;web&#39;</span>) {</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  plugins<span class="op">.</span><span class="fu">push</span>(canvasGridMode)<span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  plugins<span class="op">.</span><span class="fu">push</span>(iconifyComponent)<span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (projectType <span class="op">===</span> <span class="st">&#39;email&#39;</span>) {</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  plugins<span class="op">.</span><span class="fu">push</span>(emailSpecificPlugin)<span class="op">;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Load based on user preferences</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (userPreferences<span class="op">.</span><span class="at">absoluteMode</span>) {</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  plugins<span class="op">.</span><span class="fu">push</span>(canvasAbsoluteMode)<span class="op">;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> { plugins }<span class="op">;</span></span></code></pre></div>
+    <h3 id="plugin-order">Plugin Order</h3>
+    <p>Some plugins may depend on load order:</p>
+    <div class="sourceCode" id="cb17"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Load foundational plugins first</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    coreEnhancementPlugin<span class="op">,</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Then UI plugins</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    sidebarButtons<span class="op">,</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Finally, component plugins</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    iconifyComponent<span class="op">,</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    customComponents</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+    <h2 id="cdn-usage">CDN Usage</h2>
+    <p>For CDN usage, plugins are available globally:</p>
+    <div class="sourceCode" id="cb18"><pre
+    class="sourceCode html"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Load plugin --&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;https://unpkg.com/@grapesjs/studio-sdk-plugins@latest/dist/canvasAbsoluteMode/index.umd.js&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Plugin available as global</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> plugin <span class="op">=</span> globalThis<span class="op">.</span><span class="at">StudioSdkPlugins_canvasAbsoluteMode</span><span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">createStudioEditor</span>({</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> [plugin]</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div>
+    <h2 id="troubleshooting">Troubleshooting</h2>
+    <h3 id="plugin-not-loading">Plugin Not Loading</h3>
+    <ol type="1">
+    <li>Check import path is correct</li>
+    <li>Verify plugin is added to plugins array</li>
+    <li>Check browser console for errors</li>
+    <li>Ensure dependencies are installed</li>
+    </ol>
+    <h3 id="plugin-conflicts">Plugin Conflicts</h3>
+    <ol type="1">
+    <li>Check if plugins modify same functionality</li>
+    <li>Try changing plugin order</li>
+    <li>Check plugin documentation for known conflicts</li>
+    <li>Use plugin options to disable conflicting features</li>
+    </ol>
+    <h3 id="performance-issues">Performance Issues</h3>
+    <ol type="1">
+    <li>Load plugins conditionally</li>
+    <li>Use lazy loading for heavy plugins</li>
+    <li>Monitor browser performance tab</li>
+    <li>Consider plugin alternatives</li>
+    </ol>
+    <h2 id="investorprez-plugin-usage">InvestorPrez Plugin Usage</h2>
+    <p>InvestorPrez uses the following plugin approach:</p>
+    <ol type="1">
+    <li><strong>Core Functionality</strong>: Built-in without
+    plugins</li>
+    <li><strong>Absolute Mode</strong>: Previously used for comment pins
+    (archived)</li>
+    <li><strong>Custom Blocks</strong>: Implemented as native
+    components</li>
+    <li><strong>Future Considerations</strong>:
+    <ul>
+    <li>Grid Mode for layout templates</li>
+    <li>Iconify for presentation icons</li>
+    <li>Rich Text Editor for enhanced content</li>
+    </ul></li>
+    </ol>
+    <h2 id="resources">Resources</h2>
+    <ul>
+    <li><a
+    href="https://grapesjs.com/docs/modules/Plugins.html">Official
+    Plugin Docs</a></li>
+    <li><a href="https://github.com/GrapesJS/plugins">Plugin
+    Examples</a></li>
+    <li><a href="https://grapesjs.com/plugins">Community
+    Plugins</a></li>
+    <li><a href="https://grapesjs.com/docs/api/plugin_api.html">Plugin
+    Development Guide</a></li>
+    </ul>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

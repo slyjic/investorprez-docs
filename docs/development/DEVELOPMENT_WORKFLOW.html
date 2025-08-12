@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVELOPMENT WORKFLOW - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="development-workflow-guide">Development Workflow Guide</h1>
+    <p><em>Last Updated: July 31, 2025</em><br />
+    <em>Status: Current - v1.10.18</em><br />
+    <em>Previous Version Archived:
+    /docs/04-archive/document-updates-2025-07-31/</em></p>
+    <h2 id="overview">🎯 Overview</h2>
+    <p>This guide explains how to safely develop, test, and deploy
+    changes to InvestorPrez without interfering with the live production
+    system.</p>
+    <h2 id="architecture-summary">🏗️ Architecture Summary</h2>
+    <h3 id="local-development-environment">Local Development
+    Environment</h3>
+    <ul>
+    <li><strong>Frontend</strong>: <code>http://localhost:5174</code>
+    (Vite dev server)</li>
+    <li><strong>Backend</strong>: <code>http://localhost:3001</code>
+    (Express server)</li>
+    <li><strong>Database</strong>: Local PostgreSQL
+    (<code>investorprez</code> database)</li>
+    <li><strong>File Storage</strong>: Local file system
+    (<code>backend/uploads/</code>)</li>
+    <li><strong>Email</strong>: Console logging only (no real emails
+    sent)</li>
+    <li><strong>Typography</strong>: System fonts only (Google Fonts
+    system removed in v1.2.0)</li>
+    </ul>
+    <h3 id="production-environment">Production Environment</h3>
+    <ul>
+    <li><strong>Frontend</strong>: Vercel hosting (auto-deploys from
+    main branch)</li>
+    <li><strong>Backend</strong>: Railway hosting (auto-deploys from
+    main branch)</li>
+    <li><strong>Database</strong>: Railway PostgreSQL (separate from
+    local)</li>
+    <li><strong>File Storage</strong>: Vercel Blob Storage (cloud
+    CDN)</li>
+    <li><strong>Email</strong>: Resend service (real emails sent)<br />
+    </li>
+    <li><strong>Typography</strong>: Typography presets system (6
+    professional presets)</li>
+    <li><strong>Monitoring</strong>: Sentry error tracking + GA4
+    analytics + Monday.com integration</li>
+    </ul>
+    <h2 id="safe-development-workflow">🔄 Safe Development Workflow</h2>
+    <h3 id="step-1-starting-local-development">Step 1: Starting Local
+    Development</h3>
+    <div class="sourceCode" id="cb1"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal 1: Start Backend</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> backend</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Wait for these messages:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ✅ Database connected successfully</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 🚀 InvestorPrez API Server started successfully!</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 💡 Ready to accept requests!</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal 2: Start Frontend (new terminal)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /Users/simonic/MyApps/investorprez</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Should see:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Local:   http://localhost:5174/</span></span></code></pre></div>
+    <h3 id="step-2-verify-local-environment-is-working">Step 2: Verify
+    Local Environment is Working</h3>
+    <p><strong>Check these indicators:</strong> - ✅ Backend console
+    shows: <code>Environment: development</code> - ✅ Email console
+    shows: <code>📧 Using MOCK email service (console logging)</code> -
+    ✅ Storage console shows:
+    <code>📦 Using MOCK blob storage (local file system)</code> - ✅
+    Frontend loads at <code>http://localhost:5174</code></p>
+    <h3 id="step-3-making-changes">Step 3: Making Changes</h3>
+    <p><strong>Safe Areas to Modify:</strong> - Frontend components
+    (<code>src/components/</code>) - Frontend pages
+    (<code>src/pages/</code>) - Backend routes
+    (<code>backend/src/routes/</code>) - Backend services
+    (<code>backend/src/services/</code>) - Styling and UI improvements -
+    Feature additions</p>
+    <p><strong>Test Your Changes:</strong> 1. <strong>Frontend</strong>:
+    Changes appear immediately (hot reload) 2. <strong>Backend</strong>:
+    Restart server to see changes 3. <strong>Database</strong>: Changes
+    only affect local DB 4. <strong>Files</strong>: Upload test files
+    (stored locally) 5. <strong>Email</strong>: Check console for email
+    logs</p>
+    <h3 id="step-4-testing-before-production">Step 4: Testing Before
+    Production</h3>
+    <p><strong>Essential Checklist:</strong> - [ ] Frontend loads
+    without errors - [ ] Backend responds at <code>/health</code>
+    endpoint - [ ] User registration works (emails in console) - [ ]
+    File uploads work (files in <code>backend/uploads/</code>) - [ ]
+    Presentation editor loads - [ ] Publishing works (if testing publish
+    features)</p>
+    <h3 id="step-5-deploying-to-production">Step 5: Deploying to
+    Production</h3>
+    <div class="sourceCode" id="cb2"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your changes</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit with descriptive message</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Description of what you changed</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">🤖 Generated with [Claude Code](https://claude.ai/code)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">Co-Authored-By: Claude &lt;noreply@anthropic.com&gt;&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Push to production (auto-deploys)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div>
+    <p><strong>What Happens Next:</strong> 1. <strong>Vercel</strong>
+    automatically rebuilds the frontend (2-3 minutes) 2.
+    <strong>Railway</strong> automatically rebuilds the backend (3-5
+    minutes) 3. <strong>Production</strong> uses real services (email,
+    cloud storage)</p>
+    <h2 id="important-differences-between-local-and-production">⚠️
+    Important Differences Between Local and Production</h2>
+    <table>
+    <colgroup>
+    <col style="width: 23%" />
+    <col style="width: 46%" />
+    <col style="width: 30%" />
+    </colgroup>
+    <thead>
+    <tr>
+    <th>Feature</th>
+    <th>Local Development</th>
+    <th>Production</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><strong>User Emails</strong></td>
+    <td>Console logs only</td>
+    <td>Real emails sent via Resend</td>
+    </tr>
+    <tr>
+    <td><strong>File Storage</strong></td>
+    <td><code>backend/uploads/</code> folder</td>
+    <td>Vercel Blob (global CDN)</td>
+    </tr>
+    <tr>
+    <td><strong>Database</strong></td>
+    <td>Local PostgreSQL</td>
+    <td>Railway PostgreSQL</td>
+    </tr>
+    <tr>
+    <td><strong>Asset URLs</strong></td>
+    <td><code>localhost:3001/api/...</code></td>
+    <td><code>https://...vercel-storage.com/...</code></td>
+    </tr>
+    <tr>
+    <td><strong>Google Fonts</strong></td>
+    <td>Mock/demo fonts</td>
+    <td>Real Google Fonts API</td>
+    </tr>
+    <tr>
+    <td><strong>Security</strong></td>
+    <td>Relaxed (development)</td>
+    <td>Strict (production)</td>
+    </tr>
+    <tr>
+    <td><strong>Performance</strong></td>
+    <td>Local speed</td>
+    <td>CDN + optimizations</td>
+    </tr>
+    </tbody>
+    </table>
+    <h2 id="safety-measures">🛡️ Safety Measures</h2>
+    <h3 id="environment-isolation">1. Environment Isolation</h3>
+    <ul>
+    <li><strong>Local changes NEVER affect production
+    database</strong></li>
+    <li><strong>Local emails NEVER sent to real users</strong></li>
+    <li><strong>Local files NEVER uploaded to production
+    storage</strong></li>
+    </ul>
+    <h3 id="automatic-service-detection">2. Automatic Service
+    Detection</h3>
+    <div class="sourceCode" id="cb3"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Backend automatically detects environment</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Environment<span class="op">:</span> development</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>📧 Using MOCK email <span class="fu">service</span> (<span class="bu">console</span> logging)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>📦 Using MOCK blob <span class="fu">storage</span> (local file system)</span></code></pre></div>
+    <h3 id="database-safety">3. Database Safety</h3>
+    <ul>
+    <li>Local database: <code>investorprez</code> on your machine</li>
+    <li>Production database: Completely separate on Railway</li>
+    <li>Zero risk of data contamination</li>
+    </ul>
+    <h2 id="common-development-tasks">🔧 Common Development Tasks</h2>
+    <h3 id="adding-a-new-feature">Adding a New Feature</h3>
+    <ol type="1">
+    <li>Start local environment</li>
+    <li>Create/modify components</li>
+    <li>Test locally (all services are mocked)</li>
+    <li>Commit and push when ready</li>
+    <li>Verify production deployment</li>
+    </ol>
+    <h3 id="fixing-a-bug">Fixing a Bug</h3>
+    <ol type="1">
+    <li>Reproduce bug locally</li>
+    <li>Make the fix</li>
+    <li>Test the fix locally</li>
+    <li>Push to production</li>
+    <li>Verify fix works in production</li>
+    </ol>
+    <h3 id="updating-stylesui">Updating Styles/UI</h3>
+    <ol type="1">
+    <li>Make changes in local environment</li>
+    <li>See changes immediately (hot reload)</li>
+    <li>Test on different screen sizes</li>
+    <li>Push when satisfied</li>
+    </ol>
+    <h3 id="database-changes">Database Changes</h3>
+    <ol type="1">
+    <li>Test locally first (safe local DB)</li>
+    <li>Create migration scripts if needed</li>
+    <li>Test migration locally</li>
+    <li>Deploy (migrations run automatically)</li>
+    </ol>
+    <h2 id="emergency-procedures">🚨 Emergency Procedures</h2>
+    <h3 id="if-something-goes-wrong-in-production">If Something Goes
+    Wrong in Production</h3>
+    <p><strong>Option 1: Quick Fix</strong></p>
+    <div class="sourceCode" id="cb4"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the fix locally</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Hotfix: description of fix&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Wait 2-3 minutes for auto-deployment</span></span></code></pre></div>
+    <p><strong>Option 2: Rollback (Revert)</strong></p>
+    <div class="sourceCode" id="cb5"><pre
+    class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the last good commit</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">-5</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Revert to last good commit</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert HEAD</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div>
+    <p><strong>Option 3: Contact Support</strong> - Vercel dashboard for
+    frontend issues - Railway dashboard for backend issues</p>
+    <h2 id="monitoring-production">📊 Monitoring Production</h2>
+    <h3 id="health-checks">Health Checks</h3>
+    <ul>
+    <li><strong>Frontend</strong>: Visit your live site</li>
+    <li><strong>Backend</strong>: Check Railway logs</li>
+    <li><strong>Database</strong>: Monitor Railway PostgreSQL
+    metrics</li>
+    </ul>
+    <h3 id="logs-and-debugging">Logs and Debugging</h3>
+    <ul>
+    <li><strong>Frontend errors</strong>: Browser console</li>
+    <li><strong>Backend errors</strong>: Railway application logs</li>
+    <li><strong>Database errors</strong>: Railway database logs</li>
+    </ul>
+    <h2 id="pro-tips">💡 Pro Tips</h2>
+    <h3 id="always-test-locally-first">1. Always Test Locally First</h3>
+    <p>Never push directly to production without local testing.</p>
+    <h3 id="use-descriptive-commit-messages">2. Use Descriptive Commit
+    Messages</h3>
+    <p>Good: “Fix image upload CORS issue and add preflight support”
+    Bad: “fix stuff”</p>
+    <h3 id="small-frequent-changes">3. Small, Frequent Changes</h3>
+    <p>Better to make small changes often than large changes rarely.</p>
+    <h3 id="check-both-environments">4. Check Both Environments</h3>
+    <p>Sometimes things work locally but not in production due to
+    environment differences.</p>
+    <h3 id="keep-backups">5. Keep Backups</h3>
+    <p>Your local database can be backed up separately if needed.</p>
+    <h2 id="getting-help">🤝 Getting Help</h2>
+    <h3 id="when-things-dont-work">When Things Don’t Work</h3>
+    <ol type="1">
+    <li>Check the console for error messages</li>
+    <li>Verify environment is running correctly</li>
+    <li>Compare local vs production behavior</li>
+    <li>Check recent changes in git history</li>
+    </ol>
+    <h3 id="common-issues-and-solutions">Common Issues and
+    Solutions</h3>
+    <p><strong>“Images not loading”</strong> - Check CORS headers are
+    correct - Verify backend is running - Check file exists in uploads
+    folder</p>
+    <p><strong>“Emails not working”</strong> - Local: Should only show
+    in console - Production: Check Resend dashboard</p>
+    <p><strong>“Database connection failed”</strong> - Check PostgreSQL
+    is running locally - Verify credentials in <code>.env</code>
+    file</p>
+    <p><strong>“Frontend won’t start”</strong> - Check if another
+    process is using port 5174 - Run <code>npm install</code> to update
+    dependencies</p>
+    <p>This workflow ensures you can develop safely without affecting
+    live users or production data.</p>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

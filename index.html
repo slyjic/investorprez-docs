@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestorPrez Documentation</title>
+    <meta name="description" content="Comprehensive documentation for InvestorPrez platform and GrapesJS Studio SDK integration">
+    
+    <!-- SEO and Social -->
+    <meta property="og:title" content="InvestorPrez Documentation">
+    <meta property="og:description" content="Professional presentation platform documentation and GrapesJS SDK guide">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://investorprez.github.io/investorprez-docs/">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .card a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .card a:hover h3 {
+            color: #5a67d8;
+        }
+        
+        .section {
+            margin: 3rem 0;
+        }
+        
+        .section h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .status-box {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .status-box h3 {
+            color: #00695c;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .info-box {
+            background: #f0f8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .info-box h4 {
+            color: #2b6cb0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        
+        .btn:hover {
+            background: #5a67d8;
+        }
+        
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📚 InvestorPrez Documentation</h1>
+            <p class="tagline">Professional presentation platform documentation and GrapesJS SDK guide</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="status-box">
+            <h3>📊 Project Status</h3>
+            <p><strong>Current Version:</strong> v1.10.57 (User-Generated Symbols Fix)<br>
+            <strong>Documentation Version:</strong> v1.0.0<br>
+            <strong>Last Updated:</strong> 2025-08-12</p>
+            
+            <div class="stats">
+                <span class="stat">📄 101 Automated Tests</span>
+                <span class="stat">🎨 55+ GrapesJS SDK Files</span>
+                <span class="stat">📈 69 Documentation Files</span>
+                <span class="stat">⚡ Fast Loading</span>
+            </div>
+        </div>
+        
+        <section class="section">
+            <h2>🏗️ Architecture</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/architecture/ARCHITECTURE_DECISIONS.html">
+                        <h3>🏛️ Architecture Decisions</h3>
+                        <p>Key architectural decisions and their rationale</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/architecture/DOMAIN_ARCHITECTURE.html">
+                        <h3>🌐 Domain Architecture</h3>
+                        <p>System boundaries and domain modeling</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/architecture/GRAPESJS_RENDERING_ARCHITECTURE.html">
+                        <h3>🎨 Rendering Architecture</h3>
+                        <p>GrapesJS integration and rendering pipeline</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>⚙️ Development</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/development/DEVELOPMENT_WORKFLOW.html">
+                        <h3>🔧 Development Workflow</h3>
+                        <p>Complete development setup and workflow guide</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/development/DOCUMENTATION_UPDATE_PROTOCOL.html">
+                        <h3>📝 Documentation Protocol</h3>
+                        <p>Guidelines for maintaining documentation</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>✨ Features</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/features/AUTHENTICATION_SYSTEM.html">
+                        <h3>🔐 Authentication System</h3>
+                        <p>JWT-based authentication with email verification</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/features/COMMENT_SYSTEM.html">
+                        <h3>💬 Comment System</h3>
+                        <p>Slide-specific commenting with visual pins</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/features/COLLABORATION_SYSTEM_RESEARCH.html">
+                        <h3>🤝 Collaboration System</h3>
+                        <p>Multi-user collaboration and sharing features</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>🧪 Testing & Deployment</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/testing/AUTOMATED_TESTING_GUIDE.html">
+                        <h3>🔬 Testing Guide</h3>
+                        <p>Comprehensive testing procedures and automation</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/testing/TESTING_PROCEDURES.html">
+                        <h3>✅ Testing Procedures</h3>
+                        <p>Manual testing procedures and checklists</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/deployment/DEPLOYMENT_GUIDE.html">
+                        <h3>🚀 Deployment Guide</h3>
+                        <p>Production deployment and infrastructure setup</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>🎨 GrapesJS SDK Reference</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="docs/grapesjs-sdk/">
+                        <h3>📖 Complete SDK Guide</h3>
+                        <p>Full reference for GrapesJS Studio SDK integration with 55+ documented files</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/grapesjs-sdk/GrapesJS_SDK_Docs/01_Overview/Overview_Getting-Started.html">
+                        <h3>🚀 Getting Started</h3>
+                        <p>Quick start guide for GrapesJS SDK integration</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="docs/grapesjs-sdk/GrapesJS_SDK_Docs/05_Plugins/">
+                        <h3>🔌 Plugins</h3>
+                        <p>Rich text editor, data sources, and UI enhancements</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <div class="info-box">
+            <h4>🤖 AI/LLM Usage</h4>
+            <p>This documentation is optimized for AI assistants:</p>
+            <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                <li>✅ <strong>No authentication required</strong></li>
+                <li>✅ <strong>Clean HTML/Markdown structure</strong></li>
+                <li>✅ <strong>Stable permalinks</strong></li>
+                <li>✅ <strong>Fast loading with minimal JavaScript</strong></li>
+                <li>✅ <strong>Comprehensive cross-references</strong></li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="docs/" class="btn">📖 Browse All Documentation</a>
+            <a href="https://app.investorprez.com" class="btn" style="margin-left: 1rem;">🚀 InvestorPrez App</a>
+        </div>
+        
+        <footer>
+            <p>Documentation for InvestorPrez Platform | Built with ❤️ for developers and AI assistants</p>
+            <p><strong>Base URL:</strong> https://investorprez.github.io/investorprez-docs/</p>
+        </footer>
+    </div>
+</body>
+</html>

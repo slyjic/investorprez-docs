@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHITECTURE DECISION - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="architecture-decision-record-decision-title">Architecture
+    Decision Record: [Decision Title]</h1>
+    <p><strong>Date</strong>: [YYYY-MM-DD]<br />
+    <strong>Status</strong>: [Proposed | Accepted | Rejected |
+    Deprecated | Superseded]<br />
+    <strong>Deciders</strong>: [List of people involved in
+    decision]<br />
+    <strong>Technical Story</strong>: [Link to issue/epic if
+    applicable]</p>
+    <h2 id="context-and-problem-statement">Context and Problem
+    Statement</h2>
+    <p>Describe the context and problem statement that led to this
+    decision. Include: - What architectural decision needs to be made? -
+    What is the business or technical context? - What constraints
+    exist?</p>
+    <h3 id="business-context">Business Context</h3>
+    <ul>
+    <li>Business requirements driving this decision</li>
+    <li>User impact considerations</li>
+    <li>Performance requirements</li>
+    <li>Scalability needs</li>
+    </ul>
+    <h3 id="technical-context">Technical Context</h3>
+    <ul>
+    <li>Current system architecture</li>
+    <li>Existing technical constraints</li>
+    <li>Integration requirements</li>
+    <li>Security considerations</li>
+    </ul>
+    <h2 id="decision-drivers">Decision Drivers</h2>
+    <p>List the factors that influence this decision: - Performance
+    requirements - Scalability needs - Maintenance burden - Team
+    expertise - Time constraints - Budget limitations - Security
+    requirements - Compliance needs</p>
+    <h2 id="considered-options">Considered Options</h2>
+    <h3 id="option-1-title">Option 1: [Title]</h3>
+    <p><strong>Description</strong>: Brief description of this
+    option</p>
+    <p><strong>Pros</strong>: - ✅ Advantage 1 - ✅ Advantage 2 - ✅
+    Advantage 3</p>
+    <p><strong>Cons</strong>: - ❌ Disadvantage 1 - ❌ Disadvantage 2 -
+    ❌ Disadvantage 3</p>
+    <p><strong>Implementation Effort</strong>: [High | Medium | Low]
+    <strong>Risk Level</strong>: [High | Medium | Low]</p>
+    <h3 id="option-2-title">Option 2: [Title]</h3>
+    <p><strong>Description</strong>: Brief description of this
+    option</p>
+    <p><strong>Pros</strong>: - ✅ Advantage 1 - ✅ Advantage 2 - ✅
+    Advantage 3</p>
+    <p><strong>Cons</strong>: - ❌ Disadvantage 1 - ❌ Disadvantage 2 -
+    ❌ Disadvantage 3</p>
+    <p><strong>Implementation Effort</strong>: [High | Medium | Low]
+    <strong>Risk Level</strong>: [High | Medium | Low]</p>
+    <h3 id="option-3-title">Option 3: [Title]</h3>
+    <p><strong>Description</strong>: Brief description of this
+    option</p>
+    <p><strong>Pros</strong>: - ✅ Advantage 1 - ✅ Advantage 2 - ✅
+    Advantage 3</p>
+    <p><strong>Cons</strong>: - ❌ Disadvantage 1 - ❌ Disadvantage 2 -
+    ❌ Disadvantage 3</p>
+    <p><strong>Implementation Effort</strong>: [High | Medium | Low]
+    <strong>Risk Level</strong>: [High | Medium | Low]</p>
+    <h2 id="decision-outcome">Decision Outcome</h2>
+    <p><strong>Chosen Option</strong>: Option [X] - [Title]</p>
+    <p><strong>Justification</strong>: Explain why this option was
+    chosen over the others: - Key deciding factors - Trade-offs accepted
+    - Risk mitigation strategies - Long-term considerations</p>
+    <h3 id="expected-benefits">Expected Benefits</h3>
+    <ul>
+    <li>Benefit 1: Quantified if possible</li>
+    <li>Benefit 2: Quantified if possible</li>
+    <li>Benefit 3: Quantified if possible</li>
+    </ul>
+    <h3 id="accepted-trade-offs">Accepted Trade-offs</h3>
+    <ul>
+    <li>Trade-off 1: What we’re giving up and why it’s acceptable</li>
+    <li>Trade-off 2: What we’re giving up and why it’s acceptable</li>
+    <li>Trade-off 3: What we’re giving up and why it’s acceptable</li>
+    </ul>
+    <h2 id="implementation-plan">Implementation Plan</h2>
+    <h3 id="phase-1-title-timeline-duration">Phase 1: [Title] (Timeline:
+    [Duration])</h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Task 1</label></li>
+    <li><label><input type="checkbox" />Task 2</label></li>
+    <li><label><input type="checkbox" />Task 3</label></li>
+    </ul>
+    <h3 id="phase-2-title-timeline-duration">Phase 2: [Title] (Timeline:
+    [Duration])</h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Task 1</label></li>
+    <li><label><input type="checkbox" />Task 2</label></li>
+    <li><label><input type="checkbox" />Task 3</label></li>
+    </ul>
+    <h3 id="phase-3-title-timeline-duration">Phase 3: [Title] (Timeline:
+    [Duration])</h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Task 1</label></li>
+    <li><label><input type="checkbox" />Task 2</label></li>
+    <li><label><input type="checkbox" />Task 3</label></li>
+    </ul>
+    <h2 id="technical-implementation">Technical Implementation</h2>
+    <h3 id="architecture-diagram">Architecture Diagram</h3>
+    <pre><code>[Include ASCII diagram or reference to diagram file]
+   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+   │  Component  │───▶│  Service    │───▶│  Database   │
+   │     A       │    │     B       │    │     C       │
+   └─────────────┘    └─────────────┘    └─────────────┘</code></pre>
+    <h3 id="key-components">Key Components</h3>
+    <ul>
+    <li><strong>Component A</strong>: Description and
+    responsibilities</li>
+    <li><strong>Component B</strong>: Description and
+    responsibilities<br />
+    </li>
+    <li><strong>Component C</strong>: Description and
+    responsibilities</li>
+    </ul>
+    <h3 id="data-flow">Data Flow</h3>
+    <ol type="1">
+    <li>Step 1: Data enters the system</li>
+    <li>Step 2: Processing occurs</li>
+    <li>Step 3: Data is stored/returned</li>
+    </ol>
+    <h3 id="api-changes">API Changes</h3>
+    <ul>
+    <li>New endpoints required</li>
+    <li>Modified endpoints</li>
+    <li>Deprecated endpoints</li>
+    </ul>
+    <h3 id="database-changes">Database Changes</h3>
+    <div class="sourceCode" id="cb2"><pre
+    class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Example schema changes</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> new_table (</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> UUID <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    created_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> NOW()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+    <h2 id="risks-and-mitigation">Risks and Mitigation</h2>
+    <h3 id="high-risk-items">High-Risk Items</h3>
+    <ol type="1">
+    <li><strong>Risk</strong>: Description of risk
+    <ul>
+    <li><strong>Probability</strong>: [High | Medium | Low]</li>
+    <li><strong>Impact</strong>: [High | Medium | Low]<br />
+    </li>
+    <li><strong>Mitigation</strong>: How to reduce or handle this
+    risk</li>
+    </ul></li>
+    <li><strong>Risk</strong>: Description of risk
+    <ul>
+    <li><strong>Probability</strong>: [High | Medium | Low]</li>
+    <li><strong>Impact</strong>: [High | Medium | Low]</li>
+    <li><strong>Mitigation</strong>: How to reduce or handle this
+    risk</li>
+    </ul></li>
+    </ol>
+    <h3 id="medium-risk-items">Medium-Risk Items</h3>
+    <ol type="1">
+    <li><strong>Risk</strong>: Description of risk
+    <ul>
+    <li><strong>Mitigation</strong>: How to handle this risk</li>
+    </ul></li>
+    </ol>
+    <h3 id="monitoring-and-success-metrics">Monitoring and Success
+    Metrics</h3>
+    <ul>
+    <li>Metric 1: How to measure success</li>
+    <li>Metric 2: Performance indicators</li>
+    <li>Metric 3: Business outcomes</li>
+    </ul>
+    <h2 id="testing-strategy">Testing Strategy</h2>
+    <h3 id="unit-testing">Unit Testing</h3>
+    <ul>
+    <li>Components to be unit tested</li>
+    <li>Testing frameworks/tools to use</li>
+    <li>Coverage targets</li>
+    </ul>
+    <h3 id="integration-testing">Integration Testing</h3>
+    <ul>
+    <li>Integration points to test</li>
+    <li>Test scenarios</li>
+    <li>Test environments</li>
+    </ul>
+    <h3 id="performance-testing">Performance Testing</h3>
+    <ul>
+    <li>Load testing requirements</li>
+    <li>Performance benchmarks</li>
+    <li>Stress testing scenarios</li>
+    </ul>
+    <h3 id="security-testing">Security Testing</h3>
+    <ul>
+    <li>Security review checklist</li>
+    <li>Penetration testing needs</li>
+    <li>Compliance verification</li>
+    </ul>
+    <h2 id="documentation-requirements">Documentation Requirements</h2>
+    <h3 id="user-documentation">User Documentation</h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />User guides to
+    update</label></li>
+    <li><label><input type="checkbox" />API documentation
+    changes</label></li>
+    <li><label><input type="checkbox" />Training materials
+    needed</label></li>
+    </ul>
+    <h3 id="technical-documentation">Technical Documentation</h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Architecture documentation
+    updates</label></li>
+    <li><label><input type="checkbox" />Code documentation
+    requirements</label></li>
+    <li><label><input type="checkbox" />Operational
+    procedures</label></li>
+    </ul>
+    <h3 id="communication-plan">Communication Plan</h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Stakeholder
+    notification</label></li>
+    <li><label><input type="checkbox" />Team training
+    sessions</label></li>
+    <li><label><input type="checkbox" />Change management
+    process</label></li>
+    </ul>
+    <h2 id="timeline-and-milestones">Timeline and Milestones</h2>
+    <table>
+    <thead>
+    <tr>
+    <th>Milestone</th>
+    <th>Target Date</th>
+    <th>Dependencies</th>
+    <th>Deliverables</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>Phase 1 Complete</td>
+    <td>2025-XX-XX</td>
+    <td>Dependencies</td>
+    <td>List of deliverables</td>
+    </tr>
+    <tr>
+    <td>Phase 2 Complete</td>
+    <td>2025-XX-XX</td>
+    <td>Dependencies</td>
+    <td>List of deliverables</td>
+    </tr>
+    <tr>
+    <td>Phase 3 Complete</td>
+    <td>2025-XX-XX</td>
+    <td>Dependencies</td>
+    <td>List of deliverables</td>
+    </tr>
+    <tr>
+    <td>Full Implementation</td>
+    <td>2025-XX-XX</td>
+    <td>All phases</td>
+    <td>Complete solution</td>
+    </tr>
+    </tbody>
+    </table>
+    <h2 id="success-criteria">Success Criteria</h2>
+    <h3 id="technical-success-criteria">Technical Success Criteria</h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />Performance meets requirements
+    (specify metrics)</label></li>
+    <li><label><input type="checkbox" />Security requirements
+    satisfied</label></li>
+    <li><label><input type="checkbox" />Scalability targets
+    achieved</label></li>
+    <li><label><input type="checkbox" />Integration tests
+    pass</label></li>
+    <li><label><input type="checkbox" />Code coverage above
+    X%</label></li>
+    </ul>
+    <h3 id="business-success-criteria">Business Success Criteria</h3>
+    <ul class="task-list">
+    <li><label><input type="checkbox" />User satisfaction
+    metrics</label></li>
+    <li><label><input type="checkbox" />Business KPIs
+    improved</label></li>
+    <li><label><input type="checkbox" />Cost targets met</label></li>
+    <li><label><input type="checkbox" />Timeline objectives
+    achieved</label></li>
+    </ul>
+    <h2 id="rollback-plan">Rollback Plan</h2>
+    <h3 id="rollback-triggers">Rollback Triggers</h3>
+    <ul>
+    <li>Performance degrades below threshold</li>
+    <li>Critical bugs discovered</li>
+    <li>User satisfaction drops significantly</li>
+    <li>Security vulnerabilities identified</li>
+    </ul>
+    <h3 id="rollback-procedure">Rollback Procedure</h3>
+    <ol type="1">
+    <li>Step 1: Immediate actions</li>
+    <li>Step 2: Data migration back</li>
+    <li>Step 3: Code rollback</li>
+    <li>Step 4: Communication</li>
+    <li>Step 5: Post-rollback analysis</li>
+    </ol>
+    <h3 id="recovery-time-objective">Recovery Time Objective</h3>
+    <ul>
+    <li>Target time to rollback: [X] hours</li>
+    <li>Maximum acceptable downtime: [X] hours</li>
+    </ul>
+    <h2 id="related-decisions">Related Decisions</h2>
+    <h3 id="previous-decisions">Previous Decisions</h3>
+    <ul>
+    <li>ADR-001: Related decision that influences this one</li>
+    <li>ADR-002: Another related decision</li>
+    </ul>
+    <h3 id="future-decisions">Future Decisions</h3>
+    <ul>
+    <li>Decisions that this ADR might influence</li>
+    <li>Areas that will need future architecture decisions</li>
+    </ul>
+    <h2 id="references">References</h2>
+    <ul>
+    <li>[External documentation or resources]</li>
+    <li>[Research papers or articles]</li>
+    <li>[Community discussions or forums]</li>
+    <li>[Vendor documentation]</li>
+    </ul>
+    <h2 id="notes">Notes</h2>
+    <ul>
+    <li>Meeting notes from decision discussion</li>
+    <li>Additional context or considerations</li>
+    <li>Lessons learned from similar decisions</li>
+    <li>Links to prototypes or proof of concepts</li>
+    </ul>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

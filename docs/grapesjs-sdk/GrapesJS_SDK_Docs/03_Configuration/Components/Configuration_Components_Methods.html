@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration Components
+Methods - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="component-methods">Component Methods</h1>
+    <p><em>Last Updated: August 12, 2025</em> <em>Status: Current -
+    GrapesJS SDK Reference Documentation</em></p>
+    <p>When you add a component to the document, you create a Component
+    Model instance. The model stores the component’s properties, which
+    are saved in the project JSON and used to generate the final export
+    code.</p>
+    <p>Alongside the model, a Component View instance controls how the
+    component appears in the canvas. By default, it renders based on the
+    model’s structure (eg. tagName, attributes, nested components), but
+    you can customize its behavior as needed.</p>
+    <p>This page covers the methods available in both instances, helping
+    you manipulate and extend components effectively.</p>
+    <h3 id="table-of-contents">Table of Contents</h3>
+    <ul>
+    <li>Component Model</li>
+    <li>Component View</li>
+    </ul>
+    <h2 id="component-model">Component Model</h2>
+    <p>The Component Model instance stores the component’s properties
+    and persists them in the project. It provides methods to access and
+    update properties, manage child components, and define how the
+    component is exported.</p>
+    <p>It’s also possible to extend the model, which allows you to
+    provide custom logic and behavior.</p>
+    <h3 id="creating-model">Creating Model</h3>
+    <p>You can create new Component Models via Component Definitions or
+    HTML strings.</p>
+    <pre><code>            const rootComponentModel = editor.getWrapper();
+            const addedComponentModels = rootComponentModel.append(`
+            &lt;div&gt;Div content&lt;/div&gt;
+            &lt;span&gt;Span content&lt;/span&gt;
+            `);
+            //
+            const divComponentModel = addedComponentModels[0];
+            const spanComponentModel = addedComponentModels[1];</code></pre>
+    <p>Since we didn’t define custom component types, these models use
+    default configurations.</p>
+    <h2 id="accessing-and-updating-model">Accessing and Updating
+    Model</h2>
+    <p>The Component Model provides various methods that allows you to
+    access and update the component’s properties and their children
+    programmatically.</p>
+    <pre><code>            // Access the properties
+            const allProperties = componentModel.props();
+            const cmpRemovable = componentModel.get(&#39;removable&#39;);
+
+            // Update the properties
+            componentModel.set({ removable: false });
+
+            // Get component attributes (exported as HTML attributes)
+            const attrs = componentModel.getAttributes();
+
+            if (!attrs.title) {
+            componentModel.addAttributes({ title: &#39;New title&#39; });
+            }
+
+            // Access child components
+            const children = componentModel.components();
+            children.forEach((childModel) =&gt; console.log(childModel.get(&#39;tagName&#39;)));
+
+            // Replace children (HTML or Component Definition)
+            const newComponents = componentModel.components(`&lt;div&gt;Content 1&lt;/div&gt;&lt;div&gt;Content 2&lt;/div&gt;`);
+
+            // Remove component
+            componentModel.remove();
+
+            // Find inner components by type
+            const firstComponentFromFind = componentModel.findType(&#39;image&#39;)[0];
+
+            // Get parent component
+            const parentComponent = componentModel.parent();
+
+            // Closest parent component by type
+            const closestComponent = componentModel.closestType(&#39;some-parent-type&#39;);
+
+            // Get export code
+            const componentHTML = componentModel.toHTML();
+
+            // Get component definition as JSON
+            const componentJSON = JSON.parse(JSON.stringify(componentModel));</code></pre>
+    <h2 id="extending-models">Extending Models</h2>
+    <p>To extend the Component Model, you have to define custom
+    component types using the editor.Components.addType method. This
+    allows you to create new component types, update or extend existing
+    ones.</p>
+    <p>In the demo below, we’ll define two components:</p>
+    <ul>
+    <li><p>component-a: Implements a custom export method (toHTML) to
+    change its generated output.</p></li>
+    <li><p>component-b: Extends component-a, adding further
+    customizations to the export method.</p>
+    <pre><code>          import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+          import &#39;@grapesjs/studio-sdk/style&#39;;
+
+          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              plugins: [
+              editor =&gt; {
+                  // Create new component type
+                  editor.Components.addType(&#39;component-a&#39;, {
+                  isComponent: el =&gt; el.classList?.contains(&#39;cmp-a&#39;),
+                  model: {
+                      defaults: {
+                      attributes: { title: &#39;Title Component&#39; }
+                      },
+
+                      init() {
+                      console.log(&#39;Component A init&#39;);
+                      },
+
+                      // Update the export code
+                      toHTML() {
+                      return `&lt;custom-component-a&gt;
+                          &lt;div&gt;Model tagName: ${this.get(&#39;tagName&#39;)}&lt;/div&gt;
+                          &lt;div&gt;Model attributes: ${JSON.stringify(this.getAttributes())}&lt;/div&gt;
+                          ${this.getInnerHTML()}
+                      &lt;/custom-component-a&gt;`;
+                      }
+                  },
+                  });
+
+                  // Update component type
+                  editor.Components.addType(&#39;component-a&#39;, {
+                  model: {
+                      defaults: {
+                      attributes: { title: &#39;Title Component A&#39; }
+                      }
+                  }
+                  });
+
+                  // Extend component type
+                  const ComponentA = editor.Components.getType(&#39;component-a&#39;).model;
+
+                  editor.Components.addType(&#39;component-b&#39;, {
+                  isComponent: el =&gt; el.classList?.contains(&#39;cmp-b&#39;),
+                  // Indicate the type to extend
+                  extend: &#39;component-a&#39;,
+                  // Array of model methods to extend from &#39;component-a&#39;
+                  extendFn: [&#39;init&#39;],
+                  model: {
+                      defaults: {
+                      attributes: { title: &#39;Title Component B&#39; }
+                      },
+
+                      init() {
+                      // With defined &#39;extendFn&#39;, also the init method from &#39;component-a&#39; will be called
+                      console.log(&#39;Component B init&#39;);
+                      },
+
+                      toHTML() {
+                      const resultCmpA = ComponentA.prototype.toHTML.apply(this);
+                      return `&lt;custom-component-b&gt;${resultCmpA}&lt;/custom-component-b&gt;`;
+                      }
+                  },
+                  });
+              }
+              ],
+              project: {
+              default: {
+                  pages: [{
+                  name: &#39;Home&#39;,
+                  component: `
+                      &lt;section class=&quot;cmp-a&quot;&gt;
+                      &lt;div&gt;Content Component A&lt;/div&gt;
+                      &lt;/section&gt;
+                      &lt;hr/&gt;
+                      &lt;div class=&quot;cmp-b&quot;&gt;
+                      &lt;div&gt;Content Component B&lt;/div&gt;
+                      &lt;/div&gt;
+                  `
+                  }]
+              }
+              },
+              // Custom editor layout for demo purpose
+              layout: {/**/}
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <p>In the next example, we’ll define a few component types and
+    demonstrate how they interact using custom methods.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                plugins: [
+                editor =&gt; {
+                    // Create a component type for sections
+                    editor.Components.addType(&#39;section-component&#39;, {
+                    isComponent: el =&gt; el.tagName === &#39;SECTION&#39;,
+                    model: {
+                        defaults: {
+                        style: { padding: &#39;30px&#39;, display: &#39;flex&#39;, gap: &#39;25px&#39;, &#39;background-color&#39;: &#39;lightgray&#39; },
+                        traits: [{
+                            type: &#39;button&#39;,
+                            label: &#39;Add new card&#39;,
+                            command: (editor, trait) =&gt; trait.component.addNewCard(),
+                        }]
+                        },
+
+                        addNewCard() {
+                        this.append({
+                            type: &#39;card-component&#39;,
+                            cardTitle: &#39;New card&#39;
+                        });
+                        },
+                    },
+                    });
+
+                    // Create a component type for cards
+                    editor.Components.addType(&#39;card-component&#39;, {
+                    isComponent: el =&gt; el.classList?.contains(&#39;card&#39;),
+                    model: {
+                        defaults: {
+                        style: { padding: &#39;10px&#39;, &#39;border-radius&#39;: &#39;10px&#39;, &#39;background-color&#39;: &#39;white&#39;, width: &#39;25%&#39; },
+                        cardTitle: &#39;Card title&#39;,
+                        components: (model) =&gt; `
+                            &lt;h2&gt;${model.get(&#39;cardTitle&#39;)}&lt;/h2&gt;
+                            &lt;img style=&quot;width: 100%; height: 100px; object-fit: cover;&quot; src=&quot;https://picsum.photos/seed/card-image/100/100&quot;/&gt;
+                            &lt;p&gt;Card content&lt;/p&gt;
+                        `,
+                        traits: [{
+                            type: &#39;text&#39;,
+                            name: &#39;cardTitle&#39;,
+                            changeProp: true, // Update properties, not attributes
+                        }]
+                        },
+
+                        init() {
+                        this.on(&#39;change:cardTitle&#39;, this.handleCardTitleChange);
+                        },
+
+                        handleCardTitleChange() {
+                        // Update the content of the &lt;h2&gt; tag
+                        const h2CmpModel = this.components().find(c =&gt; c.get(&#39;tagName&#39;) === &#39;h2&#39;);
+                        h2CmpModel.components(&#39;Updated: &#39; + this.get(&#39;cardTitle&#39;));
+                        }
+                    },
+                    });
+
+                    editor.onReady(() =&gt; {
+                    const cmpSection = editor.getWrapper().findType(&#39;section-component&#39;)[0];
+                    editor.select(cmpSection);
+                    });
+                }
+                ],
+                project: {
+                default: {
+                    pages: [{
+                    name: &#39;Home&#39;,
+                    component: &#39;&lt;section&gt;&lt;div class=&quot;card&quot;&gt;&lt;/div&gt;&lt;/section&gt;&#39;
+                    }]
+                }
+                },
+                // Custom editor layout for demo purpose
+                layout: {/**/}
+            }}
+            /&gt;</code></pre>
+    <h2 id="lifecycle-methods-and-events">Lifecycle Methods and
+    Events</h2>
+    <p>The model offers methods and events to track changes and execute
+    custom logic throughout the component’s lifecycle.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                plugins: [
+                editor =&gt; {
+                    editor.Components.addType(&#39;my-custom-component&#39;, {
+                    model: {
+                        defaults: {
+                        customProp: &#39;Initial value&#39;,
+                        attributes: { title: &#39;HTML title&#39; },
+                        components: &#39;Some content&#39;,
+                        traits: [
+                            { name: &#39;customProp&#39;, changeProp: true },
+                            { name: &#39;title&#39; },
+                        ]
+                        },
+
+                        init() {
+                        console.log(&#39;Component model created&#39;);
+                        // Listen to property changes
+                        this.on(&#39;change:customProp&#39;, this.handlePropChange);
+                        // Listen to attribute changes
+                        this.on(&#39;change:attributes&#39;, this.handleAttrChange);
+                        // Listen to the title attribute change
+                        this.on(&#39;change:attributes:title&#39;, this.handleTitleChange);
+                        },
+
+                        removed() {
+                        console.log(&#39;Component removed&#39;);
+                        },
+
+                        handlePropChange() {
+                        console.log(&#39;New customProp value:&#39;, this.get(&#39;customProp&#39;));
+                        },
+
+                        handleAttrChange() {
+                        console.log(&#39;Attributes updated:&#39;, this.getAttributes());
+                        },
+
+                        handleTitleChange() {
+                        console.log(&#39;Attribute title updated:&#39;, this.getAttributes().title);
+                        },
+                    },
+                    });
+                }
+                ],
+                project: {
+                default: {
+                    pages: [{
+                    name: &#39;Home&#39;,
+                    component: &#39;&lt;div data-gjs-type=&quot;my-custom-component&quot;&gt;&lt;/div&gt;&#39;
+                    }]
+                }
+                },
+                // Custom editor layout for demo purpose
+                layout: {/**/}
+            }}
+            /&gt;</code></pre>
+    <h2 id="component-view">Component View</h2>
+    <p>The Component View controls how a component appears and behaves
+    in the editor canvas. By default, it reflects the Component Model
+    properties (tagName, attributes, nested components, etc.), but you
+    can extend it to improve editing, handle special DOM behaviors, or
+    add custom interactions.</p>
+    <p>For example, the text component includes a Rich Text Editor for
+    inline editing, while the image component opens the asset manager on
+    double-click. Custom views let you add UI elements, event listeners,
+    or dynamic content—all without affecting the final exported
+    code.</p>
+    <h3 id="customizing-view">Customizing View</h3>
+    <p>A Component View instance is created alongside the Component
+    Model when the component is rendered in the editor canvas.</p>
+    <p>In the demo below, you’ll find an example of a fully customized
+    view leveraging built-in and custom methods, along with DOM event
+    listeners and model change listeners.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                plugins: [
+                editor =&gt; {
+                    editor.Components.addType(&#39;custom-view&#39;, {
+                    model: {
+                        defaults: {
+                        tagName: &#39;section&#39;,
+                        droppable: false,
+                        attributes: { title: &#39;Section title&#39; },
+                        components: &#39;&lt;div&gt;Content from model&lt;/div&gt;&#39;,
+                        traits: [{
+                            name: &#39;title&#39;,
+                            label: &#39;Update title&#39;
+                        }]
+                        }
+                    },
+                    view: {
+                        // Use custom tagName, which overrides the one provided by the model
+                        tagName: &#39;div&#39;,
+
+                        // Add DOM event listeners
+                        events: () =&gt; ({
+                        dblclick: &#39;onActive&#39;,
+                        // Add event listeners to inner elements
+                        &#39;click img&#39;: &#39;changeWithRandomImage&#39;
+                        }),
+
+                        // Called once the Component View instance is created
+                        init() {
+                        // Listen to model events
+                        this.listenTo(this.model, &#39;change:attributes:title&#39;, this.updateImageWithTitle);
+                        },
+
+                        // Called on component attributes update (eg. new attribute added from the model)
+                        onAttrUpdate() {
+                        this.el.style.cssText = &#39;border: 5px solid #8b5cf6;&#39;;
+                        },
+
+                        // Called when the element is rendered.
+                        onRender() {
+                        const { el } = this;
+                        const imageStyle = &#39;display: block; margin: 0 auto; width: 150px; height: 150px; cursor: help;&#39;;
+                        el.innerHTML = `
+                            &lt;ul&gt;
+                            &lt;li&gt;Double-click anywhere on the element to open the Asset Manager&lt;/li&gt;
+                            &lt;li&gt;Click on the image to change it with a random one&lt;/li&gt;
+                            &lt;li&gt;Update the image by changing the component title&lt;/li&gt;
+                            &lt;/ul&gt;
+                            &lt;img style=&quot;${imageStyle}&quot; src=&quot;${this.getImageWithTitle()}&quot; /&gt;
+                        `;
+                        },
+
+                        // Called when the element is removed from the canvas.
+                        // Useful to cleanup global event listeners or other resources.
+                        removed() {
+                        console.log(&#39;Element removed&#39;);
+                        },
+
+                        onActive() {
+                        editor.Assets.open({
+                            select: asset =&gt; {
+                            const imageEl = this.el.querySelector(&#39;img&#39;);
+                            imageEl?.setAttribute(&#39;src&#39;, asset.getSrc());
+                            }
+                        });
+                        },
+
+                        changeWithRandomImage() {
+                        const imageEl = this.el.querySelector(&#39;img&#39;);
+                        const randomImage = `https://picsum.photos/seed/random-${Math.random()}/150`;
+                        imageEl?.setAttribute(&#39;src&#39;, randomImage);
+                        },
+
+                        updateImageWithTitle() {
+                        const imageEl = this.el.querySelector(&#39;img&#39;);
+                        imageEl?.setAttribute(&#39;src&#39;, this.getImageWithTitle());
+                        },
+
+                        getImageWithTitle() {
+                        const modelAttrs = this.model.getAttributes();
+                        return `https://placehold.co/150/777/white.png?text=${modelAttrs.title}`;
+                        }
+                    }
+                    });
+                }
+                ],
+                project: {
+                default: {
+                    assets: Array(100).fill(0).map((_, i) =&gt; `https://picsum.photos/seed/${i}/200/200`),
+                    pages: [{
+                    name: &#39;Home&#39;,
+                    component: &#39;&lt;div data-gjs-type=&quot;custom-view&quot;&gt;&lt;/div&gt;&#39;
+                    }]
+                }
+                },
+                // Custom editor layout for demo purpose
+                layout: {/**/}
+            }}
+            /&gt;</code></pre>
+    <p>The key aspect of the Component View is that it controls how the
+    component behaves inside the editor canvas but doesn’t affect the
+    final exported code. You can add UI elements, event listeners, or
+    dynamic content without modifying the HTML output.</p>
+    <h3 id="extending-views">Extending Views</h3>
+    <p>Just like the Component Model, you can extend the Component View
+    of existing components to customize or extend their behavior.</p>
+    <p>In the demo below, we define and extend multiple components to
+    demonstrate how to customize the rendering loigc:</p>
+    <ul>
+    <li><p>component-a: Defines a base component with a default
+    structure, styling logic, and custom rendering behavior.</p></li>
+    <li><p>component-b: Extends component-a, overriding its styling and
+    custom content method.</p></li>
+    <li><p>component-c: Extends the model of component-a and the view of
+    component-b, inheriting and modifying its rendering behavior.</p>
+    <pre><code>          import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+          import &#39;@grapesjs/studio-sdk/style&#39;;
+
+          // ...
+          &lt;StudioEditor
+          options={{
+              // ...
+              plugins: [
+              editor =&gt; {
+                  editor.Components.addType(&#39;component-a&#39;, {
+                  model: {
+                      defaults: {
+                      droppable: false,
+                      components: &#39;&lt;div&gt;Content from model&lt;/div&gt;&#39;,
+                      }
+                  },
+                  view: {
+                      getColor: () =&gt; &#39;#8b5cf6&#39;,
+
+                      getCustomContent: () =&gt; &#39;Default custom content&#39;,
+
+                      onAttrUpdate() {
+                      this.el.style.cssText = `border: 5px solid ${this.getColor()}`;
+                      },
+
+                      onRender() {
+                      if (!this.el.querySelector(&#39;.cmp-a&#39;))  {
+                          this.el.insertAdjacentHTML(&#39;afterbegin&#39;, `
+                          &lt;div class=&quot;cmp-a&quot; style=&quot;background-color: ${this.getColor()}; margin: 10px; padding: 10px; color: white;&quot;&gt;
+                              ${this.getCustomContent()}
+                          &lt;/div&gt;
+                          `);
+                      }
+                      },
+                  }
+                  });
+
+                  // Update component view
+                  editor.Components.addType(&#39;component-a&#39;, {
+                  view: {
+                      getCustomContent: () =&gt; &#39;Custom content A&#39;,
+                  }
+                  });
+
+                  // Extend component view (without extending the model)
+                  editor.Components.addType(&#39;component-b&#39;, {
+                  // Indicate the view type to extend
+                  extendView: &#39;component-a&#39;,
+                  view: {
+                      getColor: () =&gt; &#39;#ef5cf6&#39;,
+                      getCustomContent: () =&gt; &#39;Custom content B&#39;,
+                  }
+                  });
+
+                  // Extend component view
+                  const ComponentViewB = editor.Components.getType(&#39;component-b&#39;).view;
+
+                  editor.Components.addType(&#39;component-c&#39;, {
+                  extendView: &#39;component-b&#39;,
+                  // Array of view methods to extend from &#39;component-b&#39;
+                  extendFnView: [&#39;onRender&#39;],
+                  // Extend the model of &#39;component-a&#39;
+                  extend: &#39;component-a&#39;,
+                  view: {
+                      getColor: () =&gt; &#39;#f6845c&#39;,
+
+                      getCustomContent() {
+                      const resultB = ComponentViewB.prototype.getCustomContent.apply(this);
+                      return resultB + &#39; + C&#39;;
+                      },
+
+                      onRender() {
+                      if (!this.el.querySelector(&#39;.cmp-c&#39;))  {
+                          this.el.insertAdjacentHTML(&#39;afterbegin&#39;, `
+                          &lt;div class=&quot;cmp-c&quot; style=&quot;background-color: ${this.getColor()}; margin: 10px; padding: 10px; color: white;&quot;&gt;
+                              Custom content C
+                          &lt;/div&gt;
+                          `);
+                      }
+                      },
+                  }
+                  });
+              }
+              ],
+              project: {
+              default: {
+                  assets: Array(100).fill(0).map((_, i) =&gt; `https://picsum.photos/seed/${i}/200/200`),
+                  pages: [{
+                  name: &#39;Home&#39;,
+                  component: `&lt;div style=&quot;display: flex; padding: 10px; gap: 10px&quot;&gt;
+                      &lt;div data-gjs-type=&quot;component-a&quot;&gt;&lt;/div&gt;
+                      &lt;div data-gjs-type=&quot;component-b&quot;&gt;&lt;/div&gt;
+                      &lt;div data-gjs-type=&quot;component-c&quot;&gt;&lt;/div&gt;
+                  &lt;/div&gt;`
+                  }]
+              }
+              },
+              // Custom editor layout for demo purpose
+              layout: {/**/}
+          }}
+          /&gt;</code></pre></li>
+    </ul>
+    <h3 id="model-and-view-interaction">Model and View Interaction</h3>
+    <p>The Component View can interact with the Component Model,
+    enabling you to update properties, attributes, or child components
+    directly from the view. This is useful when you need to modify the
+    model (and, consequently, the export code) based on user
+    interactions in the canvas.</p>
+    <pre><code>            import StudioEditor from &#39;@grapesjs/studio-sdk/react&#39;;
+            import &#39;@grapesjs/studio-sdk/style&#39;;
+
+            // ...
+            &lt;StudioEditor
+            options={{
+                // ...
+                plugins: [
+                editor =&gt; {
+                    editor.Components.addType(&#39;cmp-with-data&#39;, {
+                    model: {
+                        defaults: {
+                        components: `
+                            &lt;h2 style=&quot;text-align: center&quot;&gt;Random products&lt;/h2&gt;
+                            &lt;div style=&quot;display: flex; gap: 10px;&quot; data-products=&quot;true&quot;&gt;&lt;/div&gt;
+                        `,
+                        },
+
+                        init() {
+                        this.fetchProducts();
+                        },
+
+                        getProductsContainer() {
+                        return this.components().find(child =&gt; child.getAttributes()[&#39;data-products&#39;]);
+                        },
+
+                        async fetchProducts() {
+                        const result = await fetch(&#39;https://dummyjson.com/products&#39;);
+                        const productsRes = await result.json();
+                        const shuffled = productsRes.products.sort(() =&gt; 0.5 - Math.random());
+                        const firstProducts = shuffled.slice(0, 4);
+                        const container = this.getProductsContainer();
+                        container.components(&#39;&#39;); // cleanup container
+
+                        firstProducts.forEach(product =&gt; {
+                            container.append(`
+                            &lt;article style=&quot;width: 25%; display: flex; flex-direction: column; justify-content: space-between;&quot;&gt;
+                                &lt;h1&gt;${product.title}&lt;/h1&gt;
+                                &lt;img style=&quot;width: 100%; height: 100px; object-fit: cover;&quot; src=&quot;${product.thumbnail}&quot;/&gt;
+                                &lt;p&gt;${product.description}&lt;/p&gt;
+                                &lt;h3&gt;Price: $${product.price}&lt;/h3&gt;
+                            &lt;/article&gt;
+                            `);
+                        });
+                        }
+                    },
+                    view: {
+                        events: {
+                        &#39;click .load-products&#39;: &#39;fetchNewProducts&#39;,
+                        },
+
+                        fetchNewProducts() {
+                        // Get the view element from an inner component
+                        const container = this.model.getProductsContainer();
+                        const containerEl = container.getView().el;
+                        containerEl.innerHTML = &#39;&lt;h2&gt;Loading...&lt;/h2&gt;&#39;;
+                        this.model.fetchProducts();
+                        },
+
+                        onRender() {
+                        if (!this.el.querySelector(&#39;.load-products&#39;))  {
+                            this.el.insertAdjacentHTML(&#39;afterbegin&#39;, `
+                            &lt;button class=&quot;load-products&quot; style=&quot;background-color: #8b5cf6; color: white; margin: 10px 0; padding: 10px; border: none; cursor: pointer&quot;&gt;
+                                Load New Products
+                            &lt;/button&gt;
+                            `);
+                        }
+                        },
+                    }
+                    });
+                }
+                ],
+                project: {
+                default: {
+                    pages: [{
+                    name: &#39;Home&#39;,
+                    component: `&lt;div data-gjs-type=&quot;cmp-with-data&quot;&gt;&lt;/div&gt;`
+                    }]
+                }
+                },
+                // Custom editor layout for demo purpose
+                layout: {/**/}
+            }}
+            /&gt;</code></pre>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>

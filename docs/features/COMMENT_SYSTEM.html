@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMMENT SYSTEM - InvestorPrez Documentation</title>
+    <meta name="description" content="InvestorPrez documentation">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .nav-bar {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0;
+        }
+        
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2d3748;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        pre {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <a href="../../../">🏠 Home</a>
+        <a href="../../">📚 Documentation</a>
+        <a href="https://app.investorprez.com">🚀 InvestorPrez App</a>
+    </div>
+    
+    <h1 id="comment-system">Comment System</h1>
+    <p><em>Last Updated: July 29, 2025</em><br />
+    <em>Status: Active - v1.8.0</em><br />
+    <em>Feature Type: Core Platform Feature</em></p>
+    <h2 id="overview">Overview</h2>
+    <p>The InvestorPrez Comment System provides a comprehensive visual
+    feedback platform for published presentations, enabling stakeholders
+    to leave precise, slide-specific comments with visual positioning,
+    threaded discussions, and workflow management.</p>
+    <h2 id="key-features">Key Features</h2>
+    <h3 id="visual-comment-positioning">🎯 Visual Comment
+    Positioning</h3>
+    <ul>
+    <li><strong>Slide-Specific Comments</strong>: Comments tied to
+    specific slides with precise X/Y coordinates</li>
+    <li><strong>Visual Comment Pins</strong>: Interactive markers that
+    appear on presentation slides</li>
+    <li><strong>Double-Click Interface</strong>: Intuitive comment
+    creation by double-clicking anywhere on slides</li>
+    <li><strong>Real-Time Positioning</strong>: Accurate visual feedback
+    and pin placement</li>
+    </ul>
+    <h3 id="comment-functionality">💬 Comment Functionality</h3>
+    <ul>
+    <li><strong>Threaded Discussions</strong>: Nested reply system with
+    unlimited depth</li>
+    <li><strong>Reaction System</strong>: Like/dislike functionality
+    with real-time counts</li>
+    <li><strong>Anonymous Commenting</strong>: Name and optional
+    email-based commenting</li>
+    <li><strong>Content Sanitization</strong>: HTML sanitization using
+    DOMPurify for security</li>
+    <li><strong>Rate Limiting</strong>: 5 comments per hour per IP
+    address</li>
+    </ul>
+    <h3 id="workflow-management">✅ Workflow Management</h3>
+    <ul>
+    <li><strong>Comment Resolution</strong>: Presentation owners can
+    mark comments as resolved/unresolved</li>
+    <li><strong>Status Indicators</strong>: Visual indicators for
+    resolved, unresolved, and unread comments</li>
+    <li><strong>Admin Moderation</strong>: Complete admin workflow for
+    comment approval and management</li>
+    <li><strong>Audit Trail</strong>: Comprehensive logging for all
+    comment-related activities</li>
+    </ul>
+    <h2 id="technical-architecture">Technical Architecture</h2>
+    <h3 id="database-schema">Database Schema</h3>
+    <p>The comment system uses four main database tables:</p>
+    <h4
+    id="presentation_comments"><code>presentation_comments</code></h4>
+    <div class="sourceCode" id="cb1"><pre
+    class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> presentation_comments (</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> UUID <span class="kw">PRIMARY</span> <span class="kw">KEY</span> <span class="kw">DEFAULT</span> gen_random_uuid(),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  presentation_id UUID <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> presentations(<span class="kw">id</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  parent_comment_id UUID <span class="kw">REFERENCES</span> presentation_comments(<span class="kw">id</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  author_name <span class="dt">VARCHAR</span>(<span class="dv">100</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  author_email <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  content TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  slide_index <span class="dt">INTEGER</span> <span class="kw">DEFAULT</span> <span class="dv">0</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  position_x <span class="dt">DECIMAL</span>(<span class="dv">5</span>,<span class="dv">2</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  position_y <span class="dt">DECIMAL</span>(<span class="dv">5</span>,<span class="dv">2</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  comment_type <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">DEFAULT</span> <span class="st">&#39;general&#39;</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  is_approved <span class="dt">BOOLEAN</span> <span class="kw">DEFAULT</span> <span class="kw">false</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  is_resolved <span class="dt">BOOLEAN</span> <span class="kw">DEFAULT</span> <span class="kw">false</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  is_deleted <span class="dt">BOOLEAN</span> <span class="kw">DEFAULT</span> <span class="kw">false</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  created_at <span class="dt">TIMESTAMP</span> <span class="kw">WITH</span> <span class="dt">TIME</span> <span class="dt">ZONE</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+    <h4 id="comment_reactions"><code>comment_reactions</code></h4>
+    <div class="sourceCode" id="cb2"><pre
+    class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> comment_reactions (</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> UUID <span class="kw">PRIMARY</span> <span class="kw">KEY</span> <span class="kw">DEFAULT</span> gen_random_uuid(),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  comment_id UUID <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> presentation_comments(<span class="kw">id</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  reaction_type <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  author_name <span class="dt">VARCHAR</span>(<span class="dv">100</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  author_email <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  created_at <span class="dt">TIMESTAMP</span> <span class="kw">WITH</span> <span class="dt">TIME</span> <span class="dt">ZONE</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+    <h4
+    id="comment_moderation_queue"><code>comment_moderation_queue</code></h4>
+    <div class="sourceCode" id="cb3"><pre
+    class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> comment_moderation_queue (</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> UUID <span class="kw">PRIMARY</span> <span class="kw">KEY</span> <span class="kw">DEFAULT</span> gen_random_uuid(),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  comment_id UUID <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> presentation_comments(<span class="kw">id</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  action_type <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  moderator_id UUID <span class="kw">REFERENCES</span> users(<span class="kw">id</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  processed_at <span class="dt">TIMESTAMP</span> <span class="kw">WITH</span> <span class="dt">TIME</span> <span class="dt">ZONE</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  created_at <span class="dt">TIMESTAMP</span> <span class="kw">WITH</span> <span class="dt">TIME</span> <span class="dt">ZONE</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+    <h4
+    id="comment_notifications"><code>comment_notifications</code></h4>
+    <div class="sourceCode" id="cb4"><pre
+    class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> comment_notifications (</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> UUID <span class="kw">PRIMARY</span> <span class="kw">KEY</span> <span class="kw">DEFAULT</span> gen_random_uuid(),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  presentation_id UUID <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> presentations(<span class="kw">id</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  comment_id UUID <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> presentation_comments(<span class="kw">id</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  recipient_email <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  notification_type <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  is_sent <span class="dt">BOOLEAN</span> <span class="kw">DEFAULT</span> <span class="kw">false</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  created_at <span class="dt">TIMESTAMP</span> <span class="kw">WITH</span> <span class="dt">TIME</span> <span class="dt">ZONE</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+    <h3 id="api-endpoints">API Endpoints</h3>
+    <h4 id="public-comment-api">Public Comment API</h4>
+    <p><strong>Get Comments</strong></p>
+    <pre class="http"><code>GET /api/comments/:presentationSlug</code></pre>
+    <p>Returns all approved comments for a published presentation with
+    nested reply structure.</p>
+    <p><strong>Submit Comment</strong></p>
+    <pre class="http"><code>POST /api/comments/:presentationSlug
+Content-Type: application/json
+
+{
+  &quot;authorName&quot;: &quot;John Doe&quot;,
+  &quot;authorEmail&quot;: &quot;john@example.com&quot;,
+  &quot;content&quot;: &quot;This is a great slide!&quot;,
+  &quot;slideIndex&quot;: 2,
+  &quot;positionX&quot;: 45.5,
+  &quot;positionY&quot;: 30.2,
+  &quot;commentType&quot;: &quot;slide_pin&quot;
+}</code></pre>
+    <p><strong>Add Reaction</strong></p>
+    <pre class="http"><code>POST /api/comments/:commentId/react
+Content-Type: application/json
+
+{
+  &quot;reactionType&quot;: &quot;like&quot;,
+  &quot;authorName&quot;: &quot;Jane Doe&quot;,
+  &quot;authorEmail&quot;: &quot;jane@example.com&quot;
+}</code></pre>
+    <p><strong>Resolve Comment</strong> (Authenticated - Presentation
+    Owner)</p>
+    <pre class="http"><code>PATCH /api/comments/:commentId/resolve
+Authorization: Bearer &lt;token&gt;
+Content-Type: application/json
+
+{
+  &quot;isResolved&quot;: true
+}</code></pre>
+    <h4 id="admin-moderation-api">Admin Moderation API</h4>
+    <p><strong>Get Pending Comments</strong></p>
+    <pre class="http"><code>GET /api/comments/admin/pending
+Authorization: Bearer &lt;admin-token&gt;</code></pre>
+    <p><strong>Approve Comment</strong></p>
+    <pre class="http"><code>POST /api/comments/admin/:commentId/approve
+Authorization: Bearer &lt;admin-token&gt;</code></pre>
+    <p><strong>Delete Comment</strong></p>
+    <pre class="http"><code>DELETE /api/comments/admin/:commentId
+Authorization: Bearer &lt;admin-token&gt;
+Content-Type: application/json
+
+{
+  &quot;reason&quot;: &quot;Inappropriate content&quot;
+}</code></pre>
+    <h3 id="frontend-components">Frontend Components</h3>
+    <h4 id="commentsystem">CommentSystem</h4>
+    <p>Main integration component that handles all comment
+    functionality:</p>
+    <pre class="tsx"><code>&lt;CommentSystem presentationSlug={slug} isOwner={false} isEnabled={true} /&gt;</code></pre>
+    <h4 id="commentpin">CommentPin</h4>
+    <p>Visual comment markers with positioning:</p>
+    <pre class="tsx"><code>&lt;CommentPin
+  id=&quot;comment-pin-1&quot;
+  positionX={45.5}
+  positionY={30.2}
+  commentCount={3}
+  isResolved={false}
+  hasUnread={true}
+  onClick={handlePinClick}
+/&gt;</code></pre>
+    <h4 id="commentthread">CommentThread</h4>
+    <p>Comment dialog with threaded discussions:</p>
+    <pre class="tsx"><code>&lt;CommentThread
+  comments={commentList}
+  isOpen={isThreadOpen}
+  onClose={handleClose}
+  onReply={handleReply}
+  onReact={handleReaction}
+  onResolve={handleResolve}
+  canResolve={isOwner}
+/&gt;</code></pre>
+    <h4 id="commentform">CommentForm</h4>
+    <p>Comment submission form with positioning:</p>
+    <pre class="tsx"><code>&lt;CommentForm
+  isOpen={isFormOpen}
+  onClose={handleClose}
+  onSubmit={handleSubmit}
+  slideIndex={2}
+  positionX={45.5}
+  positionY={30.2}
+/&gt;</code></pre>
+    <h2 id="user-experience">User Experience</h2>
+    <h3 id="for-viewers">For Viewers</h3>
+    <ol type="1">
+    <li><strong>View Published Presentation</strong> → See existing
+    comment pins on slides</li>
+    <li><strong>Double-click Anywhere</strong> → Opens comment form at
+    clicked position</li>
+    <li><strong>Fill Comment Form</strong> → Enter name, email
+    (optional), and comment</li>
+    <li><strong>Submit Comment</strong> → Creates visual pin at clicked
+    location (pending approval if enabled)</li>
+    <li><strong>Click Existing Pins</strong> → View comment threads and
+    discussions</li>
+    <li><strong>React to Comments</strong> → Like/dislike comments and
+    replies</li>
+    <li><strong>Reply to Comments</strong> → Engage in threaded
+    discussions</li>
+    </ol>
+    <h3 id="for-presentation-owners">For Presentation Owners</h3>
+    <ol type="1">
+    <li><strong>All Viewer Capabilities</strong> → Full commenting
+    functionality</li>
+    <li><strong>Resolve Comments</strong> → Mark feedback as addressed
+    with resolution workflow</li>
+    <li><strong>Manage Discussions</strong> → Oversight of all comments
+    on their presentations</li>
+    <li><strong>Visual Status Tracking</strong> → See resolved
+    vs. unresolved comments at a glance</li>
+    </ol>
+    <h3 id="for-administrators">For Administrators</h3>
+    <ol type="1">
+    <li><strong>All Owner Capabilities</strong> → Full comment
+    management</li>
+    <li><strong>Moderation Queue</strong> → Review and approve pending
+    comments</li>
+    <li><strong>Content Management</strong> → Delete inappropriate
+    comments with audit trail</li>
+    <li><strong>System Settings</strong> → Configure comment system
+    parameters</li>
+    </ol>
+    <h2 id="configuration">Configuration</h2>
+    <h3 id="system-settings">System Settings</h3>
+    <p>Comments can be configured via system_settings table:</p>
+    <div class="sourceCode" id="cb16"><pre
+    class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Enable/disable comments globally</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> system_settings (<span class="kw">key</span>, <span class="fu">value</span>, description)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">&#39;comments_enabled&#39;</span>, <span class="st">&#39;true&#39;</span>, <span class="st">&#39;Enable comments on published presentations&#39;</span>);</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Require admin approval for new comments</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> system_settings (<span class="kw">key</span>, <span class="fu">value</span>, description)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">&#39;comments_require_approval&#39;</span>, <span class="st">&#39;true&#39;</span>, <span class="st">&#39;Require admin approval for new comments&#39;</span>);</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Allow anonymous comments</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> system_settings (<span class="kw">key</span>, <span class="fu">value</span>, description)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">&#39;comments_allow_anonymous&#39;</span>, <span class="st">&#39;true&#39;</span>, <span class="st">&#39;Allow anonymous comments with name + email&#39;</span>);</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Maximum comment length</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> system_settings (<span class="kw">key</span>, <span class="fu">value</span>, description)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">&#39;comments_max_length&#39;</span>, <span class="st">&#39;1000&#39;</span>, <span class="st">&#39;Maximum character length for comments&#39;</span>);</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- Rate limiting</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> system_settings (<span class="kw">key</span>, <span class="fu">value</span>, description)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">&#39;comments_rate_limit&#39;</span>, <span class="st">&#39;5&#39;</span>, <span class="st">&#39;Maximum comments per IP per hour&#39;</span>);</span></code></pre></div>
+    <h3 id="security-features">Security Features</h3>
+    <h4 id="content-sanitization">Content Sanitization</h4>
+    <p>All comment content is sanitized using DOMPurify with strict
+    settings:</p>
+    <div class="sourceCode" id="cb17"><pre
+    class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> sanitizedContent <span class="op">=</span> DOMPurify<span class="op">.</span><span class="fu">sanitize</span>(content<span class="op">,</span> {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ALLOWED_TAGS</span><span class="op">:</span> [<span class="st">&quot;p&quot;</span><span class="op">,</span> <span class="st">&quot;br&quot;</span><span class="op">,</span> <span class="st">&quot;strong&quot;</span><span class="op">,</span> <span class="st">&quot;em&quot;</span><span class="op">,</span> <span class="st">&quot;u&quot;</span><span class="op">,</span> <span class="st">&quot;a&quot;</span>]<span class="op">,</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ALLOWED_ATTR</span><span class="op">:</span> [<span class="st">&quot;href&quot;</span>]<span class="op">,</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">FORBID_ATTR</span><span class="op">:</span> [<span class="st">&quot;style&quot;</span><span class="op">,</span> <span class="st">&quot;class&quot;</span><span class="op">,</span> <span class="st">&quot;id&quot;</span><span class="op">,</span> <span class="st">&quot;onclick&quot;</span>]<span class="op">,</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ALLOW_DATA_ATTR</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+    <h4 id="rate-limiting">Rate Limiting</h4>
+    <ul>
+    <li><strong>Comment Submission</strong>: 5 comments per hour per
+    IP</li>
+    <li><strong>Comment Retrieval</strong>: 100 requests per 15 minutes
+    per IP</li>
+    <li><strong>Admin Actions</strong>: No rate limiting for
+    authenticated admins</li>
+    </ul>
+    <h4 id="input-validation">Input Validation</h4>
+    <ul>
+    <li><strong>Author Name</strong>: 1-100 characters, escaped</li>
+    <li><strong>Email</strong>: Valid email format, normalized</li>
+    <li><strong>Content</strong>: 1-1000 characters, sanitized</li>
+    <li><strong>Position</strong>: X/Y coordinates between 0-100%</li>
+    <li><strong>Slide Index</strong>: Integer between 0-999</li>
+    </ul>
+    <h2 id="performance-considerations">Performance Considerations</h2>
+    <h3 id="database-optimization">Database Optimization</h3>
+    <ul>
+    <li><strong>Indexes</strong>: Optimized indexes for slide-based and
+    position-based queries</li>
+    <li><strong>Recursive CTEs</strong>: Efficient comment tree queries
+    for nested replies</li>
+    <li><strong>Statistics Views</strong>: Pre-computed comment
+    statistics for dashboards</li>
+    </ul>
+    <h3 id="frontend-optimization">Frontend Optimization</h3>
+    <ul>
+    <li><strong>Lazy Loading</strong>: Comments loaded on-demand when
+    pins are clicked</li>
+    <li><strong>Efficient Rendering</strong>: React optimizations for
+    large comment threads</li>
+    <li><strong>Position Caching</strong>: Comment positions cached for
+    smooth interactions</li>
+    </ul>
+    <h2 id="testing">Testing</h2>
+    <h3 id="component-testing">Component Testing</h3>
+    <ul>
+    <li><strong>CommentPin</strong>: Position rendering, click handling,
+    status indicators</li>
+    <li><strong>CommentThread</strong>: Thread rendering, reply
+    functionality, reactions</li>
+    <li><strong>CommentForm</strong>: Form validation, submission,
+    positioning</li>
+    <li><strong>CommentSystem</strong>: Integration testing, event
+    handling</li>
+    </ul>
+    <h3 id="api-testing">API Testing</h3>
+    <ul>
+    <li><strong>Endpoint Testing</strong>: All API endpoints tested for
+    correct responses</li>
+    <li><strong>Security Testing</strong>: Input validation, content
+    sanitization, rate limiting</li>
+    <li><strong>Performance Testing</strong>: Large comment sets, nested
+    threads</li>
+    </ul>
+    <h3 id="database-testing">Database Testing</h3>
+    <ul>
+    <li><strong>Migration Testing</strong>: Schema changes, data
+    integrity</li>
+    <li><strong>Query Performance</strong>: Indexed query performance,
+    recursive CTE efficiency</li>
+    <li><strong>Constraint Testing</strong>: Foreign key constraints,
+    data validation</li>
+    </ul>
+    <h2 id="future-enhancements">Future Enhancements</h2>
+    <h3 id="phase-2-features">Phase 2 Features</h3>
+    <ul>
+    <li><strong>Email Notifications</strong>: Real-time notifications
+    for comment activity</li>
+    <li><strong>Advanced Reactions</strong>: Extended reaction types
+    (love, laugh, angry)</li>
+    <li><strong>Comment Analytics</strong>: Detailed analytics for
+    comment engagement</li>
+    <li><strong>Mobile Optimizations</strong>: Enhanced mobile comment
+    experience</li>
+    </ul>
+    <h3 id="phase-3-features">Phase 3 Features</h3>
+    <ul>
+    <li><strong>Real-time Updates</strong>: WebSocket-based real-time
+    comment updates</li>
+    <li><strong>Comment Mentions</strong>: <span class="citation"
+    data-cites="mention">@mention</span> functionality in comments</li>
+    <li><strong>File Attachments</strong>: Image and file attachments in
+    comments</li>
+    <li><strong>Advanced Moderation</strong>: Auto-moderation with
+    keyword filtering</li>
+    </ul>
+    <h2 id="troubleshooting">Troubleshooting</h2>
+    <h3 id="common-issues">Common Issues</h3>
+    <p><strong>Comments Not Appearing</strong></p>
+    <ul>
+    <li>Check if comments are enabled in system settings</li>
+    <li>Verify presentation is published and accessible</li>
+    <li>Check if comments require approval and are pending</li>
+    </ul>
+    <p><strong>Comment Pins Not Clickable</strong></p>
+    <ul>
+    <li>Ensure comment system is enabled for the presentation</li>
+    <li>Check for JavaScript errors in browser console</li>
+    <li>Verify proper event handling in CommentSystem component</li>
+    </ul>
+    <p><strong>Positioning Issues</strong></p>
+    <ul>
+    <li>Validate X/Y coordinates are within 0-100% range</li>
+    <li>Check slide container data attributes</li>
+    <li>Verify CSS positioning calculations</li>
+    </ul>
+    <h3 id="debug-information">Debug Information</h3>
+    <ul>
+    <li><strong>Database Queries</strong>: Enable query logging for
+    comment-related operations</li>
+    <li><strong>Component State</strong>: Use React DevTools to inspect
+    comment component state</li>
+    <li><strong>API Responses</strong>: Monitor network tab for comment
+    API calls</li>
+    </ul>
+    <h2 id="related-documentation">Related Documentation</h2>
+    <ul>
+    <li><a
+    href="../03-reference/THIRD_PARTY_INTEGRATIONS.md">Third-Party
+    Integrations</a> - DOMPurify and security libraries</li>
+    <li><a href="../03-reference/API_REFERENCE.md">API Reference</a> -
+    Complete API documentation</li>
+    <li><a href="../03-reference/DATABASE_SCHEMA.md">Database Schema</a>
+    - Full database structure</li>
+    <li><a href="../03-reference/TESTING_PROCEDURES.md">Testing
+    Procedures</a> - Testing guidelines</li>
+    </ul>
+    <hr />
+    <p><strong>Note</strong>: This comment system represents a major
+    enhancement to the InvestorPrez platform, providing
+    professional-grade feedback capabilities for published
+    presentations. For technical support or feature requests, please
+    refer to the issue tracking system.</p>
+    
+    <div class="footer">
+        <p>InvestorPrez Documentation | <a href="https://investorprez.github.io/investorprez-docs/">Documentation Home</a></p>
+    </div>
+</body>
+</html>
