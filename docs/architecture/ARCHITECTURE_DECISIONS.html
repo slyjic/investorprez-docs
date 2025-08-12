@@ -174,15 +174,17 @@
     <li><strong>Impact</strong>: Consistent component usage without
     major refactoring</li>
     </ul>
-    <h2 id="dual-ui-system-approach">2025-06-28: Dual UI System
-    Approach</h2>
+    <h2 id="ui-system-consolidation-updated">2025-06-28: UI System
+    Consolidation (Updated)</h2>
     <ul>
-    <li><strong>Decision</strong>: Maintain both Subframe and shadcn/ui
-    components</li>
-    <li><strong>Rationale</strong>: Subframe for complex dashboard
-    layouts, shadcn/ui for form components</li>
-    <li><strong>Impact</strong>: Increased bundle size but better
-    developer experience</li>
+    <li><strong>Decision</strong>: <del>Maintain both Subframe and
+    shadcn/ui</del> <strong>MIGRATED to shadcn/ui only</strong></li>
+    <li><strong>Rationale</strong>: <del>Subframe for complex dashboard
+    layouts</del> <strong>Single UI system for consistency</strong></li>
+    <li><strong>Current Status</strong>: Fully migrated to shadcn/ui,
+    Subframe removed from codebase</li>
+    <li><strong>Impact</strong>: Reduced bundle size, improved
+    maintainability, consistent design patterns</li>
     </ul>
     <h2 id="previous-grapesjs-sdk-integration">Previous: GrapesJS SDK
     Integration</h2>

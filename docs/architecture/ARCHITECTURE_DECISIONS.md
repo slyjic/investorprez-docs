@@ -24,10 +24,11 @@
 - **Implementation**: Thin wrapper components bridging API differences
 - **Impact**: Consistent component usage without major refactoring
 
-## 2025-06-28: Dual UI System Approach
-- **Decision**: Maintain both Subframe and shadcn/ui components
-- **Rationale**: Subframe for complex dashboard layouts, shadcn/ui for form components
-- **Impact**: Increased bundle size but better developer experience
+## 2025-06-28: UI System Consolidation (Updated)
+- **Decision**: ~~Maintain both Subframe and shadcn/ui~~ **MIGRATED to shadcn/ui only**
+- **Rationale**: ~~Subframe for complex dashboard layouts~~ **Single UI system for consistency**
+- **Current Status**: Fully migrated to shadcn/ui, Subframe removed from codebase
+- **Impact**: Reduced bundle size, improved maintainability, consistent design patterns
 
 ## Previous: GrapesJS SDK Integration
 - **Decision**: Use GrapesJS Studio SDK v1.0.51 with presentation isolation
