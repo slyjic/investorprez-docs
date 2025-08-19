@@ -62,7 +62,7 @@ This documentation is optimized for AI assistants and Large Language Models:
 ## 📊 Project Stats
 
 - **Frontend**: React 18.3.1 + TypeScript + Vite + Tailwind CSS
-- **Editor**: GrapesJS Studio SDK v1.0.51
+- **Editor**: GrapesJS Studio SDK v1.0.55
 - **Backend**: Express.js + PostgreSQL + JWT Auth
 - **Testing**: 152 automated tests (all passing ✅)
 - **Infrastructure**: Vercel + Railway + Sentry + GA4
@@ -75,5 +75,5 @@ For questions about InvestorPrez or this documentation:
 
 ---
 
-*Last Updated: August 12, 2025*  
+*Last Updated: August 19, 2025*  
 *Documentation Version: v1.0.0*
